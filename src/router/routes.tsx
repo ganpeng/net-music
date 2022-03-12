@@ -20,10 +20,6 @@ const lazyLoad = (children: ReactNode): ReactNode => {
 
 const routes: RouteObject[] = [
   {
-    path: "/home",
-    element: lazyLoad(<Home />),
-  },
-  {
     path: "/auth",
     element: lazyLoad(<Auth />),
   },
@@ -35,6 +31,11 @@ const routes: RouteObject[] = [
     path: "/",
     element: <PageLayout />,
     children: [
+      {
+        path: "",
+        index: true,
+        element: lazyLoad(<Home />),
+      },
       {
         path: "goods",
         element: lazyLoad(<Goods />),

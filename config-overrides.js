@@ -6,6 +6,8 @@ module.exports = function override(config, env) {
     resources: [
       path.resolve(__dirname, "src/assets/scss/variables.scss"),
       path.resolve(__dirname, "src/assets/scss/mixins.scss"),
+      path.resolve(__dirname, "src/assets/scss/reset.scss"),
+      path.resolve(__dirname, "src/assets/scss/common.scss"),
     ],
   })(config, env);
 

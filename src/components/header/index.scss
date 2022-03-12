@@ -1,21 +1,114 @@
-.page-header {
+.page-header-top {
   display: flex;
-  justify-content: space-around;
-  align-items: center;
+  justify-content: center;
   width: 100%;
-  height: 80px;
-  .logo {
-    width: 100px;
-    height: 60px;
-    background-color: $mainColor;
-  }
-  .nav-list {
+  height: 70px;
+  background-color: $headerBgColor;
+  .top-nav {
     display: flex;
-    justify-content: center;
     align-items: center;
-    .nav-item {
-      margin-left: 20px;
-      font-size: 20px;
+    width: 1100px;
+    .logo {
+      width: 178px;
+      height: 70px;
+      background-image: url("../../assets/images/topbar.png");
+      background-position: 0px 0px;
+      background-repeat: no-repeat;
+      margin-right: 20px;
+      cursor: pointer;
+    }
+    .nav-list {
+      @include center();
+      height: 100%;
+      .nav-item {
+        position: relative;
+        display: flex;
+        align-items: center;
+        height: 100%;
+        font-size: 20px;
+        color: #ccc;
+        padding: 0 20px;
+        cursor: pointer;
+        font-size: 14px;
+        &.download-btn {
+          .hot {
+            position: absolute;
+            top: 20px;
+            right: -25px;
+            width: 40px;
+            height: 20px;
+            line-height: 20px;
+            background-color: $mainColor;
+            color: #fff;
+            font-size: 12px;
+            text-align: center;
+            border-radius: 12px;
+            transform: scale(0.8);
+          }
+        }
+        .triangle {
+          @include triangle(5px, $mainColor, top);
+          position: absolute;
+          bottom: 0;
+          left: 50%;
+          transform: translateX(-50%);
+        }
+        &:hover,
+        &.active {
+          color: #fff;
+          background-color: #000;
+        }
+      }
+    }
+  }
+}
+
+.bottom-sub-nav {
+  @include center();
+  width: 100%;
+  height: 35px;
+  background-color: $mainColor;
+  .sub-nav-list-wrapper {
+    position: relative;
+    width: 1100px;
+    height: 100%;
+    .sub-nav-list {
+      position: absolute;
+      left: 206px;
+      display: flex;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      .sub-nav-item {
+        position: relative;
+        display: block;
+        height: 20px;
+        line-height: 20px;
+        color: #fff;
+        padding: 0 12px;
+        font-size: 10px;
+        margin: 0 16px;
+        border-radius: 20px;
+        cursor: pointer;
+        .sup {
+          position: absolute;
+          top: 0px;
+          right: 0px;
+          width: 14px;
+          height: 14px;
+          line-height: 14px;
+          text-align: center;
+          transform: scale(0.6);
+          color: #ccc;
+          border: 1px solid #ccc;
+          border-radius: 14px;
+        }
+
+        &:hover,
+        &.active {
+          background-color: #8b0909;
+        }
+      }
     }
   }
 }
