@@ -1,7 +1,6 @@
 import React from "react";
 import { QueryClientProvider, QueryClient } from "react-query";
 import { useRoutes } from "react-router-dom";
-import "./App.css";
 import routes from "./router/routes";
 
 function App() {
