@@ -1,12 +1,11 @@
 import React from "react";
-import Banner from "../../components/banner/Banner";
-import StudyHook from "../../components/study_hook/StudyHook";
-
+import { Banner } from "../../components";
+import { HotPlaylist } from "../../container";
 export default function Home() {
   return (
     <div className="home-container">
       <Banner></Banner>
-      <StudyHook></StudyHook>
+      <HotPlaylist></HotPlaylist>
     </div>
   );
 }

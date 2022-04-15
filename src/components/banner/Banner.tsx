@@ -37,29 +37,32 @@ export default function Banner() {
   return (
     <div className="banner-container">
       <div className="filter-bg-image" style={style}></div>
-      <div className="banner-image-list-container">
-        <div className="banner-image" style={style}></div>
-      </div>
-      <div className="banner-btn-container">
-        {activeIndex > 0 && (
-          <div className="arr arr-left" onClick={() => prevHandler()}></div>
-        )}
-        {activeIndex < bannersLength - 1 && (
-          <div className="arr arr-right" onClick={() => nextHandler()}></div>
-        )}
-        <ul className="pagination-list">
-          {times(bannersLength, (index) => {
-            return (
-              <li
-                className={`pagination-item ${
-                  activeIndex === index ? "active" : ""
-                }`}
-                key={index}
-                onClick={() => setActiveIndex(index)}
-              ></li>
-            );
-          })}
-        </ul>
+      <div className="banner-download-wrapper">
+        <div className="banner-image-list-container">
+          <div className="banner-image" style={style}></div>
+          <ul className="pagination-list">
+            {times(bannersLength, (index) => {
+              return (
+                <li
+                  className={`pagination-item ${
+                    activeIndex === index ? "active" : ""
+                  }`}
+                  key={index}
+                  onClick={() => setActiveIndex(index)}
+                ></li>
+              );
+            })}
+          </ul>
+        </div>
+        <div className="download-client-container"></div>
+        <div className="banner-btn-container">
+          {activeIndex > 0 && (
+            <div className="arr arr-left" onClick={() => prevHandler()}></div>
+          )}
+          {activeIndex < bannersLength - 1 && (
+            <div className="arr arr-right" onClick={() => nextHandler()}></div>
+          )}
+        </div>
       </div>
       <div className="mask"></div>
     </div>

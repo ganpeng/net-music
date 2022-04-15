@@ -8,10 +8,17 @@ const apiRoot = process.env.REACT_APP_API_ROOT;
 3: ipad
  * 
  */
-export const bannerList = `${apiRoot}/banner`;
+export const BANNER_LIST = `${apiRoot}/banner`;
+
+/**
+ *
+ *  热门歌单分类
+ */
+export const HOT_PLAYLIST_CATEGORY = `${apiRoot}/playlist/hot`;
 
 const apiRoute: { [propName: string]: string } = {
-  bannerList,
+  BANNER_LIST,
+  HOT_PLAYLIST_CATEGORY,
 };
 
 export default apiRoute;

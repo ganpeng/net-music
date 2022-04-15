@@ -5,7 +5,14 @@ import { IBannerListResult } from "../constants/type";
 
 export function getBannerData(): Promise<IBannerListResult> {
   return axios
-    .get(apiRoute.bannerList)
+    .get(apiRoute.BANNER_LIST)
+    .then((res) => res.data)
+    .catch((err) => reject(err));
+}
+
+export function getHotPlayListCategory() {
+  return axios
+    .get(apiRoute.HOT_PLAYLIST_CATEGORY)
     .then((res) => res.data)
     .catch((err) => reject(err));
 }
