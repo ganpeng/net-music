@@ -1,0 +1,11 @@
+.study-hook-container {
+  .scroll-box {
+    width: 400px;
+    height: 400px;
+    overflow: hidden;
+    overflow-y: scroll;
+    p {
+      color: #222;
+    }
+  }
+}
