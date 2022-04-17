@@ -13,12 +13,19 @@ export const BANNER_LIST = `${apiRoot}/banner`;
 /**
  *
  *  热门歌单分类
+ *  /personalized?limit=1 参数limit 默认30
  */
 export const HOT_PLAYLIST_CATEGORY = `${apiRoot}/playlist/hot`;
+
+/**
+ * 热门推荐歌单
+ */
+export const PERSONALIZED = `${apiRoot}/personalized`;
 
 const apiRoute: { [propName: string]: string } = {
   BANNER_LIST,
   HOT_PLAYLIST_CATEGORY,
+  PERSONALIZED,
 };
 
 export default apiRoute;

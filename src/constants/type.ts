@@ -14,6 +14,7 @@ export interface INavBar {
   isSup?: boolean;
 }
 
+// 轮播图
 export interface IBannerItem {
   imageUrl: string;
   titleColor: string;
@@ -24,4 +25,44 @@ export interface IBannerItem {
 export interface IBannerListResult {
   banners: IBannerItem[];
   code: number;
+}
+
+// 热门推荐分类
+export interface ITag {
+  activity: boolean;
+  category: number;
+  hot: boolean;
+  id: number;
+  name: string;
+  position: number;
+  type: number;
+  usedCount: number;
+  [propName: string]: any;
+}
+
+export interface ITagsResponse {
+  code: number;
+  tags: ITag[];
+}
+
+// 热门推荐
+export interface IHotRecommendResultItem {
+  alg: string;
+  canDislike: boolean;
+  copywriter: string;
+  highQuality: boolean;
+  id: number;
+  name: string;
+  picUrl: string;
+  playCount: number;
+  trackCount: number;
+  trackNumberUpdateTime: number;
+  type: number;
+}
+
+export interface IHotRecommendResponse {
+  category: number;
+  code: number;
+  hasTaste: boolean;
+  result: IHotRecommendResultItem[];
 }

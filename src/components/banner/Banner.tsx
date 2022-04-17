@@ -1,18 +1,12 @@
 import { get, times } from "lodash";
-import React, { CSSProperties, useState } from "react";
+import React, { CSSProperties, useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { getBannerData } from "../../service";
 import "./index.scss";
 
-export default function Banner() {
+function Banner() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const { isError, isLoading, data } = useQuery("bannerList", getBannerData);
-  if (isError) {
-    return <h2>error</h2>;
-  }
-  if (isLoading) {
-    return <h2>isLoading</h2>;
-  }
+  const { data } = useQuery("bannerList", getBannerData);
   const activeImageurl = get(data, `banners.${activeIndex}.imageUrl`);
   const bannersLength: number = get(data, `banners.length`) || 0;
   const style: CSSProperties = {
@@ -28,7 +22,7 @@ export default function Banner() {
   };
   const nextHandler = () => {
     if (activeIndex < bannersLength - 1) {
-      setActiveIndex(activeIndex + 1);
+      setActiveIndex((activeIndex) => activeIndex + 1);
     } else {
       setActiveIndex(0);
     }
@@ -68,3 +62,5 @@ export default function Banner() {
     </div>
   );
 }
+
+export default Banner;

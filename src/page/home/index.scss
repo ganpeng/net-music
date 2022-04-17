@@ -1,0 +1,16 @@
+.home-container {
+  .home-content {
+    display: flex;
+    width: $mainContentWidth;
+    margin: 0 auto;
+    background-color: #fff;
+    border: 1px solid #d3d3d3;
+    .left-content {
+      width: 730px;
+      padding: 20px 20px 40px;
+    }
+    .right-content {
+      width: 230px;
+    }
+  }
+}
