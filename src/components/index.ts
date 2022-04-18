@@ -4,3 +4,4 @@ export { default as PageHeader } from "./header/PageHeader";
 export { default as HotPlaylistCategory } from "./hot_playlist_category/HotPlaylistCategory";
 export { default as SectionHeader } from "./section_header/SectionHeader";
 export { default as HotRecommend } from "./hot_recommend/HotRecommend";
+export { default as Carousel } from "./carousel/Carousel";
