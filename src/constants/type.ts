@@ -66,3 +66,24 @@ export interface IHotRecommendResponse {
   hasTaste: boolean;
   result: IHotRecommendResultItem[];
 }
+
+// 新碟
+export interface IArtist {
+  name: string;
+  [propName: string]: any;
+}
+
+export interface IAlbum {
+  blurPicUrl: string;
+  id: number;
+  name: string;
+  picUrl: string;
+  artist: IArtist;
+  [propName: string]: any;
+}
+
+export interface INewAlbumResponse {
+  code: number;
+  total: number;
+  albums: IAlbum[];
+}

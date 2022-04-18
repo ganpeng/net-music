@@ -1,7 +1,7 @@
 import React from "react";
 import "./index.scss";
-import { Banner, Carousel } from "../../components";
-import { HotPlaylist } from "../../container";
+import { Banner } from "../../components";
+import { HotPlaylist, TopAlbum } from "../../container";
 
 export default function Home() {
   return (
@@ -10,7 +10,7 @@ export default function Home() {
       <div className="home-content">
         <div className="left-content">
           <HotPlaylist></HotPlaylist>
-          <Carousel></Carousel>
+          <TopAlbum></TopAlbum>
         </div>
         <div className="right-content"></div>
       </div>
