@@ -46,12 +46,51 @@ export const TOP_ALBUM = `${apiRoot}/top/album`;
  */
 export const NEW_ALBUM = `${apiRoot}/album/new`;
 
+/**
+ * 
+ * 所有榜单
+  说明 : 调用此接口,可获取所有榜单 接口地址 : /toplist
+  调用例子 : /toplist
+ */
+export const BOARD_LIST = `${apiRoot}/toplist`;
+
+/**
+ * 歌单详情
+  必选参数 : id : 歌单 id
+  可选参数 : s : 歌单最近的 s 个收藏者,默认为 8
+  接口地址 : /playlist/detail
+  调用例子 : /playlist/detail?id=24381616
+ */
+export const PLAYLIST_DETAIL = `${apiRoot}/playlist/detail`;
+
+/**
+ * 说明 : 调用此接口 , 可获取热门歌手数据
+  可选参数 : limit: 取出数量 , 默认为 50
+  offset: 偏移数量 , 用于分页 , 如 :( 页数 -1)*50, 其中 50 为 limit 的值 , 默认 为 0
+  接口地址 : /top/artists
+  调用例子 : /top/artists?offset=0&limit=30
+ * 
+ */
+export const TOP_ARTISTS = `${apiRoot}/top/artists`;
+
+/**
+ * limit : 返回数量 , 默认为 100 (不支持 offset)
+  接口地址 : /dj/toplist/popular
+  调用例子 : /dj/toplist/popular?limit=30
+ * 
+ */
+export const HOT_DJ = `${apiRoot}/dj/toplist/popular`;
+
 const apiRoute: { [propName: string]: string } = {
   BANNER_LIST,
   HOT_PLAYLIST_CATEGORY,
   PERSONALIZED,
   TOP_ALBUM,
   NEW_ALBUM,
+  BOARD_LIST,
+  PLAYLIST_DETAIL,
+  TOP_ARTISTS,
+  HOT_DJ,
 };
 
 export default apiRoute;

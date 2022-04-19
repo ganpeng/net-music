@@ -2,9 +2,13 @@ import axios from "axios";
 import { reject } from "lodash";
 import apiRoute from "../constants/apiRoute";
 import {
+  IArtistListResponse,
   IBannerListResult,
+  IBoardListResponse,
+  IDjListResponse,
   IHotRecommendResponse,
   INewAlbumResponse,
+  IPlayListDetailResponse,
   ITagsResponse,
 } from "../constants/type";
 
@@ -39,6 +43,36 @@ export function getTopAlbumList() {
 export function getNewAlbumList(): Promise<INewAlbumResponse> {
   return axios
     .get(apiRoute.NEW_ALBUM)
+    .then((res) => res.data)
+    .catch((err) => reject(err));
+}
+
+export function getBoardList(): Promise<IBoardListResponse> {
+  return axios
+    .get(apiRoute.BOARD_LIST)
+    .then((res) => res.data)
+    .catch((err) => reject(err));
+}
+
+export function getPlaylistDetail(
+  id: number
+): Promise<IPlayListDetailResponse> {
+  return axios
+    .get(`${apiRoute.PLAYLIST_DETAIL}?id=${id}`)
+    .then((res) => res.data)
+    .catch((err) => reject(err));
+}
+
+export function getTopArtists(): Promise<IArtistListResponse> {
+  return axios
+    .get(apiRoute.TOP_ARTISTS)
+    .then((res) => res.data)
+    .catch((err) => reject(err));
+}
+
+export function getHotDjList(): Promise<IDjListResponse> {
+  return axios
+    .get(apiRoute.HOT_DJ)
     .then((res) => res.data)
     .catch((err) => reject(err));
 }

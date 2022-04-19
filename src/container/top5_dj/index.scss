@@ -1,0 +1,38 @@
+.top5-dj-container {
+  margin-top: 40px;
+  .title-field {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 34px;
+    border-bottom: 1px solid #ccc;
+    .title {
+      color: #333;
+      font-weight: bold;
+    }
+  }
+  .top-artist-list {
+    .top-artist-item {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      height: 40px;
+      margin-top: 14px;
+      .pic {
+        width: 40px;
+        height: 40px;
+        @include bg-image();
+        cursor: pointer;
+      }
+      .name {
+        color: #333;
+        margin-left: 14px;
+        cursor: pointer;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}

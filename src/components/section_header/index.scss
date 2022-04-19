@@ -28,6 +28,9 @@
       cursor: pointer;
       .text {
         color: #666;
+        &:hover {
+          text-decoration: underline;
+        }
       }
       .more-icon {
         img {

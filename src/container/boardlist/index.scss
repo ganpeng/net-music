@@ -1,0 +1,162 @@
+.board-list-container {
+  .board-list-content {
+    display: flex;
+    position: relative;
+    width: 100%;
+    height: 472px;
+    background: #f5f5f5;
+    margin: 20px 0 36px 0;
+    border: 1px solid #d3d3d3;
+    overflow: hidden;
+    .board-item {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      .board-item-header {
+        display: flex;
+        height: 120px;
+        padding: 20px 0 0 20px;
+        .image-field {
+          position: relative;
+          width: 80px;
+          height: 80px;
+          margin-right: 10px;
+          .mask-image {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: url("../../assets/images/coverall.png");
+            background-repeat: no-repeat;
+            background-position: -145px -57px;
+          }
+          .cover-image {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            @include bg-image();
+          }
+        }
+        .name-control-field {
+          .name {
+            color: #333;
+            font-size: 14px;
+            font-weight: bold;
+          }
+          .control-field {
+            display: flex;
+            cursor: pointer;
+            margin-top: 10px;
+            .play-btn {
+              width: 22px;
+              height: 22px;
+              background-image: url("../../assets/images/icons_bg.png");
+              background-repeat: no-repeat;
+              background-position: -267px -205px;
+              margin-right: 10px;
+              &:hover {
+                background-position: -267px -235px;
+              }
+            }
+            .add-to-playlist-btn {
+              width: 22px;
+              height: 22px;
+              background-image: url("../../assets/images/icons_bg.png");
+              background-repeat: no-repeat;
+              background-position: -300px -205px;
+              &:hover {
+                background-position: -300px -235px;
+              }
+            }
+          }
+        }
+      }
+      .board-item-content {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        .track-list {
+          display: flex;
+          flex-direction: column;
+          flex: 1;
+          .track-item {
+            display: flex;
+            align-items: center;
+            flex: 1;
+            position: relative;
+            padding-left: 10px;
+            &:nth-child(odd) {
+              background-color: #d3d3d3;
+            }
+            &:nth-child(even) {
+              background-color: #f2f2f2;
+            }
+            .index {
+              width: 32px;
+              font-size: 16px;
+              color: #c10d0c;
+              margin-left: 10px;
+              @include center();
+            }
+            .track-name {
+              color: #000;
+            }
+            .control-field {
+              display: none;
+              position: absolute;
+              right: 20px;
+              top: 50%;
+              transform: translateY(-50%);
+              .play-btn {
+                width: 22px;
+                height: 22px;
+                background-image: url("../../assets/images/icons_bg.png");
+                background-repeat: no-repeat;
+                background-position: -267px -205px;
+                transform: scale(0.8);
+                // margin-right: 10px;
+                &:hover {
+                  background-position: -267px -235px;
+                }
+              }
+              .add-to-playlist-btn {
+                width: 22px;
+                height: 22px;
+                background-image: url("../../assets/images/icons_bg.png");
+                background-repeat: no-repeat;
+                background-position: -300px -205px;
+                transform: scale(0.8);
+                &:hover {
+                  background-position: -300px -235px;
+                }
+              }
+            }
+            &:hover {
+              .track-name {
+                text-decoration: underline;
+              }
+              .control-field {
+                display: flex;
+              }
+            }
+          }
+          .check-total {
+            width: 100%;
+            padding-right: 30px;
+            p {
+              width: 100%;
+              color: #000;
+              text-align: right;
+              cursor: pointer;
+              &:hover {
+                text-decoration: underline;
+              }
+            }
+          }
+        }
+      }
+    }
+    .board-item + .board-item {
+      border-left: 1px solid #d3d3d3;
+    }
+  }
+}
