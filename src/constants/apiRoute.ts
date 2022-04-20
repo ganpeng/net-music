@@ -18,6 +18,11 @@ export const BANNER_LIST = `${apiRoot}/banner`;
 export const HOT_PLAYLIST_CATEGORY = `${apiRoot}/playlist/hot`;
 
 /**
+ * 歌单全部分类
+ */
+export const CATEGORY_LIST = `${apiRoot}/playlist/catlist`;
+
+/**
  * 热门推荐歌单
  */
 export const PERSONALIZED = `${apiRoot}/personalized`;
@@ -84,6 +89,7 @@ export const HOT_DJ = `${apiRoot}/dj/toplist/popular`;
 const apiRoute: { [propName: string]: string } = {
   BANNER_LIST,
   HOT_PLAYLIST_CATEGORY,
+  CATEGORY_LIST,
   PERSONALIZED,
   TOP_ALBUM,
   NEW_ALBUM,

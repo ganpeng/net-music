@@ -14,3 +14,8 @@ li {
 .App {
   min-width: 1400px;
 }
+
+.content-w {
+  width: $mainContentWidth;
+  margin: 0 auto;
+}

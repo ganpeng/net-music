@@ -1,0 +1,112 @@
+.category-list-container {
+  position: relative;
+  top: 40px;
+  left: 0;
+  width: 720px;
+  // height: 430px;
+  background-color: #fff;
+  border: 1px solid #d3d3d3;
+  border-radius: 4px;
+  .arrow {
+    position: absolute;
+    top: -11px;
+    left: 132px;
+    display: inline-block;
+    width: 24px;
+    height: 11px;
+    background-position: -48px 0;
+    vertical-align: middle;
+    background-image: url("../../assets/images/iconall.png");
+  }
+  .category-list-header {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    padding-left: 26px;
+    border-bottom: 1px solid #e6e6e6;
+    .all-btn {
+      width: 75px;
+      height: 26px;
+      text-align: center;
+      line-height: 26px;
+      color: #333;
+      background-image: url("../../assets/images/button.png");
+      background-repeat: no-repeat;
+      background-position: 0 -64px;
+      cursor: pointer;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+  .category-list-content {
+    .category-list {
+      padding-left: 26px;
+      .category-item {
+        display: flex;
+        align-items: flex-start;
+        .name-icon {
+          display: flex;
+          align-items: center;
+          width: 70px;
+          height: inherit;
+          padding-top: 12px;
+          .cate-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 8px;
+            background-image: url("../../assets/images/icon.png");
+            background-repeat: no-repeat;
+            &.cate-icon_0 {
+              background-position: -20px -735px;
+            }
+            &.cate-icon_1 {
+              background-position: 0 -60px;
+            }
+            &.cate-icon_2 {
+              background-position: 0 -88px;
+            }
+            &.cate-icon_3 {
+              background-position: 0 -117px;
+            }
+            &.cate-icon_4 {
+              background-position: 0 -141px;
+            }
+          }
+          .cate-name {
+            color: #333;
+            font-size: 14px;
+            font-weight: bold;
+          }
+        }
+        .sub-category-list {
+          display: flex;
+          flex: 1;
+          align-items: center;
+          flex-wrap: wrap;
+          height: inherit;
+          padding: 16px 16px 10px 16px;
+          border-left: 1px solid #e6e6e6;
+          .sub-category-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            .sub-cate-name {
+              color: #333;
+              font-size: 14px;
+              &:hover {
+                text-decoration: underline;
+                cursor: pointer;
+              }
+            }
+            .sub-category-item-split {
+              color: #d8d8d8;
+              margin: 0 10px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

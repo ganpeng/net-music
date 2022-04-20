@@ -148,3 +148,18 @@ export interface IDjListResponse {
     [propName: string]: any;
   };
 }
+// 歌单分类
+export interface ICategory {
+  name: string;
+  category: number;
+  [propName: string]: any;
+}
+
+export interface ICategoryListResponse {
+  code: number;
+  all: ICategory;
+  sub: ICategory[];
+  categories: {
+    [propName: string]: string;
+  };
+}

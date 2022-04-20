@@ -1,0 +1,19 @@
+.no-data-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 100px 0;
+  .no-data-icon {
+    width: 64px;
+    height: 50px;
+    margin-right: 18px;
+    background-image: url("../../assets/images/icon.png");
+    background-repeat: no-repeat;
+    background-position: 0 -347px;
+  }
+  .no-data-text {
+    font-size: 18px;
+    font-weight: bold;
+  }
+}

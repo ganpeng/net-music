@@ -1,15 +1,19 @@
 import React from "react";
 import "./index.scss";
 import { Banner } from "../../components";
-import { BoardList, HotPlaylist, TopAlbum } from "../../container";
-import Top5Artists from "../../container/top5_artists/Top5Artists";
-import Top5Dj from "../../container/top5_dj/Top5Dj";
+import {
+  BoardList,
+  HotPlaylist,
+  Top5Artists,
+  Top5Dj,
+  TopAlbum,
+} from "../../container";
 
 export default function Home() {
   return (
     <div className="home-container">
       <Banner></Banner>
-      <div className="home-content">
+      <div className="home-content content-w">
         <div className="left-content">
           <HotPlaylist></HotPlaylist>
           <TopAlbum></TopAlbum>

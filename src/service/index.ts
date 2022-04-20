@@ -5,6 +5,7 @@ import {
   IArtistListResponse,
   IBannerListResult,
   IBoardListResponse,
+  ICategoryListResponse,
   IDjListResponse,
   IHotRecommendResponse,
   INewAlbumResponse,
@@ -73,6 +74,13 @@ export function getTopArtists(): Promise<IArtistListResponse> {
 export function getHotDjList(): Promise<IDjListResponse> {
   return axios
     .get(apiRoute.HOT_DJ)
+    .then((res) => res.data)
+    .catch((err) => reject(err));
+}
+
+export function getCategoryList(): Promise<ICategoryListResponse> {
+  return axios
+    .get(apiRoute.CATEGORY_LIST)
     .then((res) => res.data)
     .catch((err) => reject(err));
 }

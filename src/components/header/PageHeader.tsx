@@ -1,5 +1,6 @@
 import { cloneDeep } from "lodash";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   DEFAULT_NAV_BAR_LIST,
   DEFAULT_SUB_NAV_BAR_LIST,
@@ -7,6 +8,7 @@ import {
 import "./index.scss";
 
 export default function PageHeader() {
+  const navigator = useNavigate();
   const [navBarList, setNavBarList] = useState(cloneDeep(DEFAULT_NAV_BAR_LIST));
   const [subNavList, setSubNavList] = useState(
     cloneDeep(DEFAULT_SUB_NAV_BAR_LIST)
@@ -45,7 +47,7 @@ export default function PageHeader() {
     <>
       <div className="page-header-top">
         <div className="top-nav">
-          <div className="logo"></div>
+          <div className="logo" onClick={() => navigator("/")}></div>
           <ul className="nav-list">
             {navBarList.map((navBar, index) => {
               return (

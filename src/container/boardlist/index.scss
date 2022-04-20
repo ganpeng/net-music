@@ -11,7 +11,7 @@
     .board-item {
       display: flex;
       flex-direction: column;
-      flex: 1;
+      width: 33.333%;
       .board-item-header {
         display: flex;
         height: 120px;
@@ -98,7 +98,9 @@
               @include center();
             }
             .track-name {
+              width: calc(100% - 42px);
               color: #000;
+              @include ellipsis();
             }
             .control-field {
               display: none;
