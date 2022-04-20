@@ -2,7 +2,6 @@ import React from "react";
 import { useQuery } from "react-query";
 import take from "lodash/take";
 import { getPersonalizedList } from "../../service";
-import { music, play, playHover } from "../../constants/svg";
 import "./index.scss";
 import { numberFormatter } from "../../utils";
 
@@ -21,14 +20,13 @@ function HotRecommend() {
               ></div>
               <div className="meta-info">
                 <div className="view-count">
-                  <img className="view-icon" src={music} alt="" />
+                  <div className="view-icon"></div>
                   <span className="count">
                     {numberFormatter(hotRecommend.playCount)}
                   </span>
                 </div>
                 <div className="play-btn-container">
-                  <img className="play-btn" src={play} alt="" />
-                  <img className="play-btn active" src={playHover} alt="" />
+                  <div className="play-btn"></div>
                 </div>
               </div>
             </div>

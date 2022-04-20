@@ -19,3 +19,69 @@ li {
   width: $mainContentWidth;
   margin: 0 auto;
 }
+
+// 分页组件UI
+// .my-pagination-list {
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   margin-top: 20px;
+//   .prev-btn {
+//     width: 69px;
+//     height: 24px;
+//     line-height: 24px;
+//     color: #333;
+//     text-align: left;
+//     padding-left: 22px;
+//     background-position: 0 -560px;
+//     background-image: url("../images/button.png");
+//     background-repeat: no-repeat;
+//     border: 1px solid #ccc;
+//     cursor: pointer;
+//     &:hover {
+//       background-position: 0 -590px;
+//     }
+//   }
+//   .pagination-item {
+//     display: inline-block;
+//     margin: 0 5px 0 5px;
+//     border: 1px solid #ccc;
+//     border-radius: 2px;
+//     vertical-align: middle;
+//     height: 22px;
+//     padding: 0 8px;
+//     background-color: #fff;
+//     line-height: 22px;
+//     cursor: pointer;
+//     &.selected {
+//       background-position: 0 -650px;
+//       border-color: #a2161b;
+//       color: #fff;
+//       background-image: url("../images/button.png");
+//       background-repeat: no-repeat;
+//       cursor: default;
+//       a {
+//         cursor: default;
+//       }
+//     }
+//     &:hover {
+//       border-color: #666;
+//     }
+//   }
+//   .next-btn {
+//     width: 69px;
+//     height: 24px;
+//     line-height: 24px;
+//     color: #333;
+//     text-align: left;
+//     padding-left: 12px;
+//     background-position: -75px -560px;
+//     background-image: url("../images/button.png");
+//     background-repeat: no-repeat;
+//     border: 1px solid #ccc;
+//     cursor: pointer;
+//     &:hover {
+//       background-position: -75px -590px;
+//     }
+//   }
+// }

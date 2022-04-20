@@ -14,6 +14,11 @@ export interface INavBar {
   isSup?: boolean;
 }
 
+// 分页搜索参数
+export interface IPaginationParams {
+  offset: number;
+}
+
 // 轮播图
 export interface IBannerItem {
   imageUrl: string;
@@ -162,4 +167,32 @@ export interface ICategoryListResponse {
   categories: {
     [propName: string]: string;
   };
+}
+// 歌单
+export interface ICreator {
+  userId: number;
+  nickname: string;
+}
+
+export interface ITopPlay {
+  id: number;
+  name: string;
+  coverImgUrl: string;
+  description: string;
+  playCount: number;
+  creator: ICreator;
+}
+
+export interface ITopPlayListResponse {
+  code: number;
+  total: number;
+  more: boolean;
+  cat: string;
+  playlists: ITopPlay[];
+}
+
+export interface ITopPlayListSearchParams {
+  offset: number;
+  limit: number;
+  cat: string;
 }

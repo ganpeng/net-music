@@ -7,3 +7,4 @@ export { default as HotRecommend } from "./hot_recommend/HotRecommend";
 export { default as Carousel } from "./carousel/Carousel";
 export { default as NoData } from "./no_data/NoData";
 export { default as CategoryList } from "./category_list/CategoryList";
+export { default as Pagination } from "./pagination/Pagination";

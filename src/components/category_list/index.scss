@@ -1,12 +1,15 @@
 .category-list-container {
-  position: relative;
+  position: absolute;
   top: 40px;
-  left: 0;
+  left: 80px;
+  transform: translateX(-132px);
   width: 720px;
   // height: 430px;
   background-color: #fff;
   border: 1px solid #d3d3d3;
   border-radius: 4px;
+  z-index: 3;
+  cursor: default;
   .arrow {
     position: absolute;
     top: -11px;
@@ -95,6 +98,12 @@
             .sub-cate-name {
               color: #333;
               font-size: 14px;
+              line-height: 14px;
+              &.active {
+                background: #a7a7a7;
+                color: #fff;
+                padding: 2px 6px;
+              }
               &:hover {
                 text-decoration: underline;
                 cursor: pointer;

@@ -1,0 +1,116 @@
+.playlist-container {
+  padding: 40px;
+  background-color: #fff;
+  border: 1px solid #d3d3d3;
+  border-width: 0 1px;
+  .selecte-category-btn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 75px;
+    height: 26px;
+    text-align: center;
+    line-height: 26px;
+    color: #333;
+    background-image: url("../../assets/images/button.png");
+    background-repeat: no-repeat;
+    background-position: 0 -64px;
+    margin-left: 15px;
+    cursor: pointer;
+    .text {
+      color: #0c73c2;
+      margin-right: 4px;
+    }
+    .icon {
+      width: 8px;
+      height: 5px;
+      background-image: url("../../assets/images/icon.png");
+      background-position: -70px -543px;
+    }
+  }
+  .hot-recommnend-container {
+    .hot-recommend-item {
+      width: 140px;
+      margin-bottom: 30px;
+      margin-left: 50px;
+      margin-bottom: 30px;
+      &:nth-of-type(5n + 1) {
+        margin-left: 0;
+      }
+      .image-field {
+        position: relative;
+        width: 140px;
+        height: 140px;
+        .img {
+          width: 140px;
+          height: 140px;
+          @include bg-image();
+          cursor: pointer;
+        }
+        .meta-info {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          position: absolute;
+          bottom: 0;
+          width: 100%;
+          height: 28px;
+          padding: 0 10px;
+          background-color: rgba(0, 0, 0, 0.6);
+          .view-count {
+            display: flex;
+            align-items: center;
+            .view-icon {
+              width: 14px;
+              height: 14px;
+              margin-right: 8px;
+              background-image: url("../../assets/images/iconall.png");
+              background-repeat: no-repeat;
+              background-position: 0 -23px;
+            }
+            .count {
+              color: #ccc;
+            }
+          }
+          .play-btn-container {
+            .play-btn {
+              display: block;
+              width: 16px;
+              height: 17px;
+              cursor: pointer;
+              background-image: url("../../assets/images/iconall.png");
+              background-repeat: no-repeat;
+              background-position: 0 0;
+              &:hover {
+                background-position: 0 -60px;
+              }
+            }
+          }
+        }
+      }
+      .name {
+        font-size: 14px;
+        line-height: 1.4;
+        margin: 6px 0;
+        @include ellipsis(1);
+        cursor: pointer;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+      .creator {
+        display: flex;
+        align-items: center;
+        .by {
+          color: #999;
+          margin-right: 4px;
+        }
+        .nickname {
+          color: #666;
+          @include ellipsis(1);
+        }
+      }
+    }
+  }
+}

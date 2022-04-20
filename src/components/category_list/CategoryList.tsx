@@ -1,13 +1,42 @@
 import { get, groupBy, keys } from "lodash";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { PAGE_LIMIT } from "../../constants";
+import { ITopPlayListSearchParams } from "../../constants/type";
 import { getCategoryList } from "../../service";
+import { getParamsString } from "../../utils";
 import "./index.scss";
+type CategoryListPropsType = {
+  hideCatList: () => void;
+};
 
-function CategoryList() {
+function CategoryList({ hideCatList }: CategoryListPropsType) {
+  const navigator = useNavigate();
+  const [searchParams] = useSearchParams();
+  const cat = searchParams.get("cat");
   const { data } = useQuery("category_list", getCategoryList);
   const groupByCategoryList = groupBy(data?.sub, `category`);
-  console.log(groupByCategoryList);
+
+  const gotoPlayList = (cat: string) => {
+    const params: ITopPlayListSearchParams = {
+      offset: 0,
+      limit: PAGE_LIMIT,
+      cat,
+    };
+    navigator(`/playlist?${getParamsString(params)}`);
+    hideCatList();
+  };
+
+  const closeCategoryList = (e: Event) => {};
+
+  useEffect(() => {
+    window.addEventListener("click", closeCategoryList);
+    return () => {
+      window.removeEventListener("click", closeCategoryList);
+    };
+  }, []);
+
   return (
     <div className="category-list-container">
       <div className="arrow"></div>
@@ -30,7 +59,16 @@ function CategoryList() {
                         className="sub-category-item"
                         key={`${subCategory.name} + _index`}
                       >
-                        <div className="sub-cate-name">{subCategory.name}</div>
+                        <div
+                          className={`sub-cate-name ${
+                            cat === subCategory.name ? "active" : ""
+                          }`}
+                          onClick={() => {
+                            gotoPlayList(subCategory.name);
+                          }}
+                        >
+                          {subCategory.name}
+                        </div>
                         <div className="sub-category-item-split">|</div>
                       </div>
                     );
