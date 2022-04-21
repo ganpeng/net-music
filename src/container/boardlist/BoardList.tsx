@@ -26,7 +26,7 @@ function BoardList() {
   };
   return (
     <div className="board-list-container">
-      <SectionHeader title="榜单"></SectionHeader>
+      <SectionHeader title="榜单" moreLink="/toplist"></SectionHeader>
       <div className="board-list-content">
         {takedBoardList.map((board) => {
           return (

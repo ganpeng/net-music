@@ -47,7 +47,10 @@ function Playlist() {
       <SectionHeader title={cat} moreLink="" hasTitleIcon={false}>
         <div
           className="selecte-category-btn"
-          onClick={() => setShowCatList(true)}
+          onClick={(e) => {
+            setShowCatList(!showCatList);
+            e.nativeEvent.stopImmediatePropagation();
+          }}
         >
           <div className="text">选择分类</div>
           <div className="icon"></div>

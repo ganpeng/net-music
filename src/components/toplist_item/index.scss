@@ -1,0 +1,29 @@
+.toplist-item {
+  display: flex;
+  padding: 10px 0 10px 20px;
+  cursor: pointer;
+  &:hover {
+    background-color: #f2f2f2;
+  }
+  &.active {
+    background-color: #e6e6e6;
+  }
+  .img {
+    width: 40px;
+    height: 40px;
+    @include bg-image();
+    margin-right: 10px;
+  }
+  .text-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: inherit;
+    .name {
+      color: #000;
+    }
+    .updatetime {
+      color: #999;
+    }
+  }
+}

@@ -28,12 +28,14 @@ function CategoryList({ hideCatList }: CategoryListPropsType) {
     hideCatList();
   };
 
-  const closeCategoryList = (e: Event) => {};
+  const closeCategoryList = (e: any) => {
+    hideCatList();
+  };
 
   useEffect(() => {
-    window.addEventListener("click", closeCategoryList);
+    document.addEventListener("click", closeCategoryList);
     return () => {
-      window.removeEventListener("click", closeCategoryList);
+      document.removeEventListener("click", closeCategoryList);
     };
   }, []);
 

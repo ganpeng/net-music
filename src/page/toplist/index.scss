@@ -1,0 +1,25 @@
+.toplist-container {
+  display: flex;
+  border: 1px solid #d3d3d3;
+  border-width: 0 1px;
+  .left-side-field {
+    width: 240px;
+    padding: 40px 0 0 0;
+    border-right: 1px solid #d3d3d3;
+    .title {
+      padding: 0 10px 12px 15px;
+      font-size: 14px;
+      color: #000;
+    }
+    .net-mmusic-toplist-container {
+      margin-bottom: 20px;
+    }
+    .global-toplist-container {
+    }
+  }
+  .right-content-field {
+    width: 740px;
+    padding: 40px;
+    background-color: #fff;
+  }
+}

@@ -100,6 +100,7 @@ export interface IBoard {
   id: number;
   name: string;
   coverImgUrl: string;
+  updateFrequency: string;
   [propName: string]: any;
 }
 
@@ -119,6 +120,13 @@ export interface ITrack {
 export interface IPlayListDetail {
   id: number;
   name: string;
+  coverImgUrl: string;
+  commentCount: number;
+  playCount: number;
+  shareCount: number;
+  updateFrequency: string;
+  updateTime: number;
+  trackCount: number;
   tracks: ITrack[];
   [propName: string]: any;
 }

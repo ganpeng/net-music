@@ -124,7 +124,7 @@ $pagination-item-input-bg: #fff;
   .rc-pagination-jump-prev,
   .rc-pagination-jump-next {
     display: inline-block;
-    min-width: $pagination-item-size;
+    min-width: 69px;
     height: $pagination-item-size;
     color: rgba(0, 0, 0, 0.85);
     font-family: $pagination-font-family;
@@ -139,17 +139,33 @@ $pagination-item-input-bg: #fff;
 
   .rc-pagination-prev,
   .rc-pagination-next {
+    width: 69px;
+    height: 24px;
+    line-height: 24px;
+    color: #333;
     outline: 0;
 
     button {
-      color: rgba(0, 0, 0, 0.85);
+      width: 69px;
+      height: 24px;
+      line-height: 24px;
+      text-align: left;
+      color: #333;
+      padding-left: 22px;
+      background-position: 0 -560px;
+      background-image: url("../../assets/images/button.png");
+      background-repeat: no-repeat;
+      border: 1px solid #ccc;
       cursor: pointer;
       user-select: none;
+      &:hover {
+        background-position: 0 -590px;
+      }
     }
 
-    &:hover button {
-      border-color: #40a9ff;
-    }
+    // &:hover button {
+    //   border-color: #40a9ff;
+    // }
 
     .rc-pagination-item-link {
       display: block;
@@ -161,7 +177,7 @@ $pagination-item-input-bg: #fff;
       border: 1px solid #d9d9d9;
       border-radius: 2px;
       outline: none;
-      transition: all 0.3s;
+      // transition: all 0.3s;
     }
 
     &:focus .rc-pagination-item-link,
@@ -172,12 +188,12 @@ $pagination-item-input-bg: #fff;
   }
 
   .rc-pagination-prev button:after {
-    content: "‹";
+    content: "上一页";
     display: block;
   }
 
   .rc-pagination-next button:after {
-    content: "›";
+    content: "下一页";
     display: block;
   }
 
@@ -232,10 +248,12 @@ $pagination-item-input-bg: #fff;
 
   .rc-pagination-simple .rc-pagination-prev,
   .rc-pagination-simple .rc-pagination-next {
+    width: 69px;
     height: $pagination-item-size-sm;
     line-height: $pagination-item-size-sm;
     vertical-align: top;
     .rc-pagination-item-link {
+      width: 100%;
       height: $pagination-item-size-sm;
       background-color: transparent;
       border: 0;

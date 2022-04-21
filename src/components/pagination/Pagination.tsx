@@ -2,7 +2,7 @@ import React from "react";
 import { PAGE_LIMIT } from "../../constants";
 import "./index.scss";
 import RcPagination from "rc-pagination";
-import "./rc_pagination.scss";
+// import "./rc_pagination.scss";
 
 type PropsType = {
   total: number;
