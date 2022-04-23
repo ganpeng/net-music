@@ -35,26 +35,32 @@ export const DEFAULT_SUB_NAV_BAR_LIST: INavBar[] = [
   {
     text: "推荐",
     isActive: true,
+    path: "/",
   },
   {
     text: "排行榜",
     isActive: false,
+    path: "/toplist",
   },
   {
     text: "歌单",
     isActive: false,
+    path: "/playlist",
     isSup: true,
   },
   {
     text: "主播电台",
+    path: "/djradiolist",
     isActive: false,
   },
   {
     text: "歌手",
+    path: "/singerlist",
     isActive: false,
   },
   {
     text: "新碟上架",
+    path: "/albumlist",
     isActive: false,
   },
 ];

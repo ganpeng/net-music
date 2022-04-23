@@ -14,6 +14,9 @@ const NotFound = lazy(() => import("../page/error/NotFound"));
 const Auth = lazy(() => import("../page/auth/Auth"));
 const Playlist = lazy(() => import("../page/playlist/Playlist"));
 const TopList = lazy(() => import("../page/toplist/TopList"));
+const DjradioList = lazy(() => import("../page/djradio_list/DjradioList"));
+const SingerList = lazy(() => import("../page/singer_list/SingerList"));
+const AlbumList = lazy(() => import("../page/album_list/AlbumList"));
 
 // 实现懒加载的用Suspense包裹 定义函数
 const lazyLoad = (children: ReactNode): ReactNode => {
@@ -45,6 +48,18 @@ const routes: RouteObject[] = [
       {
         path: "toplist",
         element: lazyLoad(<TopList />),
+      },
+      {
+        path: "djradiolist",
+        element: lazyLoad(<DjradioList />),
+      },
+      {
+        path: "singerlist",
+        element: lazyLoad(<SingerList />),
+      },
+      {
+        path: "albumlist",
+        element: lazyLoad(<AlbumList />),
       },
       {
         path: "goods",

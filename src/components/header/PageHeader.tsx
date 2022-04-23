@@ -1,6 +1,6 @@
 import { cloneDeep } from "lodash";
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import {
   DEFAULT_NAV_BAR_LIST,
   DEFAULT_SUB_NAV_BAR_LIST,
@@ -9,6 +9,7 @@ import "./index.scss";
 
 export default function PageHeader() {
   const navigator = useNavigate();
+  const location = useLocation();
   const [navBarList, setNavBarList] = useState(cloneDeep(DEFAULT_NAV_BAR_LIST));
   const [subNavList, setSubNavList] = useState(
     cloneDeep(DEFAULT_SUB_NAV_BAR_LIST)
@@ -29,16 +30,17 @@ export default function PageHeader() {
     }
   };
 
-  const handleSubNavBarClick = (index: number) => {
-    const _subNavbarList = subNavList.map((subNavBar, _index) => {
-      if (index === _index) {
-        subNavBar.isActive = true;
-      } else {
-        subNavBar.isActive = false;
-      }
-      return subNavBar;
-    });
-    setSubNavList(_subNavbarList);
+  const handleSubNavBarClick = (path: string) => {
+    navigator(path);
+    // const _subNavbarList = subNavList.map((subNavBar, _index) => {
+    //   if (index === _index) {
+    //     subNavBar.isActive = true;
+    //   } else {
+    //     subNavBar.isActive = false;
+    //   }
+    //   return subNavBar;
+    // });
+    // setSubNavList(_subNavbarList);
   };
 
   const navBarActiveIndex = navBarList.findIndex((navBar) => navBar.isActive);
@@ -77,9 +79,9 @@ export default function PageHeader() {
                 return (
                   <li
                     className={`sub-nav-item ${
-                      subNav.isActive ? "active" : ""
+                      subNav.path === location.pathname ? "active" : ""
                     }`}
-                    onClick={() => handleSubNavBarClick(index)}
+                    onClick={() => handleSubNavBarClick(subNav.path || "/")}
                     key={index}
                   >
                     {subNav.text}

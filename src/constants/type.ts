@@ -10,6 +10,7 @@ export interface ITodosResponse {}
 export interface INavBar {
   text: string;
   isActive: boolean;
+  path?: string;
   isLast?: boolean;
   isSup?: boolean;
 }
