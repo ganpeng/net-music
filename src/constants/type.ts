@@ -180,6 +180,7 @@ export interface ICategoryListResponse {
 export interface ICreator {
   userId: number;
   nickname: string;
+  avatarUrl?: string;
 }
 
 export interface ITopPlay {
@@ -203,4 +204,33 @@ export interface ITopPlayListSearchParams {
   offset: number;
   limit: number;
   cat: string;
+}
+
+// 评论相关
+export interface ICommentListSearchParams {
+  id: number;
+  type: number;
+  sortType?: number;
+  pageSize?: number;
+  pageNo?: number;
+  cursor?: string | undefined;
+}
+
+export interface IComment {
+  commentId: number;
+  content: string;
+  likedCount: number;
+  replyCount: number;
+  time: number;
+  user: ICreator;
+  [propName: string]: any;
+}
+
+export interface ICommentListResponse {
+  code: number;
+  data: {
+    comments: IComment[];
+    totalCount: number;
+    [propName: string]: any;
+  };
 }

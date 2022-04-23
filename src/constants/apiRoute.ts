@@ -97,6 +97,23 @@ export const HOT_DJ = `${apiRoot}/dj/toplist/popular`;
  */
 export const TOP_PLAYLIST = `${apiRoot}/top/playlist`;
 
+/**
+ * 获取精选评论
+ * id : 资源 id
+  type: 数字 , 资源类型 , 对应歌曲 , mv, 专辑 , 歌单 , 电台, 视频对应以下类型
+  0: 歌曲 1: mv 2: 歌单 3: 专辑 4: 电台 5: 视频
+  可选参数 : limit: 取出评论数量 , 默认为 20
+  pageNo:分页参数,第 N 页,默认为 1
+  pageSize:分页参数,每页多少条数据,默认 20
+  sortType: 排序方式, 1:按推荐排序, 2:按热度排序, 3:按时间排序 
+  before: 分页参数,取上一页最后一项的 time 获取下一页数据(获取超过 5000 条评论的时候需要用到)
+  接口地址 : /comment/hot
+  调用例子 : /comment/hot?id=186016&type=0
+ * 
+ */
+
+export const COMMENT_LIST = `${apiRoot}/comment/new`;
+
 const apiRoute: { [propName: string]: string } = {
   BANNER_LIST,
   HOT_PLAYLIST_CATEGORY,
@@ -109,6 +126,7 @@ const apiRoute: { [propName: string]: string } = {
   TOP_ARTISTS,
   HOT_DJ,
   TOP_PLAYLIST,
+  COMMENT_LIST,
 };
 
 export default apiRoute;

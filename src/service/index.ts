@@ -5,6 +5,8 @@ import {
   IBannerListResult,
   IBoardListResponse,
   ICategoryListResponse,
+  ICommentListResponse,
+  ICommentListSearchParams,
   IDjListResponse,
   IHotRecommendResponse,
   INewAlbumResponse,
@@ -112,6 +114,17 @@ export function getTopPlayList(
 ): Promise<ITopPlayListResponse> {
   return axios
     .get(`${apiRoute.TOP_PLAYLIST}?${getParamsString(searchParams)}`)
+    .then((res) => res.data)
+    .catch((err) => {
+      throw new Error(err);
+    });
+}
+
+export function getCommentList(
+  searchParams: ICommentListSearchParams
+): Promise<ICommentListResponse> {
+  return axios
+    .get(`${apiRoute.COMMENT_LIST}?${getParamsString(searchParams)}`)
     .then((res) => res.data)
     .catch((err) => {
       throw new Error(err);

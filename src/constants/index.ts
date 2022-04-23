@@ -1,6 +1,7 @@
 import { INavBar } from "./type";
 
 export const PAGE_LIMIT = 35;
+export const COMMENT_PAGE_LIST = 20;
 
 export const DEFAULT_NAV_BAR_LIST: INavBar[] = [
   {

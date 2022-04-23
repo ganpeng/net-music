@@ -1,24 +1,23 @@
 import React from "react";
-import { PAGE_LIMIT } from "../../constants";
 import "./index.scss";
 import RcPagination from "rc-pagination";
-// import "./rc_pagination.scss";
 
 type PropsType = {
   total: number;
   offset: number;
+  pageLimit: number;
   pageChangeHandler: (num: number) => void;
 };
 
 function Pagination(props: PropsType) {
-  const { offset, total, pageChangeHandler } = props;
-  const initialPage = offset / PAGE_LIMIT;
+  const { offset, total, pageLimit, pageChangeHandler } = props;
+  const initialPage = offset / pageLimit;
   return (
     <RcPagination
-      defaultPageSize={PAGE_LIMIT}
+      defaultPageSize={pageLimit}
       defaultCurrent={0}
       current={initialPage + 1}
-      pageSize={PAGE_LIMIT}
+      pageSize={pageLimit}
       onChange={pageChangeHandler}
       total={total}
     />

@@ -95,6 +95,7 @@ function Playlist() {
       </div>
       <Pagination
         total={data?.total || 0}
+        pageLimit={PAGE_LIMIT}
         pageChangeHandler={pageChangeHandler}
         offset={offset}
       ></Pagination>

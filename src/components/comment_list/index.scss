@@ -1,0 +1,85 @@
+.comment-list-container {
+  .comment-list-title {
+    height: 30px;
+    line-height: 30px;
+    border-bottom: 1px solid #cfcfcf;
+  }
+  .comment-list {
+    .comment-item {
+      display: flex;
+      padding: 15px 0;
+      .avatarUrl {
+        width: 50px;
+        height: 50px;
+        margin-right: 10px;
+        cursor: pointer;
+        @include bg-image();
+      }
+      .content-field {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        .name-content {
+          display: flex;
+          .name {
+            white-space: nowrap;
+            color: #0c73c2;
+            margin-right: 5px;
+            cursor: pointer;
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+          .comment-content {
+            flex: 1;
+          }
+        }
+        .meta-data {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin-top: 15px;
+          .date {
+            color: #999;
+          }
+          .thumb-replay {
+            display: flex;
+            align-items: center;
+            .thumb-icon {
+              width: 15px;
+              height: 14px;
+              background-position: -150px 0;
+              background-image: url("../../assets/images/icon2.png");
+              background-repeat: no-repeat;
+              margin-right: 5px;
+              cursor: pointer;
+              &:hover {
+                background-position: -150px -20px;
+              }
+            }
+            .thumb-count {
+              cursor: pointer;
+              &:hover {
+                text-decoration: underline;
+              }
+            }
+            .split {
+              color: #ccc;
+              margin: 0 8px;
+            }
+            .replay {
+              color: #666;
+              cursor: pointer;
+              &:hover {
+                text-decoration: underline;
+              }
+            }
+          }
+        }
+      }
+    }
+    .comment-item + .comment-item {
+      border-top: 1px dotted #ccc;
+    }
+  }
+}

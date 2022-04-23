@@ -31,4 +31,103 @@
       }
     }
   }
+  .songlist {
+    border: 1px solid #d9d9d9;
+    .song-item {
+      display: flex;
+      align-items: center;
+      min-height: 30px;
+      padding: 10px;
+      &:nth-of-type(even) {
+        background-color: #f7f7f7;
+      }
+      &.header {
+        height: 38px;
+        padding: 0;
+        .index,
+        .title,
+        .duration,
+        .songers {
+          height: 38px;
+          background-image: url("../../assets/images/table.png");
+          background-position: 0 0;
+          background-repeat: repeat-x;
+          background-color: #f7f7f7;
+          .text {
+            padding: 8px 10px;
+            background-position: 0 -56px;
+            color: #666;
+            background-image: url("../../assets/images/table.png");
+          }
+        }
+        .index {
+          width: 68px;
+        }
+        .title {
+          width: 326px;
+          .play-icon {
+            width: 50px;
+            height: 50px;
+          }
+        }
+        .duration {
+          width: 90px;
+        }
+        .songers {
+          flex: 1;
+        }
+      }
+      .song-index {
+        text-align: center;
+        width: 68px;
+        color: #999;
+      }
+      .title {
+        display: flex;
+        align-items: center;
+        width: 326px;
+        .img {
+          width: 50px;
+          height: 50px;
+        }
+        .play-icon {
+          width: 17px;
+          height: 17px;
+          cursor: pointer;
+          background-position: 0 -103px;
+          background-image: url("../../assets/images/table.png");
+          background-repeat: no-repeat;
+          margin: 0 10px 0 15px;
+          &:hover {
+            background-position: 0 -128px;
+          }
+        }
+        .song-name {
+          color: #333;
+          cursor: pointer;
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+      .duration {
+        width: 90px;
+      }
+      .songers {
+        flex: 1;
+        @include ellipsis();
+        span {
+          cursor: pointer;
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+        span + span {
+          &::before {
+            content: "/";
+          }
+        }
+      }
+    }
+  }
 }

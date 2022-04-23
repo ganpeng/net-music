@@ -11,3 +11,4 @@ export { default as Pagination } from "./pagination/Pagination";
 export { default as ToplistItem } from "./toplist_item/ToplistItem";
 export { default as ToplistItemDetail } from "./toplist_item_detail/ToplistItemDetail";
 export { default as Songlist } from "./songlist/Songlist";
+export { default as CommentList } from "./comment_list/CommentList";

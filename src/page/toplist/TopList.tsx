@@ -1,13 +1,22 @@
 import { get, partition } from "lodash";
-import React from "react";
+import React, { useState } from "react";
 import { useQuery } from "react-query";
 import { useSearchParams } from "react-router-dom";
-import { Songlist, ToplistItem, ToplistItemDetail } from "../../components";
+import {
+  CommentList,
+  Pagination,
+  Songlist,
+  ToplistItem,
+  ToplistItemDetail,
+} from "../../components";
+import { COMMENT_PAGE_LIST } from "../../constants";
 import { IBoard } from "../../constants/type";
-import { getBoardList, getPlaylistDetail } from "../../service";
+import { getBoardList, getCommentList, getPlaylistDetail } from "../../service";
 import "./index.scss";
 
 function TopList() {
+  const [pageNo, setPageNo] = useState(1);
+  const [cursor, setCursor] = useState<string | undefined>(undefined);
   const [searchParams] = useSearchParams();
   const { data } = useQuery("toplist", getBoardList);
   const [netMusicTopList, globalTopList] = partition(
@@ -17,11 +26,34 @@ function TopList() {
 
   const id = Number(searchParams.get("id"));
   const activeId = id === 0 ? get(netMusicTopList, `0.id`) : id;
-  const activeTopItem = data?.list.find((item) => item.id === activeId);
-
-  const { data: playDetail } = useQuery("playlist_detail", () =>
+  const { data: playDetail } = useQuery(["playlist_detail", activeId], () =>
     getPlaylistDetail(activeId)
   );
+
+  // 评论相关
+  // 热门评论
+  const { data: hotCommentData } = useQuery(
+    ["host_comment_list", activeId],
+    () => getCommentList({ id: activeId, type: 2 })
+  );
+  // 全部评论，时间排序
+  const { data: newCommentData } = useQuery(
+    ["new_comment_list", activeId, pageNo],
+    () =>
+      getCommentList({
+        id: activeId,
+        type: 2,
+        sortType: 3,
+        pageNo,
+        pageSize: COMMENT_PAGE_LIST,
+        cursor,
+      })
+  );
+
+  const newCommentPageChangeHandler = (pageNo: number) => {
+    setCursor(newCommentData?.data.cursor);
+    setPageNo(pageNo);
+  };
 
   return (
     <div className="toplist-container content-w">
@@ -58,6 +90,22 @@ function TopList() {
       <div className="right-content-field">
         <ToplistItemDetail topItem={playDetail?.playlist}></ToplistItemDetail>
         <Songlist topItem={playDetail?.playlist}></Songlist>
+        <CommentList
+          title="精彩评论"
+          isHot={true}
+          commentList={hotCommentData?.data.comments}
+        ></CommentList>
+        <CommentList
+          title={`最新评论(${playDetail?.playlist.commentCount})`}
+          isHot={false}
+          commentList={newCommentData?.data.comments}
+        ></CommentList>
+        <Pagination
+          total={newCommentData?.data.totalCount || 0}
+          pageLimit={COMMENT_PAGE_LIST}
+          offset={(pageNo - 1) * COMMENT_PAGE_LIST}
+          pageChangeHandler={newCommentPageChangeHandler}
+        ></Pagination>
       </div>
     </div>
   );

@@ -8,7 +8,6 @@ type ToplistItemDetailPropsType = {
 };
 
 function ToplistItemDetail(props: ToplistItemDetailPropsType) {
-  console.log(props.topItem);
   return (
     <div className="toplist-item-detail-container">
       <div className="left-img">
