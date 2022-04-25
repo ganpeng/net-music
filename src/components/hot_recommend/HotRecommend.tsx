@@ -4,11 +4,14 @@ import take from "lodash/take";
 import { getPersonalizedList } from "../../service";
 import "./index.scss";
 import { numberFormatter } from "../../utils";
+import HotRecommendContentLoader from "../my_content_loader/HotRecommendContentLoader";
 
 function HotRecommend() {
-  let { data } = useQuery("hot-recomment", getPersonalizedList);
+  let { data, isFetching } = useQuery("hot-recomment", getPersonalizedList);
 
-  return (
+  return isFetching ? (
+    <HotRecommendContentLoader />
+  ) : (
     <div className="hot-recommnend-container">
       {take(data?.result, 8).map((hotRecommend) => {
         return (
