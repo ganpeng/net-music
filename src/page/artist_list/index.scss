@@ -1,0 +1,136 @@
+.artist-list-container {
+  display: flex;
+  border: 1px solid #d3d3d3;
+  border-width: 0 1px;
+  .left-side-field {
+    width: 180px;
+    padding: 40px 10px 0 10px;
+    border-right: 1px solid #d3d3d3;
+    .artist-category-list {
+      .artist-cat-item {
+        .artist-cat-title {
+          padding-left: 14px;
+          font-size: 16px;
+          line-height: 25px;
+          color: #333;
+          font-weight: bold;
+        }
+        .sub-cat-list {
+          margin-bottom: 16px;
+          padding-bottom: 10px;
+          border-bottom: 1px solid #d3d3d3;
+          .sub-cat-item {
+            width: 160px;
+            height: 30px;
+            line-height: 30px;
+            padding-left: 27px;
+            background-position: 0 -30px;
+            background-image: url("../../assets/images/singer.png");
+            background-repeat: no-repeat;
+            cursor: pointer;
+            &:hover {
+              text-decoration: underline;
+            }
+            &.active {
+              background-position: 0 0;
+              text-decoration: none;
+              color: #c20c0c;
+            }
+          }
+        }
+        &:last-child {
+          .sub-cat-list {
+            border-bottom: none;
+          }
+        }
+      }
+    }
+  }
+  .right-content-field {
+    flex: 1;
+    padding: 40px;
+    .artist-name-search-list {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 20px;
+      .artist-name-search-item {
+        padding: 5px;
+        color: #333;
+        cursor: pointer;
+        &.active {
+          background: #c20c0c;
+          border-radius: 2px;
+          color: #fff;
+        }
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+    .artist-list {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      margin-top: 20px;
+      border-bottom: 1px dotted #999;
+      .artist-item {
+        margin-bottom: 30px;
+        .img {
+          width: 130px;
+          height: 130px;
+          cursor: pointer;
+          @include bg-image();
+        }
+        .name-icon {
+          display: flex;
+          justify-content: space-between;
+          margin-top: 8px;
+          .name {
+            color: #000;
+            cursor: pointer;
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+          .icon {
+            width: 17px;
+            height: 18px;
+            background-image: url("../../assets/images/icon.png");
+            background-position: 0 -740px;
+            background-repeat: no-repeat;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+    .no-image-artist-list {
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: 20px;
+      .no-image-artist-item {
+        width: 20%;
+        .name-icon {
+          display: flex;
+          margin-top: 8px;
+          .name {
+            color: #000;
+            margin-right: 2px;
+            cursor: pointer;
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+          .icon {
+            width: 17px;
+            height: 18px;
+            background-image: url("../../assets/images/icon.png");
+            background-position: 0 -740px;
+            background-repeat: no-repeat;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}

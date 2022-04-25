@@ -2,6 +2,7 @@ import { INavBar } from "./type";
 
 export const PAGE_LIMIT = 35;
 export const COMMENT_PAGE_LIST = 20;
+export const ARTIST_LIST_LIMIT = 100;
 
 export const DEFAULT_NAV_BAR_LIST: INavBar[] = [
   {
@@ -55,7 +56,7 @@ export const DEFAULT_SUB_NAV_BAR_LIST: INavBar[] = [
   },
   {
     text: "歌手",
-    path: "/singerlist",
+    path: "/artistlist",
     isActive: false,
   },
   {
@@ -63,4 +64,95 @@ export const DEFAULT_SUB_NAV_BAR_LIST: INavBar[] = [
     path: "/albumlist",
     isActive: false,
   },
+];
+
+export const ARTIST_CATEGORY_LIST = [
+  {
+    title: "推荐",
+  },
+  {
+    title: "华语",
+    area: 7,
+  },
+  {
+    title: "欧美",
+    area: 96,
+  },
+  {
+    title: "日本",
+    area: 8,
+  },
+  {
+    title: "韩国",
+    area: 16,
+  },
+  {
+    title: "其他",
+    area: 0,
+  },
+].map((item) => {
+  if (item.title === "推荐") {
+    return {
+      title: item.title,
+      children: [
+        {
+          title: `${item.title}歌手`,
+          type: 0,
+          area: 0,
+        },
+      ],
+    };
+  } else {
+    return {
+      title: item.title,
+      children: [
+        {
+          title: `${item.title}男歌手`,
+          type: 1,
+          area: item.area,
+        },
+        {
+          title: `${item.title}女歌手`,
+          type: 2,
+          area: item.area,
+        },
+        {
+          title: `${item.title}组合/乐队`,
+          type: 3,
+          area: item.area,
+        },
+      ],
+    };
+  }
+});
+
+export const ARTIST_NAME_SEARCH_LIST = [
+  "热门",
+  "A",
+  "B",
+  "C",
+  "D",
+  "E",
+  "F",
+  "G",
+  "H",
+  "I",
+  "J",
+  "K",
+  "L",
+  "M",
+  "N",
+  "O",
+  "P",
+  "Q",
+  "R",
+  "S",
+  "T",
+  "U",
+  "V",
+  "W",
+  "X",
+  "Y",
+  "Z",
+  "其他",
 ];

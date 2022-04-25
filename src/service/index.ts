@@ -2,6 +2,7 @@ import axios from "axios";
 import apiRoute from "../constants/apiRoute";
 import {
   IArtistListResponse,
+  IArtistListSearchParams,
   IBannerListResult,
   IBoardListResponse,
   ICategoryListResponse,
@@ -125,6 +126,17 @@ export function getCommentList(
 ): Promise<ICommentListResponse> {
   return axios
     .get(`${apiRoute.COMMENT_LIST}?${getParamsString(searchParams)}`)
+    .then((res) => res.data)
+    .catch((err) => {
+      throw new Error(err);
+    });
+}
+
+export function getArtistList(
+  searchParams: IArtistListSearchParams
+): Promise<IArtistListResponse> {
+  return axios
+    .get(`${apiRoute.ARTIST_LIST}?${getParamsString(searchParams)}`)
     .then((res) => res.data)
     .catch((err) => {
       throw new Error(err);

@@ -235,3 +235,16 @@ export interface ICommentListResponse {
     [propName: string]: any;
   };
 }
+
+// 歌手列表
+export interface IArtistListSearchParams {
+  type?: number | undefined;
+  area?: number | undefined;
+  limit?: number | undefined;
+  initial?: number | string;
+}
+export interface IArtistListResponse {
+  code: number;
+  more: boolean;
+  artists: IArtist[];
+}
