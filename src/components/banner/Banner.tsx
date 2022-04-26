@@ -3,13 +3,14 @@ import React, { CSSProperties, useState } from "react";
 import { useQuery } from "react-query";
 import { useInterval } from "react-use";
 import { getBannerData } from "../../service";
+import BannerContentLoader from "../my_content_loader/BannerContentLoader";
 import "./index.scss";
 
 function Banner() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [delay, setDelay] = useState<number | null>(5000);
 
-  const { data } = useQuery("bannerList", getBannerData);
+  const { data, isFetching } = useQuery("bannerList", getBannerData);
   const bannersLength: number = get(data, `banners.length`) || 0;
   const activeImageUrl = get(data, `banners.${activeIndex}.imageUrl`);
   const style: CSSProperties = {
@@ -37,7 +38,9 @@ function Banner() {
     setDelay(3000);
   };
 
-  return (
+  return isFetching ? (
+    <BannerContentLoader></BannerContentLoader>
+  ) : (
     <div className="banner-container">
       <div className="filter-bg-image" style={style}></div>
       <div className="banner-download-wrapper">
