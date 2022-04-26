@@ -10,7 +10,9 @@ import {
   ICommentListSearchParams,
   IDjListResponse,
   IHotRecommendResponse,
+  INewAlbumListSearchParams,
   INewAlbumResponse,
+  INewestAlbumResponse,
   IPlayListDetailResponse,
   ITagsResponse,
   ITopPlayListResponse,
@@ -54,9 +56,11 @@ export function getTopAlbumList() {
     });
 }
 
-export function getNewAlbumList(): Promise<INewAlbumResponse> {
+export function getNewAlbumList(
+  searchParams: INewAlbumListSearchParams
+): Promise<INewAlbumResponse> {
   return axios
-    .get(apiRoute.NEW_ALBUM)
+    .get(`${apiRoute.NEW_ALBUM}?${getParamsString(searchParams)}`)
     .then((res) => res.data)
     .catch((err) => {
       throw new Error(err);
@@ -137,6 +141,15 @@ export function getArtistList(
 ): Promise<IArtistListResponse> {
   return axios
     .get(`${apiRoute.ARTIST_LIST}?${getParamsString(searchParams)}`)
+    .then((res) => res.data)
+    .catch((err) => {
+      throw new Error(err);
+    });
+}
+
+export function getNewestAlbum(): Promise<INewestAlbumResponse> {
+  return axios
+    .get(apiRoute.NEWEST_ALBUM)
     .then((res) => res.data)
     .catch((err) => {
       throw new Error(err);

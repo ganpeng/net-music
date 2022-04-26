@@ -10,7 +10,7 @@ import "./index.scss";
 
 function Playlist() {
   const [showCatList, setShowCatList] = useState(false);
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const offset = Number(searchParams.get("offset")) || 0;
   const cat = searchParams.get("cat") || "全部";
   const topPlayListSearchParams: ITopPlayListSearchParams = {
@@ -20,7 +20,7 @@ function Playlist() {
   };
 
   const navigator = useNavigate();
-  const { isFetching, data, refetch } = useQuery("top_playlist", () =>
+  const { isFetching, data } = useQuery(["top_playlist", offset, cat], () =>
     getTopPlayList(topPlayListSearchParams)
   );
 
@@ -37,10 +37,6 @@ function Playlist() {
       navigator(`/playlist?${getParamsString(params)}`);
     }
   };
-
-  useEffect(() => {
-    refetch();
-  }, [cat, offset]);
 
   return (
     <div className="playlist-container content-w">

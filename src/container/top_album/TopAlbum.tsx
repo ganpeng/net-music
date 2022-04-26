@@ -3,12 +3,12 @@ import { useQuery } from "react-query";
 import { take, chunk } from "lodash";
 import { SectionHeader } from "../../components";
 import { nextArrow, prevArrow } from "../../constants/svg";
-import { getNewAlbumList } from "../../service";
+import { getNewestAlbum } from "../../service";
 import "./index.scss";
 
 function TopAlbum() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const { data } = useQuery("new_album", getNewAlbumList);
+  const { data } = useQuery("newest_album", getNewestAlbum);
   const chunkedAlbums = chunk(take(data?.albums, 10), 5);
 
   const chunkedAlbumsChangeHandler = (newActiveIndex: number) => {

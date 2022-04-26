@@ -1,19 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useQuery } from "react-query";
-import { ITodo } from "../constants/type";
-import { getTodos, postTodo } from "../service/todo";
+import { getTodos } from "../service/todo";
 export function Todo() {
-  const { isLoading, isError, data, error } = useQuery("todos", getTodos);
-  // useQuery("todo", () => postTodo(todo));
-
-  if (isLoading) {
-    return <h2>...loading</h2>;
-  }
-
-  if (isError) {
-    return <div>{{ error }}</div>;
-  }
-
+  const { data } = useQuery("todos", getTodos);
   return (
     <div className="todo-cointainer">
       {data?.map((todo) => (

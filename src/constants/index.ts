@@ -156,3 +156,26 @@ export const ARTIST_NAME_SEARCH_LIST = [
   "Z",
   "其他",
 ];
+
+export const ALBUM_AREA_LIST = [
+  {
+    title: "全部",
+    area: "ALL",
+  },
+  {
+    title: "华语",
+    area: "ZH",
+  },
+  {
+    title: "欧美",
+    area: "EA",
+  },
+  {
+    title: "韩国",
+    area: "KR",
+  },
+  {
+    title: "日本",
+    area: "JP",
+  },
+];

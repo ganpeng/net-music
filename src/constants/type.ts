@@ -96,6 +96,17 @@ export interface INewAlbumResponse {
   albums: IAlbum[];
 }
 
+export interface INewAlbumListSearchParams {
+  limit?: number;
+  offset?: number;
+  area?: string;
+}
+
+export interface INewestAlbumResponse {
+  code: number;
+  albums: IAlbum[];
+}
+
 //  榜单
 export interface IBoard {
   id: number;

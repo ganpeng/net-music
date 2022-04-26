@@ -124,6 +124,14 @@ export const COMMENT_LIST = `${apiRoot}/comment/new`;
  */
 export const ARTIST_LIST = `${apiRoot}/artist/list`;
 
+/**
+ * 热门新碟
+ * 说明 : 调用此接口 ，获取云音乐首页新碟上架数据
+  接口地址 : /album/newest
+  调用例子 : /album/newest
+ */
+export const NEWEST_ALBUM = `${apiRoot}/album/newest`;
+
 const apiRoute: { [propName: string]: string } = {
   BANNER_LIST,
   HOT_PLAYLIST_CATEGORY,
@@ -138,6 +146,7 @@ const apiRoute: { [propName: string]: string } = {
   TOP_PLAYLIST,
   COMMENT_LIST,
   ARTIST_LIST,
+  NEWEST_ALBUM,
 };
 
 export default apiRoute;
