@@ -259,3 +259,47 @@ export interface IArtistListResponse {
   more: boolean;
   artists: IArtist[];
 }
+
+// 电台
+export interface IDjCategory {
+  id: number;
+  name: string;
+  picWebUrl: string;
+  [propName: string]: any;
+}
+export interface IDjCatelistResponse {
+  code: number;
+  categories: IDjCategory[];
+}
+
+export interface IDjProgramme {
+  id: number;
+  coverUrl: string;
+  mainSong: {
+    name: string;
+    [propName: string]: any;
+  };
+  dj: {
+    brand: string;
+    [propName: string]: any;
+  };
+  radio: {
+    category: string;
+    [propName: string]: any;
+  };
+}
+export interface IDjProgrammeResponse {
+  code: number;
+  updateTime: number;
+  toplist: {
+    score: number;
+    program: IDjProgramme;
+  }[];
+}
+
+export interface IDjProgrammeRecommendResponse {
+  code: number;
+  programs: IDjProgramme[];
+  name: string;
+  more: boolean;
+}

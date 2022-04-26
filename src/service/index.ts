@@ -8,7 +8,10 @@ import {
   ICategoryListResponse,
   ICommentListResponse,
   ICommentListSearchParams,
+  IDjCatelistResponse,
   IDjListResponse,
+  IDjProgrammeRecommendResponse,
+  IDjProgrammeResponse,
   IHotRecommendResponse,
   INewAlbumListSearchParams,
   INewAlbumResponse,
@@ -150,6 +153,33 @@ export function getArtistList(
 export function getNewestAlbum(): Promise<INewestAlbumResponse> {
   return axios
     .get(apiRoute.NEWEST_ALBUM)
+    .then((res) => res.data)
+    .catch((err) => {
+      throw new Error(err);
+    });
+}
+
+export function getDjCateList(): Promise<IDjCatelistResponse> {
+  return axios
+    .get(apiRoute.DJ_CATELIST)
+    .then((res) => res.data)
+    .catch((err) => {
+      throw new Error(err);
+    });
+}
+
+export function getDjProgrammeToplist(): Promise<IDjProgrammeResponse> {
+  return axios
+    .get(apiRoute.DJ_PROGRAMME_TOPLIST)
+    .then((res) => res.data)
+    .catch((err) => {
+      throw new Error(err);
+    });
+}
+
+export function getDjProgrammeRecommend(): Promise<IDjProgrammeRecommendResponse> {
+  return axios
+    .get(apiRoute.DJ_PROGRAMME_RECOMMEND)
     .then((res) => res.data)
     .catch((err) => {
       throw new Error(err);

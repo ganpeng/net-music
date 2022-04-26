@@ -132,6 +132,28 @@ export const ARTIST_LIST = `${apiRoot}/artist/list`;
  */
 export const NEWEST_ALBUM = `${apiRoot}/album/newest`;
 
+/**
+ * 电台分类
+ * 接口地址 : /dj/catelist
+  调用例子 : /dj/catelist
+ */
+export const DJ_CATELIST = `${apiRoot}/dj/catelist`;
+
+/**
+ * 电台节目榜
+ * 
+  limit : 返回数量 , 默认为 100
+  offset : 偏移数量，用于分页 , 如 :( 页数 -1)*100, 其中 100 为 limit 的值 , 默认为 0
+  接口地址 : /dj/program/toplist
+  调用例子 : /dj/program/toplist?limit=1
+ */
+export const DJ_PROGRAMME_TOPLIST = `${apiRoot}/dj/program/toplist`;
+
+/**
+ * 电台推荐节目
+ */
+export const DJ_PROGRAMME_RECOMMEND = `${apiRoot}/program/recommend`;
+
 const apiRoute: { [propName: string]: string } = {
   BANNER_LIST,
   HOT_PLAYLIST_CATEGORY,
@@ -147,6 +169,9 @@ const apiRoute: { [propName: string]: string } = {
   COMMENT_LIST,
   ARTIST_LIST,
   NEWEST_ALBUM,
+  DJ_CATELIST,
+  DJ_PROGRAMME_TOPLIST,
+  DJ_PROGRAMME_RECOMMEND,
 };
 
 export default apiRoute;

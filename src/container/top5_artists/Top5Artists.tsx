@@ -1,16 +1,20 @@
 import { take } from "lodash";
 import React from "react";
 import { useQuery } from "react-query";
+import { useNavigate } from "react-router-dom";
 import { getTopArtists } from "../../service";
 import "./index.scss";
 
 function Top5Artists() {
   const { data } = useQuery("artists", getTopArtists);
+  const navigator = useNavigate();
   return (
     <div className="top5-artists-container">
       <div className="title-field">
         <div className="title">入驻歌手</div>
-        <div className="check-total">查看全部&#62;</div>
+        <div className="check-total" onClick={() => navigator("/artistlist")}>
+          查看全部&#62;
+        </div>
       </div>
       <div className="top-artist-list">
         {take(data?.artists, 5).map((artist) => {

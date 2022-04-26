@@ -12,3 +12,6 @@ export { default as ToplistItem } from "./toplist_item/ToplistItem";
 export { default as ToplistItemDetail } from "./toplist_item_detail/ToplistItemDetail";
 export { default as Songlist } from "./songlist/Songlist";
 export { default as CommentList } from "./comment_list/CommentList";
+export { default as DjCatelist } from "./dj_catelist/DjCatelist";
+export { default as ProgrammeRank } from "./programme_rank/ProgrammeRank";
+export { default as DjRecommend } from "./dj_recommend/DjRecommend";

@@ -1,0 +1,80 @@
+.programme-rank-container {
+  display: flex;
+  flex-direction: column;
+  width: 426px;
+  height: 100%;
+  .programme-rank-list {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    border: 1px solid #e2e2e2;
+    border-top: none;
+    .programme-rank-item {
+      position: relative;
+      display: flex;
+      align-items: center;
+      flex: 1;
+      .index {
+        width: 47px;
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+        color: #999;
+        &.top3 {
+          color: #da4545;
+        }
+      }
+      .img {
+        width: 40px;
+        height: 40px;
+        margin-right: 10px;
+        cursor: pointer;
+        @include bg-image();
+        @include center();
+        .play-btn {
+          display: none;
+          width: 22px;
+          height: 22px;
+          background-image: url("../../assets/images/iconall.png");
+          background-repeat: no-repeat;
+          background-position: 0 -85px;
+        }
+      }
+      .name-brand {
+        .name {
+          color: #333;
+          margin-bottom: 4px;
+          cursor: pointer;
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+        .brand {
+          color: #999;
+          cursor: pointer;
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+      .score {
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #da4545;
+      }
+      &:nth-of-type(even) {
+        background-color: #f7f7f7;
+      }
+      &:hover {
+        background-color: #eee;
+        .img {
+          .play-btn {
+            display: block;
+          }
+        }
+      }
+    }
+  }
+}

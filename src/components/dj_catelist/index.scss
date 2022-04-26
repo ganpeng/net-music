@@ -1,0 +1,44 @@
+.dj-catelist-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  .dj-cate-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 70px;
+    height: 70px;
+    margin-left: 33px;
+    margin-bottom: 25px;
+    background-image: url("../../assets/images/radio_bg.png");
+    background-repeat: no-repeat;
+    background-position: 0 99999px;
+    cursor: pointer;
+    .cate-img {
+      width: 48px;
+      height: 48px;
+      background-position: 0 0;
+      background-repeat: no-repeat;
+    }
+    .cate-name {
+      color: #888;
+    }
+    &:hover {
+      background-position: 0 0;
+      text-decoration: none;
+    }
+    &.active {
+      background-position: -70px 0;
+      .cate-img {
+        background-position: -48px 0;
+      }
+      .cate-name {
+        color: #d35757;
+      }
+    }
+  }
+  .dj-cate-item:nth-of-type(9n + 1) {
+    margin-left: 0;
+  }
+}

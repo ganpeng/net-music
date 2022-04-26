@@ -23,7 +23,7 @@ function TopAlbum() {
 
   return (
     <div className="top-album-container">
-      <SectionHeader title="新碟上架"></SectionHeader>
+      <SectionHeader title="新碟上架" moreLink="/albumlist"></SectionHeader>
       <div className="top-album-content">
         <ul className="album-list">
           {chunkedAlbums.map((albumChunk, index) => {
