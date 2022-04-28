@@ -185,3 +185,21 @@ export function getDjProgrammeRecommend(): Promise<IDjProgrammeRecommendResponse
       throw new Error(err);
     });
 }
+
+export function getSongUrlById(id: number) {
+  return axios
+    .get(`${apiRoute.SONG_URL}?id=${id}`)
+    .then((res) => res.data)
+    .catch((err) => {
+      throw new Error(err);
+    });
+}
+
+export function getPlaylistTrackAllById(id: number | undefined) {
+  return axios
+    .get(`${apiRoute.PLAYLIST_TRACK_ALL}?id=${id}`)
+    .then((res) => res.data)
+    .catch((err) => {
+      throw new Error(err);
+    });
+}

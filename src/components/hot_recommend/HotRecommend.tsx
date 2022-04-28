@@ -1,13 +1,47 @@
-import React from "react";
-import { useQuery } from "react-query";
+import React, { useContext, useEffect, useMemo, useState } from "react";
+import { useQueries, useQuery } from "react-query";
 import take from "lodash/take";
-import { getPersonalizedList } from "../../service";
+import {
+  getPersonalizedList,
+  getPlaylistTrackAllById,
+  getSongUrlById,
+} from "../../service";
 import "./index.scss";
 import { numberFormatter } from "../../utils";
 import HotRecommendContentLoader from "../my_content_loader/HotRecommendContentLoader";
+import { get, set } from "lodash";
+import { TracksContext } from "../../context";
 
 function HotRecommend() {
-  let { data, isFetching } = useQuery("hot-recomment", getPersonalizedList);
+  const tracksContext = useContext(TracksContext);
+  const [playlistId, setPlaylistId] = useState<number | undefined>(undefined);
+  const { data, isFetching } = useQuery("hot-recomment", getPersonalizedList);
+  const { data: playlistTrackAllData } = useQuery(
+    ["playlist_track_all", playlistId],
+    () => getPlaylistTrackAllById(playlistId),
+    {
+      enabled: !!playlistId,
+    }
+  );
+  const tracklist = playlistTrackAllData?.songs || [];
+  const songResList = useQueries(
+    useMemo(() => {
+      return tracklist.map((track: any) => {
+        return {
+          queryKey: ["song_url", track.id],
+          queryFn: () => getSongUrlById(track.id),
+        };
+      });
+    }, [tracklist])
+  );
+
+  const songlist = songResList.map((res) => get(res, `data.data.0`));
+
+  const resList = tracklist.map((track: any, index: number) => {
+    const song = get(songlist, `${index}`);
+    set(track, "song", song);
+    return track;
+  });
 
   return isFetching ? (
     <HotRecommendContentLoader />
@@ -29,7 +63,10 @@ function HotRecommend() {
                   </span>
                 </div>
                 <div className="play-btn-container">
-                  <div className="play-btn"></div>
+                  <div
+                    className="play-btn"
+                    onClick={() => setPlaylistId(hotRecommend.id)}
+                  ></div>
                 </div>
               </div>
             </div>

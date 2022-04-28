@@ -6,7 +6,6 @@ import "./index.scss";
 
 function Top5Dj() {
   const { data } = useQuery("djs", getHotDjList);
-  console.log(data);
   return (
     <div className="top5-dj-container">
       <div className="title-field">

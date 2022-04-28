@@ -154,6 +154,25 @@ export const DJ_PROGRAMME_TOPLIST = `${apiRoot}/dj/program/toplist`;
  */
 export const DJ_PROGRAMME_RECOMMEND = `${apiRoot}/program/recommend`;
 
+/**
+ * 获取音乐地址
+ * 必选参数 : id : 音乐 id
+  可选参数 : br: 码率,默认设置了 999000 即最大码率,如果要 320k 则可设置为 320000,其他类推
+  接口地址 : /song/url
+  调用例子 : /song/url?id=33894312 /song/url?id=405998841,33894312
+ */
+export const SONG_URL = `${apiRoot}/song/url`;
+
+/**
+ * 获取歌单所有歌曲
+ * 必选参数 : id : 歌单 id
+  可选参数 : limit : 限制获取歌曲的数量，默认值为当前歌单的歌曲数量
+  可选参数 : offset : 默认值为0
+  接口地址 : /playlist/track/all
+  调用例子 : /playlist/track/all?id=24381616&limit=10&offset=1
+ */
+export const PLAYLIST_TRACK_ALL = `${apiRoot}/playlist/track/all`;
+
 const apiRoute: { [propName: string]: string } = {
   BANNER_LIST,
   HOT_PLAYLIST_CATEGORY,
@@ -172,6 +191,8 @@ const apiRoute: { [propName: string]: string } = {
   DJ_CATELIST,
   DJ_PROGRAMME_TOPLIST,
   DJ_PROGRAMME_RECOMMEND,
+  SONG_URL,
+  PLAYLIST_TRACK_ALL,
 };
 
 export default apiRoute;

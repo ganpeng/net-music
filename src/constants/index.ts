@@ -4,6 +4,14 @@ export const PAGE_LIMIT = 35;
 export const COMMENT_PAGE_LIST = 20;
 export const ARTIST_LIST_LIMIT = 100;
 
+export const QUERY_CLIENT_OPTIONS = {
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+    },
+  },
+};
+
 export const DEFAULT_NAV_BAR_LIST: INavBar[] = [
   {
     text: "发现音乐",
