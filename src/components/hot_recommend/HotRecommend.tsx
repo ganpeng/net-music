@@ -1,5 +1,5 @@
-import React, { useMemo, useState } from "react";
-import { useQueries, useQuery } from "react-query";
+import React, { useContext } from "react";
+import { useQuery } from "react-query";
 import take from "lodash/take";
 import {
   getPersonalizedList,
@@ -10,44 +10,35 @@ import "./index.scss";
 import { numberFormatter } from "../../utils";
 import HotRecommendContentLoader from "../my_content_loader/HotRecommendContentLoader";
 import { get, set } from "lodash";
-// import { TracksContext } from "../../context";
+import { ITrack } from "../../constants/type";
+import { TracksContext } from "../../context";
 
 function HotRecommend() {
-  // const tracksContext = useContext(TracksContext);
-  const [playlistId, setPlaylistId] = useState<number | undefined>(undefined);
+  const tracksContext = useContext(TracksContext);
   const { data, isFetching } = useQuery("hot-recomment", getPersonalizedList);
-  const { data: playlistTrackAllData } = useQuery(
-    ["playlist_track_all", playlistId],
-    () => getPlaylistTrackAllById(playlistId),
-    {
-      enabled: !!playlistId,
+  const getSongsUrls = async (id: number) => {
+    try {
+      const tracklistRes = await getPlaylistTrackAllById(id);
+      if (tracklistRes.code === 200) {
+        const tracklist = tracklistRes?.songs || [];
+        const songResList = await Promise.all(
+          tracklist.map((track: ITrack) => getSongUrlById(track.id))
+        );
+        const songlist = songResList.map((res) => get(res, `data.0`));
+        const resList = tracklist.map((track: any, index: number) => {
+          const song = get(songlist, `${index}`);
+          set(track, "song", song);
+          return track;
+        });
+
+        const res = resList.filter((item: any) => get(item, `song`));
+
+        tracksContext?.setTracks(res);
+      }
+    } catch (err) {
+      console.log(err);
     }
-  );
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const tracklist = playlistTrackAllData?.songs || [];
-  const songResList = useQueries(
-    useMemo(() => {
-      return tracklist.map((track: any) => {
-        return {
-          queryKey: ["song_url", track.id],
-          queryFn: () => getSongUrlById(track.id),
-        };
-      });
-    }, [tracklist])
-  );
-
-  const songlist = songResList.map((res) => get(res, `data.data.0`));
-
-  const resList = tracklist.map((track: any, index: number) => {
-    const song = get(songlist, `${index}`);
-    set(track, "song", song);
-    return track;
-  });
-
-  console.log(resList);
-
-  //  resList  是最终获取到的数据，要设置到context上
-  // tracksContext?.setTracks(resList);
+  };
 
   return isFetching ? (
     <HotRecommendContentLoader />
@@ -71,7 +62,7 @@ function HotRecommend() {
                 <div className="play-btn-container">
                   <div
                     className="play-btn"
-                    onClick={() => setPlaylistId(hotRecommend.id)}
+                    onClick={() => getSongsUrls(hotRecommend.id)}
                   ></div>
                 </div>
               </div>

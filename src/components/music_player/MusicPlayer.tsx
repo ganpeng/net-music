@@ -1,4 +1,4 @@
-import { debounce } from "lodash";
+import { debounce, get } from "lodash";
 import React, { useContext, useEffect, useState } from "react";
 import { TracksContext } from "../../context";
 import "./index.scss";
@@ -50,7 +50,10 @@ function MusicPlayer() {
           <div className="play-pause-btn"></div>
           <div className="next-btn"></div>
         </div>
-        <audio src=""></audio>
+        {/* <audio
+          src={get(tracksContext?.tracks, "0.song.url")}
+          autoPlay={true}
+        ></audio> */}
       </div>
     </div>
   );
