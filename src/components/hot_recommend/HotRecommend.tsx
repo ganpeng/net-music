@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useMemo, useState } from "react";
+import React, { useMemo, useState } from "react";
 import { useQueries, useQuery } from "react-query";
 import take from "lodash/take";
 import {
@@ -10,10 +10,10 @@ import "./index.scss";
 import { numberFormatter } from "../../utils";
 import HotRecommendContentLoader from "../my_content_loader/HotRecommendContentLoader";
 import { get, set } from "lodash";
-import { TracksContext } from "../../context";
+// import { TracksContext } from "../../context";
 
 function HotRecommend() {
-  const tracksContext = useContext(TracksContext);
+  // const tracksContext = useContext(TracksContext);
   const [playlistId, setPlaylistId] = useState<number | undefined>(undefined);
   const { data, isFetching } = useQuery("hot-recomment", getPersonalizedList);
   const { data: playlistTrackAllData } = useQuery(
@@ -23,6 +23,7 @@ function HotRecommend() {
       enabled: !!playlistId,
     }
   );
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const tracklist = playlistTrackAllData?.songs || [];
   const songResList = useQueries(
     useMemo(() => {
@@ -42,6 +43,11 @@ function HotRecommend() {
     set(track, "song", song);
     return track;
   });
+
+  console.log(resList);
+
+  //  resList  是最终获取到的数据，要设置到context上
+  // tracksContext?.setTracks(resList);
 
   return isFetching ? (
     <HotRecommendContentLoader />
