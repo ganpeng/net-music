@@ -93,12 +93,12 @@ function TopList() {
         <CommentList
           title="精彩评论"
           isHot={true}
-          commentList={hotCommentData?.data.comments}
+          commentList={hotCommentData?.data.comments || []}
         ></CommentList>
         <CommentList
-          title={`最新评论(${playDetail?.playlist.commentCount})`}
+          title={`最新评论(${playDetail?.playlist.commentCount || 0})`}
           isHot={false}
-          commentList={newCommentData?.data.comments}
+          commentList={newCommentData?.data.comments || []}
         ></CommentList>
         <Pagination
           total={newCommentData?.data.totalCount || 0}
