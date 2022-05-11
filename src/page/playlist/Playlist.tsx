@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useQuery } from "react-query";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { CategoryList, Pagination, SectionHeader } from "../../components";
@@ -33,7 +33,6 @@ function Playlist() {
     if (isFetching) {
       return false;
     } else {
-      console.log(getParamsString(params));
       navigator(`/playlist?${getParamsString(params)}`);
     }
   };
