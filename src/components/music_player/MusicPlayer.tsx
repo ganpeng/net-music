@@ -1,5 +1,5 @@
 import { debounce, get } from "lodash";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, useRef } from "react";
 import { TracksContext } from "../../context";
 import { timeFormatter } from "../../utils";
 import "./index.scss";
@@ -10,9 +10,14 @@ function MusicPlayer() {
     get(track, "song.url")
   );
   const [isVisible, setIsVisible] = useState(false);
-  const [playlistVisible, setPlaylistVisible] = useState(true);
+  const [playlistVisible, setPlaylistVisible] = useState(false);
   const [isLocked, setIsLocked] = useState(false);
   const [activePlayIndex, setActivePlayIndex] = useState(0);
+  // 音乐播放相关
+  const [duration, setDuration] = useState(0);
+  const [currentTime, setCurrentTime] = useState(0);
+
+  const musicPlayer = useRef<HTMLAudioElement | null>(null);
   const toggleLocked = () => {
     setIsLocked((isLocked) => {
       return !isLocked;
@@ -34,6 +39,31 @@ function MusicPlayer() {
       setIsVisible(true);
     }
   }, 400);
+
+  // 音乐播放器事件
+  const playHandler = (e: any) => {
+    setDuration(e.target.duration);
+  };
+  const playingHandler = (e: any) => {
+    console.log(e);
+  };
+  const timeUpdateHandler = (e: any) => {
+    setCurrentTime(e.target.currentTime);
+  };
+  const endedHandler = (e: any) => {
+    setActivePlayIndex(activePlayIndex + 1);
+  };
+
+  // 音乐列表事件
+  const changeMusic = (index: number) => {
+    if (index === activePlayIndex) {
+      if (musicPlayer.current) {
+        musicPlayer.current.currentTime = 0;
+      }
+    } else {
+      setActivePlayIndex(index);
+    }
+  };
 
   // 如果重新获取歌曲列表的话，初始化播放音乐为第一个
   useEffect(() => {
@@ -66,6 +96,21 @@ function MusicPlayer() {
           <div className="next-btn"></div>
         </div>
 
+        <div className="audio-play-progress-bar-container">
+          <div className="total-bar"></div>
+          <div
+            className="current-bar"
+            style={{ width: `${(currentTime * 100) / duration}%` }}
+          ></div>
+        </div>
+        <div className="time-container">
+          <div className="current-time">
+            {timeFormatter(currentTime * 1000)}
+          </div>
+          <div className="split">/</div>
+          <div className="total-time">{timeFormatter(duration * 1000)}</div>
+        </div>
+
         <div
           className="play-list-btn"
           onClick={() => setPlaylistVisible(!playlistVisible)}
@@ -73,7 +118,15 @@ function MusicPlayer() {
           {filterTracks?.length}
         </div>
 
-        <audio src={getActivePlayUrl()} autoPlay={true}></audio>
+        <audio
+          ref={musicPlayer}
+          onTimeUpdate={timeUpdateHandler}
+          onPlay={playHandler}
+          onPlaying={playingHandler}
+          onEnded={endedHandler}
+          src={getActivePlayUrl()}
+          autoPlay={true}
+        ></audio>
       </div>
       {playlistVisible && (
         <div className="play-list-container">
@@ -110,10 +163,11 @@ function MusicPlayer() {
                         className={`playing-icon ${
                           activePlayIndex === index ? "active" : ""
                         }`}
+                        onClick={() => changeMusic(index)}
                       ></div>
                       <div
                         className="song-name"
-                        onClick={() => setActivePlayIndex(index)}
+                        onClick={() => changeMusic(index)}
                       >
                         {track.name}
                       </div>
@@ -121,7 +175,7 @@ function MusicPlayer() {
                       <div className="singer">{get(track, "ar.0.name")}</div>
                       <div
                         className="duration"
-                        onClick={() => setActivePlayIndex(index)}
+                        onClick={() => changeMusic(index)}
                       >
                         {timeFormatter(track.dt)}
                       </div>

@@ -269,6 +269,40 @@
       }
     }
   }
+  .audio-play-progress-bar-container {
+    position: relative;
+    width: 434px;
+    .total-bar {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      width: 100%;
+      height: 10px;
+      background-color: red;
+    }
+    .current-bar {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      height: 10px;
+      background-color: green;
+    }
+  }
+  .time-container {
+    display: flex;
+    align-items: center;
+    margin-left: 14px;
+    color: #797979;
+    .current-time {
+      color: #a1a1a1;
+    }
+    .split {
+      margin: 0 4px;
+    }
+  }
+
   &.is-visible {
     transform: translateY(50px);
   }

@@ -32,10 +32,10 @@ export const getYearMonthDay = (timestamp: number) => {
 };
 
 export const timeFormatter = (num: number) => {
-  num = num / 1000;
-  const h = floor(num / 3600);
-  const m = floor((num % 3600) / 60);
-  const s = floor(num % 3600) % 60;
+  const _num = num / 1000;
+  const h = floor(_num / 3600);
+  const m = floor((_num % 3600) / 60);
+  const s = floor(_num % 3600) % 60;
   return h !== 0
     ? `${h <= 9 ? `0${h}` : h}:${m <= 9 ? `0${m}` : m}:${s <= 9 ? `0${s}` : s}`
     : `${m <= 9 ? `0${m}` : m}:${s <= 9 ? `0${s}` : s}`;
