@@ -1,0 +1,45 @@
+.slider-container {
+  position: relative;
+  width: 100%;
+  input {
+    position: relative;
+    width: calc(100% + 15px);
+    height: 10px;
+    -webkit-appearance: none; /*清除系统默认样式*/
+    z-index: 10;
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    position: relative;
+    -webkit-appearance: none; /*清除系统默认样式*/
+    width: 24px;
+    height: 24px;
+    margin-left: -4px;
+    margin-bottom: -2px;
+    background-image: url("../../assets/images/iconall.png");
+    background-repeat: no-repeat;
+    background-position: 0 -250px;
+    cursor: pointer;
+    z-index: 20;
+  }
+  .total-bar {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    width: 100%;
+    height: 10px;
+    background-image: url("../../assets/images/statbar.png");
+    background-repeat: no-repeat;
+    background-position: right 0;
+  }
+  .current-bar {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    height: 10px;
+    background-image: url("../../assets/images/statbar.png");
+    background-repeat: no-repeat;
+    background-position: left -66px;
+  }
+}

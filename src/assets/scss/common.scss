@@ -20,6 +20,13 @@ li {
   margin: 0 auto;
 }
 
+.text-decoration {
+  &:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+}
+
 // 分页组件UI
 // .my-pagination-list {
 //   display: flex;

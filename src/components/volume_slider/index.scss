@@ -1,0 +1,55 @@
+.volume-slider-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-90deg);
+  width: 90px;
+  height: 4px;
+  input {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: calc(100% + 15px);
+    height: 4px;
+    -webkit-appearance: none; /*清除系统默认样式*/
+    z-index: 10;
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    position: relative;
+    -webkit-appearance: none; /*清除系统默认样式*/
+    width: 18px;
+    height: 20px;
+    // margin-left: -2px;
+    // margin-bottom: 2px;
+    background-image: url("../../assets/images/iconall.png");
+    background-repeat: no-repeat;
+    background-position: -40px -250px;
+    cursor: pointer;
+    z-index: 20;
+    &:hover {
+      background-position: -40px -280px;
+    }
+  }
+  .total-bar {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    width: 100%;
+    height: 4px;
+    background-image: url("../../assets/images/statbar.png");
+    background-repeat: no-repeat;
+    background-position: right 0;
+  }
+  .current-bar {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    height: 4px;
+    background-image: url("../../assets/images/statbar.png");
+    background-repeat: no-repeat;
+    background-position: left -66px;
+  }
+}
