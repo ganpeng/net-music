@@ -15,3 +15,4 @@ export { default as CommentList } from "./comment_list/CommentList";
 export { default as DjCatelist } from "./dj_catelist/DjCatelist";
 export { default as ProgrammeRank } from "./programme_rank/ProgrammeRank";
 export { default as DjRecommend } from "./dj_recommend/DjRecommend";
+export { default as PageFooter } from "./footer/PageFooter";
