@@ -66,6 +66,9 @@ function Playlist() {
                   style={{
                     backgroundImage: `url(${hotRecommend.coverImgUrl})`,
                   }}
+                  onClick={() =>
+                    navigator(`/playlist-detail?id=${hotRecommend.id}`)
+                  }
                 ></div>
                 <div className="meta-info">
                   <div className="view-count">
@@ -79,10 +82,19 @@ function Playlist() {
                   </div>
                 </div>
               </div>
-              <p className="name">{hotRecommend.name}</p>
+              <p
+                className="name"
+                onClick={() =>
+                  navigator(`/playlist-detail?id=${hotRecommend.id}`)
+                }
+              >
+                {hotRecommend.name}
+              </p>
               <div className="creator">
                 <div className="by">by</div>
-                <div className="nickname">{hotRecommend.creator.nickname}</div>
+                <div className="nickname text-decoration">
+                  {hotRecommend.creator.nickname}
+                </div>
               </div>
             </div>
           );

@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import { useQuery } from "react-query";
 import { useSearchParams } from "react-router-dom";
-import { CommentList, DownloadClientTips, Pagination } from "../../components";
+import {
+  CommentList,
+  DownloadClientTips,
+  Pagination,
+  SectionTitle,
+} from "../../components";
+import UserAvatarList from "../../components/user_avatar_list/UserAvatarList";
 import { COMMENT_PAGE_LIST } from "../../constants";
 import { PlaylistBaseinfo, PlaylistSongs } from "../../container";
 import { getCommentList, getPlaylistDetail } from "../../service";
@@ -65,7 +71,13 @@ function PlaylistDetail() {
           pageChangeHandler={newCommentPageChangeHandler}
         ></Pagination>
       </div>
-      <div className="right-field"></div>
+      <div className="right-field">
+        <SectionTitle title="喜欢这个歌单的人"></SectionTitle>
+        <UserAvatarList
+          subscribers={playDetail?.playlist.subscribers}
+        ></UserAvatarList>
+        <SectionTitle title="热门歌单"></SectionTitle>
+      </div>
     </div>
   );
 }

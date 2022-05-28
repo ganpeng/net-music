@@ -303,3 +303,20 @@ export interface IDjProgrammeRecommendResponse {
   name: string;
   more: boolean;
 }
+
+export interface Profile {
+  nickname: string;
+  avatarUrl: string;
+  birthday: string;
+  gender: number;
+  province: number;
+  city: number;
+  backgroundUrl: string;
+  createTime: number;
+  userId: number;
+  signature: string;
+  followeds: number;
+  follows: number;
+  eventCount: number;
+  playlistCount: number;
+}

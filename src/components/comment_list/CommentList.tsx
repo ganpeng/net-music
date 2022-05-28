@@ -1,7 +1,7 @@
 import { take } from "lodash";
 import React from "react";
 import { IComment } from "../../constants/type";
-import { fromNow, getYearMonthDay } from "../../utils";
+import { fromNow } from "../../utils";
 import "./index.scss";
 type CommentListPropsType = {
   title: string;
@@ -13,6 +13,7 @@ function CommentList(props: CommentListPropsType) {
   const comments = props.isHot
     ? take(props?.commentList, 15)
     : props?.commentList || [];
+  console.log(comments);
   return (
     <div className="comment-list-container">
       <div className="comment-list-title">
@@ -32,7 +33,6 @@ function CommentList(props: CommentListPropsType) {
                   <div className="comment-content">{comment.content}</div>
                 </div>
                 <div className="meta-data">
-                  {/* <div className="date">{getYearMonthDay(comment.time)}</div> */}
                   <div className="date">{fromNow(comment.time)}</div>
                   <div className="thumb-replay">
                     <div className="thumb-icon"></div>
