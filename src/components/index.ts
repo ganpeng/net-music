@@ -16,3 +16,4 @@ export { default as DjCatelist } from "./dj_catelist/DjCatelist";
 export { default as ProgrammeRank } from "./programme_rank/ProgrammeRank";
 export { default as DjRecommend } from "./dj_recommend/DjRecommend";
 export { default as PageFooter } from "./footer/PageFooter";
+export { default as DownloadClientTips } from "./download_client_tips/DownloadClientTips";

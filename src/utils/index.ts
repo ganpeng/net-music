@@ -1,4 +1,4 @@
-import { floor, pickBy } from "lodash";
+import { floor, pickBy, times } from "lodash";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import "dayjs/locale/zh-cn"; // 导入本地化语言
@@ -48,4 +48,9 @@ export const timeFormatter = (num: number) => {
 
 export const fromNow = (timeStamp: number) => {
   return dayjs(timeStamp).fromNow();
+};
+
+export const dateFormatter = (timeStamp: number, formatter: string) => {
+  return dayjs(timeStamp).format(formatter);
+  // dayjs('2019-01-25').format('YYYY-MM-DD HH:mm:ss')
 };

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useQuery } from "react-query";
 import { useSearchParams } from "react-router-dom";
-import { CommentList, Pagination } from "../../components";
+import { CommentList, DownloadClientTips, Pagination } from "../../components";
 import { COMMENT_PAGE_LIST } from "../../constants";
 import { PlaylistBaseinfo, PlaylistSongs } from "../../container";
 import { getCommentList, getPlaylistDetail } from "../../service";
@@ -43,8 +43,11 @@ function PlaylistDetail() {
   return (
     <div className="playlist-detail-container content-w">
       <div className="left-field">
-        <PlaylistBaseinfo></PlaylistBaseinfo>
+        <PlaylistBaseinfo
+          playlistBaseinfo={playDetail?.playlist}
+        ></PlaylistBaseinfo>
         <PlaylistSongs topItem={playDetail?.playlist}></PlaylistSongs>
+        <DownloadClientTips></DownloadClientTips>
         <CommentList
           title="精彩评论"
           isHot={true}
