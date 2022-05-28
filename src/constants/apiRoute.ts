@@ -6,7 +6,7 @@ const apiRoot = process.env.REACT_APP_API_ROOT;
 1: android
 2: iphone
 3: ipad
- * 
+ *
  */
 export const BANNER_LIST = `${apiRoot}/banner`;
 
@@ -29,16 +29,16 @@ export const PERSONALIZED = `${apiRoot}/personalized`;
 
 /**
  * 新碟上架
- * 
+ *
   可选参数 :
   limit: 取出数量 , 默认为 50
   offset: 偏移数量 , 用于分页 , 如 :( 页数 -1)*50, 其中 50 为 limit 的值 , 默认 为 0
   area: ALL:全部,ZH:华语,EA:欧美,KR:韩国,JP:日本
   type : new:全部 hot:热门,默认为 new
   year : 年,默认本年
-  month : 月,默认本月 
+  month : 月,默认本月
   调用例子 : /top/album?offset=0&limit=30&year=2019&month=6
- * 
+ *
  */
 export const TOP_ALBUM = `${apiRoot}/top/album`;
 
@@ -52,7 +52,7 @@ export const TOP_ALBUM = `${apiRoot}/top/album`;
 export const NEW_ALBUM = `${apiRoot}/album/new`;
 
 /**
- * 
+ *
  * 所有榜单
   说明 : 调用此接口,可获取所有榜单 接口地址 : /toplist
   调用例子 : /toplist
@@ -74,7 +74,7 @@ export const PLAYLIST_DETAIL = `${apiRoot}/playlist/detail`;
   offset: 偏移数量 , 用于分页 , 如 :( 页数 -1)*50, 其中 50 为 limit 的值 , 默认 为 0
   接口地址 : /top/artists
   调用例子 : /top/artists?offset=0&limit=30
- * 
+ *
  */
 export const TOP_ARTISTS = `${apiRoot}/top/artists`;
 
@@ -82,7 +82,7 @@ export const TOP_ARTISTS = `${apiRoot}/top/artists`;
  * limit : 返回数量 , 默认为 100 (不支持 offset)
   接口地址 : /dj/toplist/popular
   调用例子 : /dj/toplist/popular?limit=30
- * 
+ *
  */
 export const HOT_DJ = `${apiRoot}/dj/toplist/popular`;
 
@@ -105,17 +105,17 @@ export const TOP_PLAYLIST = `${apiRoot}/top/playlist`;
   可选参数 : limit: 取出评论数量 , 默认为 20
   pageNo:分页参数,第 N 页,默认为 1
   pageSize:分页参数,每页多少条数据,默认 20
-  sortType: 排序方式, 1:按推荐排序, 2:按热度排序, 3:按时间排序 
+  sortType: 排序方式, 1:按推荐排序, 2:按热度排序, 3:按时间排序
   before: 分页参数,取上一页最后一项的 time 获取下一页数据(获取超过 5000 条评论的时候需要用到)
   接口地址 : /comment/hot
   调用例子 : /comment/hot?id=186016&type=0
- * 
+ *
  */
 
 export const COMMENT_LIST = `${apiRoot}/comment/new`;
 /**
  * 歌手分类列表
- * 
+ *
  * limit : 返回数量 , 默认为 30
   offset : 偏移数量，用于分页 , 如 : 如 :( 页数 -1)*30, 其中 30 为 limit 的值 , 默认为 0 initial: 按首字母索引查找参数,如 /artist/list?type=1&area=96&initial=b 返回内容将以 name 字段开头为 b 或者拼音开头为 b 为顺序排列, 热门传-1,#传 0
   type 取值: -1:全部 1:男歌手 2:女歌手 3:乐队
@@ -141,7 +141,7 @@ export const DJ_CATELIST = `${apiRoot}/dj/catelist`;
 
 /**
  * 电台节目榜
- * 
+ *
   limit : 返回数量 , 默认为 100
   offset : 偏移数量，用于分页 , 如 :( 页数 -1)*100, 其中 100 为 limit 的值 , 默认为 0
   接口地址 : /dj/program/toplist

@@ -12,8 +12,10 @@ import HotRecommendContentLoader from "../my_content_loader/HotRecommendContentL
 import { get, set } from "lodash";
 import { ITrack } from "../../constants/type";
 import { TracksContext } from "../../context";
+import { useNavigate } from "react-router-dom";
 
 function HotRecommend() {
+  const navigator = useNavigate();
   const tracksContext = useContext(TracksContext);
   const { data, isFetching } = useQuery("hot-recomment", getPersonalizedList);
   const getSongsUrls = async (id: number) => {
@@ -68,7 +70,14 @@ function HotRecommend() {
                 </div>
               </div>
             </div>
-            <p className="name">{hotRecommend.name}</p>
+            <p
+              className="name text-decoration"
+              onClick={() =>
+                navigator(`/playlist-detail?id=${hotRecommend.id}`)
+              }
+            >
+              {hotRecommend.name}
+            </p>
           </div>
         );
       })}

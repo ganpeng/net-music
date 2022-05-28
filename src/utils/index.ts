@@ -1,5 +1,10 @@
 import { floor, pickBy } from "lodash";
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+import "dayjs/locale/zh-cn"; // 导入本地化语言
 const querystring = require("querystring");
+dayjs.extend(relativeTime);
+dayjs.locale("zh-cn"); // 使用本地化语言
 
 export const getParamsString = (params: { [propName: string]: any }) => {
   let paramsStr = querystring.stringify(
@@ -39,4 +44,8 @@ export const timeFormatter = (num: number) => {
   return h !== 0
     ? `${h <= 9 ? `0${h}` : h}:${m <= 9 ? `0${m}` : m}:${s <= 9 ? `0${s}` : s}`
     : `${m <= 9 ? `0${m}` : m}:${s <= 9 ? `0${s}` : s}`;
+};
+
+export const fromNow = (timeStamp: number) => {
+  return dayjs(timeStamp).fromNow();
 };

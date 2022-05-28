@@ -3,13 +3,13 @@ import { IPlayListDetail } from "../../constants/type";
 import { timeFormatter } from "../../utils";
 import "./index.scss";
 
-type SonglistPropsType = {
+type PlaylistSongsPropsType = {
   topItem: IPlayListDetail | undefined;
 };
 
-function Songlist(props: SonglistPropsType) {
+function PlaylistSongs(props: PlaylistSongsPropsType) {
   return (
-    <div className="songlist-container">
+    <div className="playlist-songs-container">
       <div className="songlist-header">
         <div className="header-left">
           <div className="title">歌曲列表</div>
@@ -33,22 +33,23 @@ function Songlist(props: SonglistPropsType) {
           <div className="songers">
             <div className="text">歌手</div>
           </div>
+          <div className="al-name">
+            <div className="text">专辑</div>
+          </div>
         </li>
         {props?.topItem?.tracks.map((track, index) => {
           return (
             <li className="song-item" key={track.id}>
               <div className="song-index">{index + 1}</div>
               <div className="title">
-                {index <= 2 && (
+                {/* {index <= 2 && (
                   <div
                     className="img"
                     style={{ backgroundImage: `url(${track.al.picUrl})` }}
                   ></div>
-                )}
+                )} */}
                 <div className="play-icon"></div>
-                <div className="song-name" title={track.name}>
-                  {track.name}
-                </div>
+                <div className="song-name">{track.name}</div>
               </div>
               <div className="duration">{timeFormatter(track.dt)}</div>
               <div
@@ -59,6 +60,9 @@ function Songlist(props: SonglistPropsType) {
                   <span key={`${ar}_${_index}`}>{ar.name}</span>
                 ))}
               </div>
+              <div className="al-name text-decoration" title={track.al.name}>
+                {track.al.name}
+              </div>
             </li>
           );
         })}
@@ -67,4 +71,4 @@ function Songlist(props: SonglistPropsType) {
   );
 }
 
-export default Songlist;
+export default PlaylistSongs;

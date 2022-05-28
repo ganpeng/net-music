@@ -1,4 +1,4 @@
-.songlist-container {
+.playlist-songs-container {
   .songlist-header {
     display: flex;
     align-items: center;
@@ -27,8 +27,6 @@
         color: #c20c0c;
         font-weight: bold;
       }
-      .unit {
-      }
     }
   }
   .songlist {
@@ -47,7 +45,8 @@
         .index,
         .title,
         .duration,
-        .songers {
+        .songers,
+        .al-name {
           height: 38px;
           background-image: url("../../assets/images/table.png");
           background-position: 0 0;
@@ -64,7 +63,7 @@
           width: 68px;
         }
         .title {
-          width: 326px;
+          width: 226px;
           .play-icon {
             width: 50px;
             height: 50px;
@@ -75,6 +74,10 @@
         }
         .songers {
           flex: 1;
+          @include ellipsis();
+        }
+        .al-name {
+          width: 100px;
         }
       }
       .song-index {
@@ -85,12 +88,7 @@
       .title {
         display: flex;
         align-items: center;
-        width: 326px;
-        .img {
-          width: 50px;
-          height: 50px;
-          @include bg-image();
-        }
+        width: 226px;
         .play-icon {
           width: 17px;
           height: 17px;
@@ -98,7 +96,7 @@
           background-position: 0 -103px;
           background-image: url("../../assets/images/table.png");
           background-repeat: no-repeat;
-          margin: 0 10px 0 15px;
+          margin: 0 10px 0 0;
           &:hover {
             background-position: 0 -128px;
           }
@@ -130,6 +128,12 @@
             content: "/";
           }
         }
+      }
+      .al-name {
+        width: 100px;
+        text-indent: 20px;
+        @include ellipsis();
+        // padding-left: 20px;
       }
     }
   }

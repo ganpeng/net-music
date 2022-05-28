@@ -35,7 +35,6 @@ function MusicPlayer() {
   const activePlayMusic = useMemo(() => {
     return get(filterTracks, `${activePlayIndex}`);
   }, [filterTracks, activePlayIndex]);
-  console.log(activePlayMusic);
   const getActivePlayUrl = () => {
     return get(filterTracks, `${activePlayIndex}.song.url`);
   };
@@ -168,7 +167,10 @@ function MusicPlayer() {
           </div>
           <div className="base-info-bar-container">
             <div className="base-info-container">
-              <div className="name text-decoration">
+              <div
+                className="name text-decoration"
+                title={activePlayMusic?.name}
+              >
                 {activePlayMusic?.name}
               </div>
               <div

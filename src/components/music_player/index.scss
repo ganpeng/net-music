@@ -320,9 +320,12 @@
         align-items: center;
         margin: 6px 0;
         .name {
+          max-width: 300px;
           color: #e8e8e8;
+          @include ellipsis();
         }
         .songers {
+          max-width: 200px;
           margin-left: 15px;
           @include ellipsis();
           span {
