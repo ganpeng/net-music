@@ -1,8 +1,11 @@
+import { take } from "lodash";
 import React from "react";
 import { useQuery } from "react-query";
 import { Link, Outlet, useSearchParams } from "react-router-dom";
 import { useLocation } from "react-use";
-import { getArtistDetailById } from "../../service";
+import { SectionTitle } from "../../components";
+import { getArtistDetailById, getArtistList } from "../../service";
+import { linkToArtistDetailPage } from "../../utils/link";
 import "./index.scss";
 
 const linklist = [
@@ -31,6 +34,12 @@ function ArtistDetail() {
   const { data: artistDetailData } = useQuery(["artist_detail", id], () =>
     getArtistDetailById(id)
   );
+
+  const { data: artistListData } = useQuery(["artistlist"], () => {
+    return getArtistList({});
+  });
+  console.log(artistListData);
+
   return (
     <div className="artist-detail-container content-w">
       <div className="left-field">
@@ -61,7 +70,28 @@ function ArtistDetail() {
         </ul>
         <Outlet></Outlet>
       </div>
-      <div className="right-field"></div>
+      <div className="right-field">
+        <SectionTitle title="热门歌手"></SectionTitle>
+        <ul className="artist-list">
+          {take(artistListData?.artists, 6).map((artist) => {
+            return (
+              <li className="artist-item" key={artist.id}>
+                <div
+                  className="img"
+                  style={{ backgroundImage: `url(${artist.picUrl})` }}
+                >
+                  <Link to={linkToArtistDetailPage(artist.id)}></Link>
+                </div>
+                <p className="name text-decoration">
+                  <Link to={linkToArtistDetailPage(artist.id)}>
+                    {artist.name}
+                  </Link>
+                </p>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
     </div>
   );
 }
