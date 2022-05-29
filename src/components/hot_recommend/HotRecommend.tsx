@@ -12,7 +12,8 @@ import HotRecommendContentLoader from "../my_content_loader/HotRecommendContentL
 import { get, set } from "lodash";
 import { ITrack } from "../../constants/type";
 import { TracksContext } from "../../context";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { linkToPlaylistDetailPage } from "../../utils/link";
 
 function HotRecommend() {
   const navigator = useNavigate();
@@ -54,7 +55,9 @@ function HotRecommend() {
               <div
                 className="img"
                 style={{ backgroundImage: `url(${hotRecommend.picUrl})` }}
-              ></div>
+              >
+                <Link to={linkToPlaylistDetailPage(hotRecommend.id)}></Link>
+              </div>
               <div className="meta-info">
                 <div className="view-count">
                   <div className="view-icon"></div>
@@ -70,13 +73,10 @@ function HotRecommend() {
                 </div>
               </div>
             </div>
-            <p
-              className="name text-decoration"
-              onClick={() =>
-                navigator(`/playlist-detail?id=${hotRecommend.id}`)
-              }
-            >
-              {hotRecommend.name}
+            <p className="name text-decoration">
+              <Link to={linkToPlaylistDetailPage(hotRecommend.id)}>
+                {hotRecommend.name}
+              </Link>
             </p>
           </div>
         );

@@ -1,12 +1,3 @@
-export interface ITodo {
-  readonly id?: number;
-  text: string;
-  isActive: boolean;
-  isEdit: boolean;
-}
-
-export interface ITodosResponse {}
-
 export interface INavBar {
   text: string;
   isActive: boolean;
@@ -319,4 +310,56 @@ export interface Profile {
   follows: number;
   eventCount: number;
   playlistCount: number;
+}
+
+// 歌手相关
+export interface IArtistDetail {
+  artist: {
+    id: number;
+    cover: string;
+    name: string;
+    identifyTag: string[];
+    briefDesc: string;
+    musicSize: number;
+    albumSize: number;
+    mvSize: number;
+  };
+  [propName: string]: any;
+}
+export interface IArtistDetailResponse {
+  code: number;
+  message: string;
+  data: IArtistDetail;
+}
+
+export interface IArtistTopSongResponse {
+  code: number;
+  more: boolean;
+  songs: ITrack[];
+}
+
+export interface IArtistAlbumListResponse {
+  code: number;
+  more: boolean;
+  hotAlbums: IAlbum[];
+  artist: {
+    albumSize: number;
+    musicSize: number;
+  };
+}
+
+export interface IMv {
+  id: number;
+  name: string;
+  artistName: string;
+  imgurl: string;
+  imgurl16v9: string;
+  [propName: string]: any;
+}
+
+export interface IArtistMvResponse {
+  code: number;
+  hasMore: boolean;
+  time: number;
+  mvs: IMv[];
 }

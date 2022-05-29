@@ -29,7 +29,7 @@ function CommentList(props: CommentListPropsType) {
               ></div>
               <div className="content-field">
                 <div className="name-content">
-                  <div className="name">{comment.user.nickname}</div>:
+                  <div className="name">{comment.user.nickname}</div>：
                   <div className="comment-content">{comment.content}</div>
                 </div>
                 <div className="meta-data">

@@ -6,12 +6,7 @@ import { RouteObject } from "react-router-dom";
 import PageLayout from "../page/layout/Layout";
 
 const Home = lazy(() => import("../page/home/Home"));
-const About = lazy(() => import("../page/about/About"));
-const Goods = lazy(() => import("../page/goods/Goods"));
-const GoodsList = lazy(() => import("../page/goods/GoodsList"));
-const GoodsDetail = lazy(() => import("../page/goods/GoodsDetail"));
 const NotFound = lazy(() => import("../page/error/NotFound"));
-const Auth = lazy(() => import("../page/auth/Auth"));
 const Playlist = lazy(() => import("../page/playlist/Playlist"));
 const TopList = lazy(() => import("../page/toplist/TopList"));
 const DjradioList = lazy(() => import("../page/djradio_list/DjradioList"));
@@ -20,21 +15,20 @@ const AlbumList = lazy(() => import("../page/album_list/AlbumList"));
 const PlaylistDetail = lazy(
   () => import("../page/playlist_detail/PlaylistDetail")
 );
-
+// Artist
+const ArtistDetail = lazy(() => import("../page/artist_detail/ArtistDetail"));
+const ArtistTopSong = lazy(
+  () => import("../container/artist_top_song/ArtistTopSong")
+);
+const ArtistAlbum = lazy(() => import("../container/artist_album/ArtistAlbum"));
+const ArtistMv = lazy(() => import("../container/artist_mv/ArtistMv"));
+const ArtistDesc = lazy(() => import("../container/artist_desc/ArtistDesc"));
 // 实现懒加载的用Suspense包裹 定义函数
 const lazyLoad = (children: ReactNode): ReactNode => {
   return <Suspense fallback={<></>}>{children}</Suspense>;
 };
 
 const routes: RouteObject[] = [
-  {
-    path: "/auth",
-    element: lazyLoad(<Auth />),
-  },
-  {
-    path: "/about",
-    element: lazyLoad(<About />),
-  },
   {
     path: "/",
     element: <PageLayout />,
@@ -69,17 +63,24 @@ const routes: RouteObject[] = [
         element: lazyLoad(<PlaylistDetail />),
       },
       {
-        path: "goods",
-        element: lazyLoad(<Goods />),
+        path: "artist",
+        element: lazyLoad(<ArtistDetail />),
         children: [
           {
-            path: "list",
-            index: true,
-            element: lazyLoad(<GoodsList />),
+            path: "",
+            element: lazyLoad(<ArtistTopSong />),
           },
           {
-            path: ":id",
-            element: lazyLoad(<GoodsDetail />),
+            path: "album",
+            element: lazyLoad(<ArtistAlbum />),
+          },
+          {
+            path: "mv",
+            element: lazyLoad(<ArtistMv />),
+          },
+          {
+            path: "desc",
+            element: lazyLoad(<ArtistDesc />),
           },
         ],
       },

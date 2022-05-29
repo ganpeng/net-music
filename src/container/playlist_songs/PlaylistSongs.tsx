@@ -42,12 +42,6 @@ function PlaylistSongs(props: PlaylistSongsPropsType) {
             <li className="song-item" key={track.id}>
               <div className="song-index">{index + 1}</div>
               <div className="title">
-                {/* {index <= 2 && (
-                  <div
-                    className="img"
-                    style={{ backgroundImage: `url(${track.al.picUrl})` }}
-                  ></div>
-                )} */}
                 <div className="play-icon"></div>
                 <div className="song-name">{track.name}</div>
               </div>

@@ -1,0 +1,60 @@
+.artist-mv-container {
+  .mv-list {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    .mv-item {
+      position: relative;
+      width: 137px;
+      margin-bottom: 30px;
+      margin-left: 30.25px;
+      .img {
+        position: relative;
+        width: 137px;
+        height: 103px;
+        margin-bottom: 4px;
+        cursor: pointer;
+        @include bg-image();
+        .blur-pic {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 137px;
+          height: 103px;
+          background-position: 0 -1170px;
+          background-image: url("../../assets/images/coverall.png");
+          background-repeat: no-repeat;
+        }
+        .play-btn {
+          display: none;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 44px;
+          height: 44px;
+          background-position: -30px -135px;
+          background-image: url("../../assets/images/iconall.png");
+          background-repeat: no-repeat;
+          &:hover {
+            background-position: -30px -85px;
+          }
+        }
+        &:hover {
+          .play-btn {
+            display: block;
+          }
+        }
+      }
+      .name {
+        font-size: 14px;
+        line-height: 20px;
+        @include ellipsis();
+      }
+    }
+    .mv-item:nth-of-type(4n + 1) {
+      margin-left: 0;
+    }
+  }
+}

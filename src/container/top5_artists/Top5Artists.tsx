@@ -1,19 +1,20 @@
 import { take } from "lodash";
 import React from "react";
 import { useQuery } from "react-query";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { getTopArtists } from "../../service";
+import { linkToArtistDetailPage, linkToArtistListPage } from "../../utils/link";
 import "./index.scss";
 
 function Top5Artists() {
   const { data } = useQuery("artists", getTopArtists);
-  const navigator = useNavigate();
+  console.log(data);
   return (
     <div className="top5-artists-container">
       <div className="title-field">
         <div className="title">入驻歌手</div>
-        <div className="check-total" onClick={() => navigator("/artistlist")}>
-          查看全部&#62;
+        <div className="check-total">
+          <Link to={linkToArtistListPage()}>查看全部&#62;</Link>
         </div>
       </div>
       <div className="top-artist-list">
@@ -21,10 +22,16 @@ function Top5Artists() {
           return (
             <div className="top-artist-item" key={artist.id}>
               <div
-                className="pic"
+                className="img"
                 style={{ backgroundImage: `url(${artist.picUrl})` }}
-              ></div>
-              <p className="name">{artist.name}</p>
+              >
+                <Link to={linkToArtistDetailPage(artist.id)}></Link>
+              </div>
+              <p className="name text-decoration">
+                <Link to={linkToArtistDetailPage(artist.id)}>
+                  {artist.name}
+                </Link>
+              </p>
             </div>
           );
         })}

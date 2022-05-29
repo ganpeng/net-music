@@ -1,0 +1,133 @@
+.artist-top-song-container {
+  .btn-field {
+    display: flex;
+    align-items: center;
+    margin: 20px 0 10px 0;
+    .play-btn-container {
+      display: flex;
+      align-items: center;
+      margin-right: 6px;
+      .play-btn {
+        display: flex;
+        align-items: center;
+        width: 66px;
+        height: 31px;
+        line-height: 31px;
+        color: #fff;
+        background-image: url("../../assets/images/button2.png");
+        background-repeat: no-repeat;
+        background-position: right -428px;
+        padding: 0 5px 0 0;
+        cursor: pointer;
+        .play-icon {
+          display: flex;
+          align-items: center;
+          height: 31px;
+          line-height: 30px;
+          padding: 0 0 0 10px;
+          width: 100%;
+          color: #fff;
+          background-position: 0 -387px;
+          background-image: url("../../assets/images/button2.png");
+          background-repeat: no-repeat;
+          .play {
+            width: 20px;
+            height: 18px;
+            background-position: 0 -1622px;
+            background-image: url("../../assets/images/button2.png");
+            background-repeat: no-repeat;
+          }
+        }
+      }
+      .add-btn {
+        width: 31px;
+        height: 31px;
+        margin-left: -3px;
+        padding-right: 0;
+        background-position: 0 -1588px;
+        background-image: url("../../assets/images/button2.png");
+        cursor: pointer;
+        &:hover {
+          background-position: -40px -1588px;
+        }
+      }
+    }
+    .store-btn {
+      padding: 0 5px 0 0;
+      margin-right: 6px;
+      color: #333;
+      min-width: 89px;
+      height: 31px;
+      line-height: 30px;
+      background-position: right -1020px;
+      background-image: url("../../assets/images/button2.png");
+      background-repeat: no-repeat, no-repeat;
+      cursor: pointer;
+      i {
+        display: block;
+        background-position: 0 -977px;
+        padding: 0 7px 0 28px;
+        height: 31px;
+        line-height: 30px;
+        width: 100%;
+        font-style: normal;
+        background-image: url("../../assets/images/button2.png");
+      }
+      &:hover {
+        i {
+          background-position: 0 -1063px;
+        }
+      }
+    }
+  }
+  .songlist {
+    .song-item {
+      display: flex;
+      align-items: center;
+      min-height: 30px;
+      padding: 10px;
+      &:nth-of-type(odd) {
+        background-color: #f7f7f7;
+      }
+      .song-index {
+        text-align: center;
+        width: 68px;
+        color: #999;
+      }
+      .title {
+        display: flex;
+        flex: 1;
+        align-items: center;
+        .play-icon {
+          width: 17px;
+          height: 17px;
+          cursor: pointer;
+          background-position: 0 -103px;
+          background-image: url("../../assets/images/table.png");
+          background-repeat: no-repeat;
+          margin: 0 10px 0 0;
+          &:hover {
+            background-position: 0 -128px;
+          }
+        }
+        .song-name {
+          flex: 1;
+          color: #333;
+          cursor: pointer;
+          @include ellipsis();
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+      .duration {
+        width: 90px;
+      }
+      .al-name {
+        width: 20%;
+        text-indent: 20px;
+        @include ellipsis();
+      }
+    }
+  }
+}

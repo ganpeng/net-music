@@ -20,8 +20,12 @@
         flex-direction: column;
         flex: 1;
         .name-content {
-          display: flex;
+          // display: flex;
+          word-break: break-word;
+          line-height: 18px;
+          @include clearfix();
           .name {
+            float: left;
             white-space: nowrap;
             color: #0c73c2;
             margin-right: 5px;
@@ -31,7 +35,8 @@
             }
           }
           .comment-content {
-            flex: 1;
+            // flex: 1;
+            display: inline;
             white-space: pre-wrap;
           }
         }

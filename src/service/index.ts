@@ -1,8 +1,12 @@
 import axios from "axios";
 import apiRoute from "../constants/apiRoute";
 import {
+  IArtistAlbumListResponse,
+  IArtistDetailResponse,
   IArtistListResponse,
   IArtistListSearchParams,
+  IArtistMvResponse,
+  IArtistTopSongResponse,
   IBannerListResult,
   IBoardListResponse,
   ICategoryListResponse,
@@ -198,6 +202,50 @@ export function getSongUrlById(id: number) {
 export function getPlaylistTrackAllById(id: number | undefined) {
   return axios
     .get(`${apiRoute.PLAYLIST_TRACK_ALL}?id=${id}`)
+    .then((res) => res.data)
+    .catch((err) => {
+      throw new Error(err);
+    });
+}
+
+export function getArtistDetailById(
+  id: number
+): Promise<IArtistDetailResponse> {
+  return axios
+    .get(`${apiRoute.ARTIST_DETAIL}?id=${id}`)
+    .then((res) => res.data)
+    .catch((err) => {
+      throw new Error(err);
+    });
+}
+
+export function getArtistTopSongById(
+  id: number
+): Promise<IArtistTopSongResponse> {
+  return axios
+    .get(`${apiRoute.ARTIST_TOP_SONG}?id=${id}`)
+    .then((res) => res.data)
+    .catch((err) => {
+      throw new Error(err);
+    });
+}
+
+export function getArtistAlbumList(searchParams: {
+  id: number;
+  offset: number;
+  limit: number;
+}): Promise<IArtistAlbumListResponse> {
+  return axios
+    .get(`${apiRoute.ARTIST_ALBUM}?${getParamsString(searchParams)}`)
+    .then((res) => res.data)
+    .catch((err) => {
+      throw new Error(err);
+    });
+}
+
+export function getArtistMvById(id: number): Promise<IArtistMvResponse> {
+  return axios
+    .get(`${apiRoute.ARTIST_MV}?id=${id}`)
     .then((res) => res.data)
     .catch((err) => {
       throw new Error(err);

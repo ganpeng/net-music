@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { IPlayListDetail } from "../../constants/type";
 import { timeFormatter } from "../../utils";
 import "./index.scss";
@@ -56,7 +57,9 @@ function Songlist(props: SonglistPropsType) {
                 title={track.ar.map((ar: any) => ar.name).join("/")}
               >
                 {track.ar.map((ar: any, _index: number) => (
-                  <span key={`${ar}_${_index}`}>{ar.name}</span>
+                  <span key={`${ar}_${_index}`}>
+                    <Link to={`/artist?id=${ar.id}`}>{ar.name}</Link>
+                  </span>
                 ))}
               </div>
             </li>

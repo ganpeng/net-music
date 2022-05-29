@@ -3,6 +3,7 @@ import { INavBar } from "./type";
 export const PAGE_LIMIT = 35;
 export const COMMENT_PAGE_LIST = 20;
 export const ARTIST_LIST_LIMIT = 100;
+export const ARTIST_ALBUM_LIST_LIMIT = 12;
 
 export const QUERY_CLIENT_OPTIONS = {
   defaultOptions: {

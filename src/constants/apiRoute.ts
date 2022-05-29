@@ -173,6 +173,75 @@ export const SONG_URL = `${apiRoot}/song/url`;
  */
 export const PLAYLIST_TRACK_ALL = `${apiRoot}/playlist/track/all`;
 
+/**
+ *
+  歌手热门 50 首歌曲
+  id : 歌手 id
+  接口地址 : /artist/top/song
+  调用例子 : /artist/top/song?id=6452
+ *
+ */
+export const ARTIST_TOP_SONG = `${apiRoot}/artist/top/song`;
+
+/**
+ * 歌手全部歌曲
+  可选参数 :
+  order : hot ,time 按照热门或者时间排序
+  limit: 取出歌单数量 , 默认为 50
+  offset: 偏移数量 , 用于分页 , 如 :( 评论页数 -1)*50, 其中 50 为 limit 的值
+  接口地址 : /artist/songs
+  调用例子 : /artist/songs?id=6452
+ *
+ */
+export const ARTIST_SONGS = `${apiRoot}/artist/songs`;
+
+/**
+ * 获取歌手描述
+  接口地址 : /artist/desc
+  调用例子 : /artist/desc?id=6452 ( 周杰伦 )
+ *
+ */
+export const ARTIST_DESC = `${apiRoot}/artist/desc`;
+
+/**
+ * 获取歌手详情
+  说明 : 调用此接口 , 传入歌手 id, 可获得获取歌手详情
+  必选参数 : id: 歌手 id
+  接口地址 : /artist/detail
+  调用例子 : /artist/detail?id=11972054 (Billie Eilish)
+ *
+ */
+export const ARTIST_DETAIL = `${apiRoot}/artist/detail`;
+
+/**
+ * 获取相似歌手
+  接口地址 : /simi/artist
+  调用例子 : /simi/artist?id=6452 ( 对应和周杰伦相似歌手 )
+ *
+ */
+export const SIMI_ARTIST = `${apiRoot}/simi/artist`;
+
+/**
+ * 获取歌手专辑
+  可选参数 : limit: 取出数量 , 默认为 50
+  offset: 偏移数量 , 用于分页 , 如 :( 页数 -1)*50, 其中 50 为 limit 的值 , 默认 为 0
+  接口地址 : /artist/album
+  调用例子 : /artist/album?id=6452&limit=30 ( 周杰伦 )
+ *
+ */
+export const ARTIST_ALBUM = `${apiRoot}/artist/album`;
+
+/***
+ * 获取歌手 mv
+  说明 : 调用此接口 , 传入歌手 id, 可获得歌手 mv 信息 ,
+  具体 mv 播放地址可调 用/mv传入此接口获得的 mvid 来拿到 ,
+  如 : /artist/mv?id=6452,/mv?mvid=5461064
+  接口地址 : /artist/mv
+  调用例子 : /artist/mv?id=6452
+ *
+ */
+export const ARTIST_MV = `${apiRoot}/artist/mv`;
+
 const apiRoute: { [propName: string]: string } = {
   BANNER_LIST,
   HOT_PLAYLIST_CATEGORY,
@@ -193,6 +262,13 @@ const apiRoute: { [propName: string]: string } = {
   DJ_PROGRAMME_RECOMMEND,
   SONG_URL,
   PLAYLIST_TRACK_ALL,
+  ARTIST_TOP_SONG,
+  ARTIST_SONGS,
+  ARTIST_DESC,
+  ARTIST_DETAIL,
+  SIMI_ARTIST,
+  ARTIST_ALBUM,
+  ARTIST_MV,
 };
 
 export default apiRoute;

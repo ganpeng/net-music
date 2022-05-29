@@ -81,6 +81,11 @@
           height: 130px;
           cursor: pointer;
           @include bg-image();
+          a {
+            display: block;
+            width: 100%;
+            height: 100%;
+          }
         }
         .name-icon {
           display: flex;

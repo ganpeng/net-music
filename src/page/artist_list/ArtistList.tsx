@@ -1,7 +1,7 @@
 import { get, reject, take } from "lodash";
 import React from "react";
 import { useQuery } from "react-query";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { SectionHeader } from "../../components";
 import {
   ARTIST_CATEGORY_LIST,
@@ -10,6 +10,7 @@ import {
 } from "../../constants";
 import { getArtistList } from "../../service";
 import { getParamsString } from "../../utils";
+import { linkToArtistDetailPage } from "../../utils/link";
 import "./index.scss";
 
 function ArtistList() {
@@ -92,7 +93,6 @@ function ArtistList() {
       return getArtistList(searchParams);
     }
   );
-  console.log(artistListData);
 
   return (
     <div className="artist-list-container content-w">
@@ -154,12 +154,16 @@ function ArtistList() {
                 <div
                   className="img"
                   style={{ backgroundImage: `url(${artist.picUrl})` }}
-                ></div>
+                >
+                  <Link to={linkToArtistDetailPage(artist.id)}></Link>
+                </div>
                 <div className="name-icon">
                   <div className="name" title={`${artist.name}的音乐`}>
-                    {artist.name}
+                    <Link to={linkToArtistDetailPage(artist.id)}>
+                      {artist.name}
+                    </Link>
                   </div>
-                  <div className="icon"></div>
+                  {artist.accountId && <div className="icon"></div>}
                 </div>
               </div>
             );
@@ -172,9 +176,11 @@ function ArtistList() {
                 <div className="no-image-artist-item" key={artist.id}>
                   <div className="name-icon">
                     <div className="name" title={`${artist.name}的音乐`}>
-                      {artist.name}
+                      <Link to={linkToArtistDetailPage(artist.id)}>
+                        {artist.name}
+                      </Link>
                     </div>
-                    <div className="icon"></div>
+                    {artist.accountId && <div className="icon"></div>}
                   </div>
                 </div>
               );
