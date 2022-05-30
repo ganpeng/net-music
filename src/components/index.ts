@@ -18,3 +18,4 @@ export { default as DjRecommend } from "./dj_recommend/DjRecommend";
 export { default as PageFooter } from "./footer/PageFooter";
 export { default as DownloadClientTips } from "./download_client_tips/DownloadClientTips";
 export { default as SectionTitle } from "./section_title/SectionTitle";
+export { default as Follow } from "./follow/Follow";

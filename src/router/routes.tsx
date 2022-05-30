@@ -23,6 +23,12 @@ const ArtistTopSong = lazy(
 const ArtistAlbum = lazy(() => import("../container/artist_album/ArtistAlbum"));
 const ArtistMv = lazy(() => import("../container/artist_mv/ArtistMv"));
 const ArtistDesc = lazy(() => import("../container/artist_desc/ArtistDesc"));
+// User
+const User = lazy(() => import("../page/user/User"));
+const UserHome = lazy(() => import("../container/user_home/UserHome"));
+const UserEvent = lazy(() => import("../container/user_event/UserEvent"));
+const UserFollows = lazy(() => import("../container/user_follows/UserFollows"));
+const UserFans = lazy(() => import("../container/user_fans/UserFans"));
 // 实现懒加载的用Suspense包裹 定义函数
 const lazyLoad = (children: ReactNode): ReactNode => {
   return <Suspense fallback={<></>}>{children}</Suspense>;
@@ -81,6 +87,28 @@ const routes: RouteObject[] = [
           {
             path: "desc",
             element: lazyLoad(<ArtistDesc />),
+          },
+        ],
+      },
+      {
+        path: "user",
+        element: lazyLoad(<User />),
+        children: [
+          {
+            path: "home",
+            element: lazyLoad(<UserHome />),
+          },
+          {
+            path: "event",
+            element: lazyLoad(<UserEvent />),
+          },
+          {
+            path: "follows",
+            element: lazyLoad(<UserFollows />),
+          },
+          {
+            path: "fans",
+            element: lazyLoad(<UserFans />),
           },
         ],
       },

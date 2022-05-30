@@ -242,6 +242,59 @@ export const ARTIST_ALBUM = `${apiRoot}/artist/album`;
  */
 export const ARTIST_MV = `${apiRoot}/artist/mv`;
 
+/***
+ * 获取用户详情
+  说明 : 登录后调用此接口 , 传入用户 id, 可以获取用户详情
+  必选参数 : uid : 用户 id
+  接口地址 : /user/detail
+  调用例子 : /user/detail?uid=32953014
+ *
+ */
+export const USER_DETAIL = `${apiRoot}/user/detail`;
+
+/**
+ * 获取用户动态
+  必选参数 : uid : 用户 id
+  可选参数 : limit : 返回数量 , 默认为 30
+  lasttime : 返回数据的 lasttime ,默认-1,传入上一次返回结果的 lasttime,将会返回下一页的数据
+  接口地址 : /user/event
+  调用例子 : /user/event?uid=32953014 /user/event?uid=32953014&limit=1&lasttime=1558011138743
+  返回结果的type参数对应:
+  18 分享单曲
+  19 分享专辑
+  17、28 分享电台节目
+  22 转发
+  39 发布视频
+  35、13 分享歌单
+  24 分享专栏文章
+  41、21 分享视频
+ *
+ */
+export const USER_EVENT = `${apiRoot}/user/event`;
+/**
+ * 获取用户关注列表
+  必选参数 : uid : 用户 id
+  可选参数 :
+  limit : 返回数量 , 默认为 30
+  offset : 偏移数量，用于分页 ,如 :( 页数 -1)*30, 其中 30 为 limit 的值 , 默认为 0
+  接口地址 : /user/follows
+  调用例子 : /user/follows?uid=32953014
+ *
+ */
+export const USER_FOLLOWS = `${apiRoot}/user/follows`;
+/**
+ * 获取用户粉丝列表
+  必选参数 : uid : 用户 id
+  可选参数 : limit : 返回数量 , 默认为 30
+  offset : 偏移数量，用于分页 ,如 :( 页数 -1)*30, 其中 30 为 limit 的值 , 默认为 0
+  接口地址 : /user/followeds
+  调用例子 : /user/followeds?uid=32953014
+            /user/followeds?uid=416608258&limit=1
+            /user/followeds?uid=416608258&limit=1&offset=1
+ *
+ */
+export const USER_FOLLOWEDS = `${apiRoot}/user/followeds`;
+
 const apiRoute: { [propName: string]: string } = {
   BANNER_LIST,
   HOT_PLAYLIST_CATEGORY,
@@ -269,6 +322,10 @@ const apiRoute: { [propName: string]: string } = {
   SIMI_ARTIST,
   ARTIST_ALBUM,
   ARTIST_MV,
+  USER_DETAIL,
+  USER_EVENT,
+  USER_FOLLOWS,
+  USER_FOLLOWEDS,
 };
 
 export default apiRoute;

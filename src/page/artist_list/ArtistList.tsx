@@ -10,7 +10,7 @@ import {
 } from "../../constants";
 import { getArtistList } from "../../service";
 import { getParamsString } from "../../utils";
-import { linkToArtistDetailPage } from "../../utils/link";
+import { linkToArtistDetailPage, linkToUserHomePage } from "../../utils/link";
 import "./index.scss";
 
 function ArtistList() {
@@ -163,7 +163,11 @@ function ArtistList() {
                       {artist.name}
                     </Link>
                   </div>
-                  {artist.accountId && <div className="icon"></div>}
+                  {artist.accountId && (
+                    <div className="icon">
+                      <Link to={linkToUserHomePage(artist.accountId)}></Link>
+                    </div>
+                  )}
                 </div>
               </div>
             );
@@ -180,7 +184,11 @@ function ArtistList() {
                         {artist.name}
                       </Link>
                     </div>
-                    {artist.accountId && <div className="icon"></div>}
+                    {artist.accountId && (
+                      <div className="icon">
+                        <Link to={linkToUserHomePage(artist.accountId)}></Link>
+                      </div>
+                    )}
                   </div>
                 </div>
               );

@@ -323,6 +323,7 @@ export interface IArtistDetail {
     musicSize: number;
     albumSize: number;
     mvSize: number;
+    [propName: string]: any;
   };
   [propName: string]: any;
 }
@@ -362,4 +363,64 @@ export interface IArtistMvResponse {
   hasMore: boolean;
   time: number;
   mvs: IMv[];
+}
+
+// 用户User相关
+export interface IUserDetailResponse {
+  level: number;
+  identify: {
+    imageUrl: string;
+    imageDesc: string;
+  };
+  listenSongs: number;
+  bindings: [];
+  profile: {
+    nickname: string;
+    userId: number;
+    avatarUrl: string;
+    gender: number;
+    province: number;
+    city: number;
+    backgroundUrl: string;
+    followeds: number;
+    follows: number;
+    artistId: number;
+    eventCount: number;
+    playlistBeSubscribedCount: number;
+    artistName: string;
+    playlistCount: number;
+    [propName: string]: any;
+  };
+}
+
+export interface IUser {
+  readonly userId: number;
+  nickname: string;
+  userType: number;
+  gender: number;
+  followeds: number;
+  follows: number;
+  vipType: number;
+  signature: string;
+  eventCount: number;
+  playlistCount: number;
+  avatarUrl: string;
+  avatarDetail: {
+    userType: number;
+    identityLevel: number;
+    identityIconUrl: string;
+  };
+}
+
+export interface IFollowsResponse {
+  code: number;
+  more: boolean;
+  touchCount: number;
+  follow: IUser[];
+}
+export interface IFollowedsResponse {
+  code: number;
+  more: boolean;
+  size: number;
+  followeds: IUser[];
 }

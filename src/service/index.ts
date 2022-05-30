@@ -16,6 +16,8 @@ import {
   IDjListResponse,
   IDjProgrammeRecommendResponse,
   IDjProgrammeResponse,
+  IFollowedsResponse,
+  IFollowsResponse,
   IHotRecommendResponse,
   INewAlbumListSearchParams,
   INewAlbumResponse,
@@ -24,6 +26,7 @@ import {
   ITagsResponse,
   ITopPlayListResponse,
   ITopPlayListSearchParams,
+  IUserDetailResponse,
 } from "../constants/type";
 import { getParamsString } from "../utils";
 
@@ -232,8 +235,8 @@ export function getArtistTopSongById(
 
 export function getArtistAlbumList(searchParams: {
   id: number;
-  offset: number;
-  limit: number;
+  offset?: number;
+  limit?: number;
 }): Promise<IArtistAlbumListResponse> {
   return axios
     .get(`${apiRoute.ARTIST_ALBUM}?${getParamsString(searchParams)}`)
@@ -246,6 +249,41 @@ export function getArtistAlbumList(searchParams: {
 export function getArtistMvById(id: number): Promise<IArtistMvResponse> {
   return axios
     .get(`${apiRoute.ARTIST_MV}?id=${id}`)
+    .then((res) => res.data)
+    .catch((err) => {
+      throw new Error(err);
+    });
+}
+
+export function getUserDetailById(id: number): Promise<IUserDetailResponse> {
+  return axios
+    .get(`${apiRoute.USER_DETAIL}?uid=${id}`)
+    .then((res) => res.data)
+    .catch((err) => {
+      throw new Error(err);
+    });
+}
+
+export function getFollowsById(searchParams: {
+  uid: number;
+  offset?: number;
+  limit?: number;
+}): Promise<IFollowsResponse> {
+  return axios
+    .get(`${apiRoute.USER_FOLLOWS}?${getParamsString(searchParams)}`)
+    .then((res) => res.data)
+    .catch((err) => {
+      throw new Error(err);
+    });
+}
+
+export function getFollowedsById(searchParams: {
+  uid: number;
+  offset?: number;
+  limit?: number;
+}): Promise<IFollowedsResponse> {
+  return axios
+    .get(`${apiRoute.USER_FOLLOWEDS}?${getParamsString(searchParams)}`)
     .then((res) => res.data)
     .catch((err) => {
       throw new Error(err);

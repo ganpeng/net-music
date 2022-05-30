@@ -5,7 +5,7 @@ import { Link, Outlet, useSearchParams } from "react-router-dom";
 import { useLocation } from "react-use";
 import { SectionTitle } from "../../components";
 import { getArtistDetailById, getArtistList } from "../../service";
-import { linkToArtistDetailPage } from "../../utils/link";
+import { linkToArtistDetailPage, linkToUserHomePage } from "../../utils/link";
 import "./index.scss";
 
 const linklist = [
@@ -38,7 +38,6 @@ function ArtistDetail() {
   const { data: artistListData } = useQuery(["artistlist"], () => {
     return getArtistList({});
   });
-  console.log(artistListData);
 
   return (
     <div className="artist-detail-container content-w">
@@ -51,6 +50,17 @@ function ArtistDetail() {
               backgroundImage: `url(${artistDetailData?.data.artist.cover})`,
             }}
           ></div>
+          <div className="mask"></div>
+          <div className="btn-field">
+            {artistDetailData?.data.user?.userId && (
+              <div className="home-btn">
+                <Link
+                  to={linkToUserHomePage(artistDetailData?.data.user.userId)}
+                ></Link>
+              </div>
+            )}
+            <div className="save-btn"></div>
+          </div>
         </div>
         <ul className="link-list">
           {linklist.map((link, index) => {
