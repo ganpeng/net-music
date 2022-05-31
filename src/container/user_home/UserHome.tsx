@@ -1,10 +1,11 @@
 import { partition } from "lodash";
 import React from "react";
 import { useQuery } from "react-query";
-import { useOutletContext, useSearchParams } from "react-router-dom";
+import { Link, useOutletContext, useSearchParams } from "react-router-dom";
 import { UserPlaylist, UserRecord } from "../../components";
 import { ContextType } from "../../page/user/User";
 import { getUserPlaylistById } from "../../service";
+import { linkToUserSongsRankPage } from "../../utils/link";
 import "./index.scss";
 
 function UserHome() {
@@ -20,8 +21,13 @@ function UserHome() {
   );
   return (
     <div className="user-home-container">
-      {context.peopleCanSeeMyPlayRecord && (
-        <UserRecord listenSongs={context.listenSongs}></UserRecord>
+      {context.peopleCanSeeMyPlayRecord && context.listenSongs > 10 && (
+        <>
+          <UserRecord listenSongs={context.listenSongs}></UserRecord>
+          <div className="more-link text-decoration">
+            <Link to={linkToUserSongsRankPage(id)}>查看更多&#62;</Link>
+          </div>
+        </>
       )}
       <UserPlaylist
         title={`${context.nickname}创建的歌单 (${createdPlaylist.length})`}

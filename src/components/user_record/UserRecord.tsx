@@ -8,21 +8,25 @@ import "./index.scss";
 
 type UserRecordPropsType = {
   listenSongs: number;
+  all?: boolean;
 };
 
 function UserRecord(props: UserRecordPropsType) {
   const [type, setType] = useState(0); // 0 所有时间 1 最近一周
   const [searchParmas] = useSearchParams();
   const id = Number(searchParmas.get("id"));
-  const { data: userRecordData } = useQuery(
-    ["user_record_alldata", id, type],
-    () => getUserRecordById(id, type)
+  const { data: userRecordData } = useQuery(["user_record", id, type], () =>
+    getUserRecordById(id, type)
   );
   const recordList = useMemo(() => {
     return type === 0
-      ? take<IRecordData>(get(userRecordData, "allData"), 10) || []
+      ? props.all
+        ? get(userRecordData, "allData") || []
+        : take<IRecordData>(get(userRecordData, "allData"), 10) || []
+      : props.all
+      ? get(userRecordData, "weekData") || []
       : take<IRecordData>(get(userRecordData, "weekData"), 10) || [];
-  }, [type, userRecordData]);
+  }, [props.all, type, userRecordData]);
   console.log(userRecordData);
   return (
     <div className="user-record-container">
@@ -85,7 +89,6 @@ function UserRecord(props: UserRecordPropsType) {
             );
           })}
         </ul>
-        <div className="more-link text-decoration">查看更多&#62;</div>
       </div>
     </div>
   );

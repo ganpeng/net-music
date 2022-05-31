@@ -24,3 +24,11 @@ export const linkToUserFollowsPage = (id: number) => {
 export const linkToUserFansPage = (id: number) => {
   return `/user/fans?id=${id}`;
 };
+export const linkToUserSongsRankPage = (id: number) => {
+  return `/user/songs/rank?id=${id}`;
+};
+
+// album
+export const linkToAlbumDetailPage = (id: number) => {
+  return `/album-detail?id=${id}`;
+};

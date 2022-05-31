@@ -31,6 +31,7 @@
         }
       }
       .album-item {
+        position: relative;
         width: 118px;
         height: 150px;
         margin-top: 20px;
@@ -56,6 +57,26 @@
             background-image: url("../../assets/images/coverall.png");
             background-repeat: no-repeat;
             background-position: 0 -570px;
+            cursor: pointer;
+            a {
+              display: block;
+              width: 100%;
+              height: 100%;
+            }
+          }
+          .play-btn {
+            position: absolute;
+            right: 20px;
+            bottom: 5px;
+            width: 22px;
+            height: 22px;
+            background-image: url("../../assets/images/icn_ply.png");
+            background-repeat: no-repeat;
+            cursor: pointer;
+            z-index: 6;
+            &:hover {
+              background-image: url("../../assets/images/icn_ply_hvr.png");
+            }
           }
         }
         .album-name {
@@ -63,10 +84,24 @@
           line-height: 18px;
           @include ellipsis();
         }
-        .artist-name {
-          color: #666;
-          line-height: 18px;
+        .songers {
+          flex: 1;
           @include ellipsis();
+          span {
+            cursor: pointer;
+            a {
+              color: #666;
+            }
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+          span + span {
+            &::before {
+              color: #666;
+              content: "/";
+            }
+          }
         }
       }
     }

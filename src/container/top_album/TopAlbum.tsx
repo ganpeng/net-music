@@ -5,10 +5,15 @@ import { SectionHeader } from "../../components";
 import { nextArrow, prevArrow } from "../../constants/svg";
 import { getNewestAlbum } from "../../service";
 import "./index.scss";
+import { Link } from "react-router-dom";
+import {
+  linkToAlbumDetailPage,
+  linkToArtistDetailPage,
+} from "../../utils/link";
 
 function TopAlbum() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const { data } = useQuery("newest_album", getNewestAlbum);
+  const { data } = useQuery(["newest_album"], getNewestAlbum);
   const chunkedAlbums = chunk(take(data?.albums, 10), 5);
 
   const chunkedAlbumsChangeHandler = (newActiveIndex: number) => {
@@ -44,10 +49,30 @@ function TopAlbum() {
                             className="pic"
                             style={{ backgroundImage: `url(${album.picUrl})` }}
                           ></div>
-                          <div className="blur-pic"></div>
+                          <div className="blur-pic">
+                            <Link to={linkToAlbumDetailPage(album.id)}></Link>
+                          </div>
+                          <div className="play-btn"></div>
                         </div>
-                        <p className="album-name">{album.name}</p>
-                        <p className="artist-name">{album.artist.name}</p>
+                        <p className="album-name text-decoration">
+                          <Link to={linkToAlbumDetailPage(album.id)}>
+                            {album.name}
+                          </Link>
+                        </p>
+                        <div
+                          className="songers"
+                          title={album.artists
+                            .map((artist: any) => artist.name)
+                            .join("/")}
+                        >
+                          {album.artists.map((artist: any, _index: number) => (
+                            <span key={`${artist.name}_${_index}`}>
+                              <Link to={linkToArtistDetailPage(artist.id)}>
+                                {artist.name}
+                              </Link>
+                            </span>
+                          ))}
+                        </div>
                       </div>
                     );
                   })}

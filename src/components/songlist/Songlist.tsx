@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { IPlayListDetail } from "../../constants/type";
 import { timeFormatter } from "../../utils";
+import { linkToArtistDetailPage } from "../../utils/link";
 import "./index.scss";
 
 type SonglistPropsType = {
@@ -58,7 +59,7 @@ function Songlist(props: SonglistPropsType) {
               >
                 {track.ar.map((ar: any, _index: number) => (
                   <span key={`${ar}_${_index}`}>
-                    <Link to={`/artist?id=${ar.id}`}>{ar.name}</Link>
+                    <Link to={linkToArtistDetailPage(ar.id)}>{ar.name}</Link>
                   </span>
                 ))}
               </div>
