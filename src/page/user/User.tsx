@@ -15,6 +15,9 @@ export type ContextType = {
   eventCount: number;
   follows: number;
   followeds: number;
+  listenSongs: number;
+  peopleCanSeeMyPlayRecord: boolean;
+  nickname: string;
 };
 
 function User() {
@@ -29,6 +32,9 @@ function User() {
     eventCount: userDetailData?.profile.eventCount || 0,
     follows: userDetailData?.profile.follows || 0,
     followeds: userDetailData?.profile.followeds || 0,
+    listenSongs: userDetailData?.listenSongs || 0,
+    peopleCanSeeMyPlayRecord: userDetailData?.peopleCanSeeMyPlayRecord || false,
+    nickname: userDetailData?.profile.nickname || "",
   };
 
   return (

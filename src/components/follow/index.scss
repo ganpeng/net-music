@@ -10,6 +10,9 @@
     height: 100px;
     padding: 20px 20px 0 20px;
     border-right: 1px solid #d5d5d5;
+    &.border {
+      border-bottom: 1px solid #d5d5d5;
+    }
     .left-img {
       img {
         width: 60px;

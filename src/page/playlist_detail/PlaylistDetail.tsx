@@ -6,8 +6,8 @@ import {
   DownloadClientTips,
   Pagination,
   SectionTitle,
+  UserAvatarList,
 } from "../../components";
-import UserAvatarList from "../../components/user_avatar_list/UserAvatarList";
 import { COMMENT_PAGE_LIST } from "../../constants";
 import { PlaylistBaseinfo, PlaylistSongs } from "../../container";
 import { getCommentList, getPlaylistDetail } from "../../service";

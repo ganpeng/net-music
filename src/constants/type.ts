@@ -373,6 +373,7 @@ export interface IUserDetailResponse {
     imageDesc: string;
   };
   listenSongs: number;
+  peopleCanSeeMyPlayRecord: boolean;
   bindings: [];
   profile: {
     nickname: string;
@@ -410,6 +411,7 @@ export interface IUser {
     identityLevel: number;
     identityIconUrl: string;
   };
+  [propName: string]: any;
 }
 
 export interface IFollowsResponse {
@@ -423,4 +425,53 @@ export interface IFollowedsResponse {
   more: boolean;
   size: number;
   followeds: IUser[];
+}
+
+export interface ISong {
+  readonly id: number;
+  name: string;
+  ar: {
+    id: number;
+    name: string;
+    tns: string[];
+    alias: string[];
+  }[];
+  al: {
+    id: number;
+    name: string;
+    picUrl: string;
+    tns: string[];
+  };
+  alia: string[];
+  publishTime: number;
+  [propName: string]: any;
+}
+
+export interface IRecordData {
+  playCount: number;
+  score: number;
+  song: ISong;
+}
+
+export interface IUserRecordWeekDataResponse {
+  code: number;
+  weekData: IRecordData[];
+}
+export interface IUserRecordAllDataResponse {
+  code: number;
+  allData: IRecordData[];
+}
+
+export interface IPlaylist {
+  id: number;
+  name: string;
+  coverImgUrl: string;
+  playCount: number;
+  creator: ICreator;
+}
+export interface IUserPlaylistResponse {
+  code: number;
+  version: string;
+  more: boolean;
+  playlist: IPlaylist[];
 }

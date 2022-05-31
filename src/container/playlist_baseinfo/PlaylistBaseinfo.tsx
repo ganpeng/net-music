@@ -1,6 +1,6 @@
 import React from "react";
 import { IPlayListDetail } from "../../constants/type";
-import { dateFormatter } from "../../utils";
+import { dateFormatter, numberFormatter } from "../../utils";
 import "./index.scss";
 
 type PlaylistBaseinfoPropsType = {
@@ -51,16 +51,16 @@ function PlaylistBaseinfo(props: PlaylistBaseinfoPropsType) {
             <div className="add-btn"></div>
           </div>
           <div className="store-btn">
-            <i>({playlistBaseinfo?.subscribedCount})</i>
+            <i>({numberFormatter(playlistBaseinfo?.subscribedCount || 0)})</i>
           </div>
           <div className="share-btn">
-            <i>({playlistBaseinfo?.shareCount})</i>
+            <i>({numberFormatter(playlistBaseinfo?.shareCount || 0)})</i>
           </div>
           <div className="download-btn">
             <i>下载</i>
           </div>
           <div className="comments-btn">
-            <i>({playlistBaseinfo?.commentCount})</i>
+            <i>({numberFormatter(playlistBaseinfo?.commentCount || 0)})</i>
           </div>
         </div>
         <div className="tags-container">

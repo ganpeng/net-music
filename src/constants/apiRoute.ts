@@ -294,6 +294,26 @@ export const USER_FOLLOWS = `${apiRoot}/user/follows`;
  *
  */
 export const USER_FOLLOWEDS = `${apiRoot}/user/followeds`;
+/**
+ * 获取用户播放记录
+  说明 : 登录后调用此接口 , 传入用户 id, 可获取用户播放记录
+  必选参数 : uid : 用户 id
+  可选参数 : type : type=1 时只返回 weekData, type=0 时返回 allData
+  接口地址 : /user/record
+  调用例子 : /user/record?uid=32953014&type=1
+ *
+ */
+export const USER_RECORD = `${apiRoot}/user/record`;
+/***
+ * 获取用户歌单
+  必选参数 : uid : 用户 id
+  可选参数 : limit : 返回数量 , 默认为 30
+  offset : 偏移数量，用于分页 , 如 :( 页数 -1)*30, 其中 30 为 limit 的值 , 默认为 0
+  接口地址 : /user/playlist
+  调用例子 : /user/playlist?uid=32953014
+ *
+ */
+export const USER_PLAYLIST = `${apiRoot}/user/playlist`;
 
 const apiRoute: { [propName: string]: string } = {
   BANNER_LIST,
@@ -326,6 +346,8 @@ const apiRoute: { [propName: string]: string } = {
   USER_EVENT,
   USER_FOLLOWS,
   USER_FOLLOWEDS,
+  USER_RECORD,
+  USER_PLAYLIST,
 };
 
 export default apiRoute;

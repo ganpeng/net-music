@@ -27,6 +27,9 @@ import {
   ITopPlayListResponse,
   ITopPlayListSearchParams,
   IUserDetailResponse,
+  IUserPlaylistResponse,
+  IUserRecordAllDataResponse,
+  IUserRecordWeekDataResponse,
 } from "../constants/type";
 import { getParamsString } from "../utils";
 
@@ -284,6 +287,29 @@ export function getFollowedsById(searchParams: {
 }): Promise<IFollowedsResponse> {
   return axios
     .get(`${apiRoute.USER_FOLLOWEDS}?${getParamsString(searchParams)}`)
+    .then((res) => res.data)
+    .catch((err) => {
+      throw new Error(err);
+    });
+}
+
+export function getUserRecordById(
+  id: number,
+  type: number
+): Promise<IUserRecordWeekDataResponse | IUserRecordAllDataResponse> {
+  return axios
+    .get(`${apiRoute.USER_RECORD}?uid=${id}&type=${type}`)
+    .then((res) => res.data)
+    .catch((err) => {
+      throw new Error(err);
+    });
+}
+
+export function getUserPlaylistById(
+  id: number
+): Promise<IUserPlaylistResponse> {
+  return axios
+    .get(`${apiRoute.USER_PLAYLIST}?uid=${id}&limit=${200}`)
     .then((res) => res.data)
     .catch((err) => {
       throw new Error(err);

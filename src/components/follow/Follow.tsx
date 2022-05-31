@@ -17,9 +17,14 @@ function Follow(props: FollowPropsType) {
   const { follows } = props;
   return (
     <ul className="follow-list">
-      {follows.map((follow) => {
+      {follows.map((follow, index) => {
         return (
-          <li className="follow-item" key={follow.userId}>
+          <li
+            className={`follow-item ${
+              index === follows.length - 2 ? "border" : ""
+            }`}
+            key={follow.userId}
+          >
             <div className="left-img">
               <img src={follow.avatarUrl} alt="" />
             </div>
