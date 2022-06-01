@@ -12,11 +12,10 @@ import HotRecommendContentLoader from "../my_content_loader/HotRecommendContentL
 import { get, set } from "lodash";
 import { ITrack } from "../../constants/type";
 import { TracksContext } from "../../context";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { linkToPlaylistDetailPage } from "../../utils/link";
 
 function HotRecommend() {
-  const navigator = useNavigate();
   const tracksContext = useContext(TracksContext);
   const { data, isFetching } = useQuery("hot-recomment", getPersonalizedList);
   const getSongsUrls = async (id: number) => {

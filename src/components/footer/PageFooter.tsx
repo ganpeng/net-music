@@ -1,4 +1,3 @@
-import { times } from "lodash";
 import React from "react";
 import { FOOTER_IMAGE_LINKS, PAGE_FOOTER_LINKS } from "../../constants";
 import { policeImage } from "../../constants/images";

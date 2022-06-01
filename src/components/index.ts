@@ -22,3 +22,5 @@ export { default as Follow } from "./follow/Follow";
 export { default as UserAvatarList } from "./user_avatar_list/UserAvatarList";
 export { default as UserRecord } from "./user_record/UserRecord";
 export { default as UserPlaylist } from "./user_palylist/UserPlaylist";
+export { default as AlbumBaseinfo } from "./album_baseinfo/AlbumBaseinfo";
+export { default as AlbumSongs } from "./album_songs/AlbumSongs";

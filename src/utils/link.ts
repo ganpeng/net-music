@@ -5,6 +5,13 @@ export const linkToArtistDetailPage = (id: number) => {
 export const linkToArtistListPage = () => {
   return `/artistlist`;
 };
+export const linkToArtistAlbumPage = (id: number | undefined) => {
+  if (id) {
+    return `/artist/album?id=${id}`;
+  } else {
+    return "";
+  }
+};
 
 // playlist
 export const linkToPlaylistDetailPage = (id: number) => {

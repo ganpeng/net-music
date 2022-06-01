@@ -1,6 +1,9 @@
 import axios from "axios";
 import apiRoute from "../constants/apiRoute";
 import {
+  IAlbumCommentsResponse,
+  IAlbumCommmentsSearchParam,
+  IAlbumDetailResponse,
   IArtistAlbumListResponse,
   IArtistDetailResponse,
   IArtistListResponse,
@@ -237,7 +240,7 @@ export function getArtistTopSongById(
 }
 
 export function getArtistAlbumList(searchParams: {
-  id: number;
+  id?: number;
   offset?: number;
   limit?: number;
 }): Promise<IArtistAlbumListResponse> {
@@ -310,6 +313,26 @@ export function getUserPlaylistById(
 ): Promise<IUserPlaylistResponse> {
   return axios
     .get(`${apiRoute.USER_PLAYLIST}?uid=${id}&limit=${200}`)
+    .then((res) => res.data)
+    .catch((err) => {
+      throw new Error(err);
+    });
+}
+
+export function getAlbumCommentsById(
+  searchParams: IAlbumCommmentsSearchParam
+): Promise<IAlbumCommentsResponse> {
+  return axios
+    .get(`${apiRoute.ALBUM_COMMENTS}?${getParamsString(searchParams)}`)
+    .then((res) => res.data)
+    .catch((err) => {
+      throw new Error(err);
+    });
+}
+
+export function getAlbumDetailById(id: number): Promise<IAlbumDetailResponse> {
+  return axios
+    .get(`${apiRoute.ALBUM_DETAIL}?id=${id}`)
     .then((res) => res.data)
     .catch((err) => {
       throw new Error(err);

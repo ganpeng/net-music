@@ -1,0 +1,140 @@
+.album-songs-container {
+  .songlist-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 37px;
+    border-bottom: 2px solid #c20c0c;
+    .header-left {
+      display: flex;
+      align-items: center;
+      .title {
+        font-size: 20px;
+      }
+      .song-num {
+        margin: 9px 0 0 20px;
+        color: #666;
+      }
+    }
+    .header-right {
+      display: flex;
+      align-items: center;
+      .play-count-label {
+        margin-right: 6px;
+      }
+      .play-count {
+        color: #c20c0c;
+        font-weight: bold;
+      }
+    }
+  }
+  .songlist {
+    border: 1px solid #d9d9d9;
+    .song-item {
+      display: flex;
+      align-items: center;
+      min-height: 30px;
+      padding: 10px;
+      &:nth-of-type(even) {
+        background-color: #f7f7f7;
+      }
+      &.header {
+        height: 38px;
+        padding: 0;
+        .index,
+        .title,
+        .duration,
+        .songers,
+        .al-name {
+          height: 38px;
+          background-image: url("../../assets/images/table.png");
+          background-position: 0 0;
+          background-repeat: repeat-x;
+          background-color: #f7f7f7;
+          .text {
+            padding: 8px 10px;
+            background-position: 0 -56px;
+            color: #666;
+            background-image: url("../../assets/images/table.png");
+          }
+        }
+        .index {
+          width: 68px;
+        }
+        .title {
+          // width: 226px;
+          flex: 1;
+          .play-icon {
+            width: 50px;
+            height: 50px;
+          }
+        }
+        .duration {
+          width: 90px;
+        }
+        .songers {
+          width: 130px;
+          @include ellipsis();
+        }
+      }
+      .song-index {
+        text-align: center;
+        width: 68px;
+        color: #999;
+      }
+      .title {
+        display: flex;
+        align-items: center;
+        // width: 226px;
+        flex: 1;
+        .play-icon {
+          width: 17px;
+          height: 17px;
+          cursor: pointer;
+          background-position: 0 -103px;
+          background-image: url("../../assets/images/table.png");
+          background-repeat: no-repeat;
+          margin: 0 10px 0 0;
+          &:hover {
+            background-position: 0 -128px;
+          }
+        }
+        .song-name {
+          flex: 1;
+          color: #333;
+          cursor: pointer;
+          @include ellipsis();
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+      .duration {
+        width: 90px;
+        text-indent: 20px;
+      }
+      .songers {
+        width: 130px;
+        text-indent: 20px;
+        @include ellipsis();
+        span {
+          cursor: pointer;
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+        span + span {
+          &::before {
+            content: "/";
+          }
+        }
+      }
+      .al-name {
+        width: 100px;
+        text-indent: 20px;
+        @include ellipsis();
+      }
+    }
+  }
+}

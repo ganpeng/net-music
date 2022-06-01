@@ -8,7 +8,8 @@ export interface INavBar {
 
 // 分页搜索参数
 export interface IPaginationParams {
-  offset: number;
+  offset?: number;
+  limit?: number;
 }
 
 // 轮播图
@@ -70,32 +71,6 @@ export interface IArtist {
   name: string;
   picUrl: string;
   [propName: string]: any;
-}
-
-export interface IAlbum {
-  blurPicUrl: string;
-  id: number;
-  name: string;
-  picUrl: string;
-  artist: IArtist;
-  [propName: string]: any;
-}
-
-export interface INewAlbumResponse {
-  code: number;
-  total: number;
-  albums: IAlbum[];
-}
-
-export interface INewAlbumListSearchParams {
-  limit?: number;
-  offset?: number;
-  area?: string;
-}
-
-export interface INewestAlbumResponse {
-  code: number;
-  albums: IAlbum[];
 }
 
 //  榜单
@@ -474,4 +449,58 @@ export interface IUserPlaylistResponse {
   version: string;
   more: boolean;
   playlist: IPlaylist[];
+}
+
+// 专辑album相关
+export interface IAlbum {
+  id: number;
+  name: string;
+  description: string;
+  picUrl: string;
+  blurPicUrl: string;
+  publishTime: number;
+  company: number;
+  size: number;
+  artist: IArtist;
+  info: {
+    shareCount: number;
+    commentCount: number;
+  };
+  [propName: string]: any;
+}
+
+export interface INewAlbumResponse {
+  code: number;
+  total: number;
+  albums: IAlbum[];
+}
+
+export interface INewAlbumListSearchParams {
+  limit?: number;
+  offset?: number;
+  area?: string;
+}
+
+export interface INewestAlbumResponse {
+  code: number;
+  albums: IAlbum[];
+}
+
+export interface IAlbumDetailResponse {
+  code: number;
+  album: IAlbum;
+  songs: ISong[];
+  [propName: string]: any;
+}
+
+export interface IAlbumCommmentsSearchParam extends IPaginationParams {
+  id: number;
+}
+export interface IAlbumCommentsResponse {
+  code: number;
+  total: number;
+  more: boolean;
+  hotComments: IComment[];
+  comments: IComment[];
+  [propName: string]: any;
 }

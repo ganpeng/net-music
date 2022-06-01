@@ -1,5 +1,5 @@
 import { get, groupBy, keys } from "lodash";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useQuery } from "react-query";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { PAGE_LIMIT } from "../../constants";
