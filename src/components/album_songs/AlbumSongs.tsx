@@ -39,7 +39,9 @@ function AlbumSongs(props: AlbumSongsPropsType) {
               <div className="song-index">{index + 1}</div>
               <div className="title">
                 <div className="play-icon"></div>
-                <div className="song-name">{track.name}</div>
+                <div className="song-name" title={track.name}>
+                  {track.name}
+                </div>
               </div>
               <div className="duration">{timeFormatter(track.dt)}</div>
               <div

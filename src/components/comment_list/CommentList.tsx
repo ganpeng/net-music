@@ -13,7 +13,6 @@ function CommentList(props: CommentListPropsType) {
   const comments = props.isHot
     ? take(props?.commentList, 15)
     : props?.commentList || [];
-  console.log(comments);
   return (
     <div className="comment-list-container">
       <div className="comment-list-title">

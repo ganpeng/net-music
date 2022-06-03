@@ -37,8 +37,8 @@ function ArtistTopSong() {
                 <div className="song-index">{index + 1}</div>
                 <div className="title">
                   <div className="play-icon"></div>
-                  <div className="song-name">
-                    {track.name}{" "}
+                  <div className="song-name" title={track.name}>
+                    {track.name}
                     {get(track, "tns") || [].length > 0
                       ? `(${get(track, "tns") || [].join(",")})`
                       : ""}

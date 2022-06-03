@@ -13,14 +13,18 @@ function Pagination(props: PropsType) {
   const { offset, total, pageLimit, pageChangeHandler } = props;
   const initialPage = offset / pageLimit;
   return (
-    <RcPagination
-      defaultPageSize={pageLimit}
-      defaultCurrent={0}
-      current={initialPage + 1}
-      pageSize={pageLimit}
-      onChange={pageChangeHandler}
-      total={total}
-    />
+    <>
+      {total > pageLimit && (
+        <RcPagination
+          defaultPageSize={pageLimit}
+          defaultCurrent={0}
+          current={initialPage + 1}
+          pageSize={pageLimit}
+          onChange={pageChangeHandler}
+          total={total}
+        />
+      )}
+    </>
   );
 }
 

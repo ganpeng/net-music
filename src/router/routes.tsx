@@ -34,6 +34,8 @@ const UserFans = lazy(() => import("../container/user_fans/UserFans"));
 const UserSongsRank = lazy(
   () => import("../page/user_songs_rank/UserSongsRank")
 );
+// Song
+const SongDetail = lazy(() => import("../page/song_detail/SongDetail"));
 // 实现懒加载的用Suspense包裹 定义函数
 const lazyLoad = (children: ReactNode): ReactNode => {
   return <Suspense fallback={<></>}>{children}</Suspense>;
@@ -120,6 +122,10 @@ const routes: RouteObject[] = [
             element: lazyLoad(<UserFans />),
           },
         ],
+      },
+      {
+        path: "song-detail",
+        element: lazyLoad(<SongDetail />),
       },
       {
         path: "/user/songs/rank",

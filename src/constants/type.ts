@@ -419,6 +419,7 @@ export interface ISong {
   };
   alia: string[];
   publishTime: number;
+  mv: number; // 非零表示有MV ID
   [propName: string]: any;
 }
 
@@ -503,4 +504,43 @@ export interface IAlbumCommentsResponse {
   hotComments: IComment[];
   comments: IComment[];
   [propName: string]: any;
+}
+
+export interface ISongDetailResponse {
+  code: number;
+  songs: ISong[];
+  [propName: string]: any;
+}
+
+export interface IMusicCommentsSearchParam extends IPaginationParams {
+  id: number;
+}
+export interface IMusicCCommentsResponse extends IAlbumCommentsResponse {
+  isMusician: boolean;
+}
+
+export interface ILyricUser {
+  id: number;
+  nickname: string;
+  userid: number;
+  [propName: string]: any;
+}
+export interface IMusicLyricResponse {
+  code: number;
+  lrc: {
+    version: number;
+    lyric: string;
+  };
+  klyrc: {
+    version: number;
+    lyric: string;
+  };
+  lyricUser?: ILyricUser;
+  transUser?: ILyricUser;
+  [propName: string]: any;
+}
+
+export interface ISimiPlaylistResponse {
+  code: number;
+  playlists: IPlaylist[];
 }

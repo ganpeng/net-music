@@ -1,6 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { IPlayListDetail } from "../../constants/type";
 import { timeFormatter } from "../../utils";
+import { linkToSongDetailPage } from "../../utils/link";
 import "./index.scss";
 
 type PlaylistSongsPropsType = {
@@ -43,7 +45,9 @@ function PlaylistSongs(props: PlaylistSongsPropsType) {
               <div className="song-index">{index + 1}</div>
               <div className="title">
                 <div className="play-icon"></div>
-                <div className="song-name">{track.name}</div>
+                <div className="song-name">
+                  <Link to={linkToSongDetailPage(track.id)}>{track.name}</Link>
+                </div>
               </div>
               <div className="duration">{timeFormatter(track.dt)}</div>
               <div

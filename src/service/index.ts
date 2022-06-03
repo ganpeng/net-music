@@ -22,10 +22,14 @@ import {
   IFollowedsResponse,
   IFollowsResponse,
   IHotRecommendResponse,
+  IMusicCommentsSearchParam,
+  IMusicLyricResponse,
   INewAlbumListSearchParams,
   INewAlbumResponse,
   INewestAlbumResponse,
   IPlayListDetailResponse,
+  ISimiPlaylistResponse,
+  ISongDetailResponse,
   ITagsResponse,
   ITopPlayListResponse,
   ITopPlayListSearchParams,
@@ -333,6 +337,46 @@ export function getAlbumCommentsById(
 export function getAlbumDetailById(id: number): Promise<IAlbumDetailResponse> {
   return axios
     .get(`${apiRoute.ALBUM_DETAIL}?id=${id}`)
+    .then((res) => res.data)
+    .catch((err) => {
+      throw new Error(err);
+    });
+}
+
+export function getSongDetailByIds(
+  ids: number[]
+): Promise<ISongDetailResponse> {
+  return axios
+    .get(`${apiRoute.SONG_DETAIL}?ids=${ids.join(",")}`)
+    .then((res) => res.data)
+    .catch((err) => {
+      throw new Error(err);
+    });
+}
+
+export function getMusicCommentsById(searchParams: IMusicCommentsSearchParam) {
+  return axios
+    .get(`${apiRoute.COMMENT_MUSIC}?${getParamsString(searchParams)}`)
+    .then((res) => res.data)
+    .catch((err) => {
+      throw new Error(err);
+    });
+}
+
+export function getMusicLyricById(id: number): Promise<IMusicLyricResponse> {
+  return axios
+    .get(`${apiRoute.MUSIC_LYRIC}?id=${id}`)
+    .then((res) => res.data)
+    .catch((err) => {
+      throw new Error(err);
+    });
+}
+
+export function getSimiPlaylistById(
+  id: number
+): Promise<ISimiPlaylistResponse> {
+  return axios
+    .get(`${apiRoute.SIMI_PLAYLIST}?id=${id}`)
     .then((res) => res.data)
     .catch((err) => {
       throw new Error(err);

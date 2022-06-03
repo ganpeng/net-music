@@ -86,8 +86,8 @@
       .title {
         display: flex;
         align-items: center;
-        // width: 226px;
         flex: 1;
+        overflow: hidden;
         .play-icon {
           width: 17px;
           height: 17px;

@@ -24,3 +24,5 @@ export { default as UserRecord } from "./user_record/UserRecord";
 export { default as UserPlaylist } from "./user_palylist/UserPlaylist";
 export { default as AlbumBaseinfo } from "./album_baseinfo/AlbumBaseinfo";
 export { default as AlbumSongs } from "./album_songs/AlbumSongs";
+export { default as SongDetailBaseinfo } from "./song_detail_baseinfo/SongDetailBaseinfo";
+export { default as SimiPlaylist } from "./simi_playlist/SimiPlaylist";

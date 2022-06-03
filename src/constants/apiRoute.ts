@@ -338,6 +338,65 @@ export const ALBUM_COMMENTS = `${apiRoot}/comment/album`;
  */
 export const ALBUM_DETAIL = `${apiRoot}/album`;
 
+/**
+ *
+ * 获取歌曲详情
+  说明 : 调用此接口 , 传入音乐 id(支持多个 id, 用 , 隔开), 可获得歌曲详情(dt为歌曲时长)
+  必选参数 : ids: 音乐 id, 如 ids=347230
+  接口地址 : /song/detail
+  调用例子 : /song/detail?ids=347230,/song/detail?ids=347230,347231
+ */
+export const SONG_DETAIL = `${apiRoot}/song/detail`;
+
+/***
+ * 获取相似音乐
+  说明 : 调用此接口 , 传入歌曲 id, 可获得相似歌曲
+  必选参数 : id: 歌曲 id
+  接口地址 : /simi/song
+  调用例子 : /simi/song?id=347230 ( 对应 ' 光辉岁月 ' 相似歌曲 )
+ *
+ */
+export const SIMI_SONG = `${apiRoot}/simi/song`;
+/***
+ * 获取最近 5 个听了这首歌的用户
+  说明 : 调用此接口 , 传入歌曲 id, 最近 5 个听了这首歌的用户
+  必选参数 : id: 歌曲 id
+  接口地址 : /simi/user
+  调用例子 : /simi/user?id=347230 ( 对应 ' 光辉岁月 ' 相似歌曲 )
+ *
+ */
+export const SIMI_USER = `${apiRoot}/simmi/user`;
+
+/***
+ * 歌曲评论
+  说明 : 调用此接口 , 传入音乐 id 和 limit 参数 , 可获得该音乐的所有评论 ( 不需要登录 )
+  必选参数 : id: 音乐 id
+  可选参数 : limit: 取出评论数量 , 默认为 20
+  offset: 偏移数量 , 用于分页 , 如 :( 评论页数 -1)*20, 其中 20 为 limit 的值
+  before: 分页参数,取上一页最后一项的 time 获取下一页数据(获取超过 5000 条评论的时候需要用到)
+  接口地址 : /comment/music
+  调用例子 : /comment/music?id=186016&limit=1 对应晴天评论
+ *
+ */
+export const COMMENT_MUSIC = `${apiRoot}/comment/music`;
+/**
+ * 获取歌词
+  说明 : 调用此接口 , 传入音乐 id 可获得对应音乐的歌词 ( 不需要登录 )
+  必选参数 : id: 音乐 id
+  接口地址 : /lyric
+  调用例子 : /lyric?id=33894312
+ *
+ */
+export const MUSIC_LYRIC = `${apiRoot}/lyric`;
+/***
+ * 获取相似歌单
+  说明 : 调用此接口 , 传入歌曲 id, 可获得相似歌单
+  必选参数 : id: 歌曲 id
+  接口地址 : /simi/playlist
+  调用例子 : /simi/playlist?id=347230 ( 对应 ' 光辉岁月 ' 相似歌单 )
+ */
+export const SIMI_PLAYLIST = `${apiRoot}/simi/playlist`;
+
 const apiRoute: { [propName: string]: string } = {
   BANNER_LIST,
   HOT_PLAYLIST_CATEGORY,
@@ -374,6 +433,13 @@ const apiRoute: { [propName: string]: string } = {
   NEW_ALBUM,
   ALBUM_COMMENTS,
   ALBUM_DETAIL,
+  // song
+  SONG_DETAIL,
+  SIMI_SONG,
+  SIMI_USER,
+  COMMENT_MUSIC,
+  MUSIC_LYRIC,
+  SIMI_PLAYLIST,
 };
 
 export default apiRoute;

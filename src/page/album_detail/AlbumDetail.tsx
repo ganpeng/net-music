@@ -97,7 +97,7 @@ function AlbumDetail() {
                   <img src={album.blurPicUrl} alt="" />
                 </Link>
                 <div className="name-date">
-                  <div className="name text-decoration">
+                  <div className="name text-decoration" title={album.name}>
                     <Link to={linkToAlbumDetailPage(album.id)}>
                       {album.name}
                     </Link>
