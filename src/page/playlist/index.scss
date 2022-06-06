@@ -107,7 +107,9 @@
           margin-right: 4px;
         }
         .nickname {
-          color: #666;
+          a {
+            color: #666;
+          }
           @include ellipsis(1);
         }
       }

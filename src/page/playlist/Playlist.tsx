@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { useQuery } from "react-query";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { CategoryList, Pagination, SectionHeader } from "../../components";
 import { PAGE_LIMIT } from "../../constants";
 import { ITopPlayListSearchParams } from "../../constants/type";
+import { useGetPlaylistTrackSongsUrl } from "../../hooks/useGetPlaylistTrackSongsUrl";
 import { getTopPlayList } from "../../service";
 import { getParamsString, numberFormatter } from "../../utils";
+import { linkToPlaylistDetailPage, linkToUserHomePage } from "../../utils/link";
 import "./index.scss";
 
 function Playlist() {
@@ -23,6 +25,8 @@ function Playlist() {
   const { isFetching, data } = useQuery(["top_playlist", offset, cat], () =>
     getTopPlayList(topPlayListSearchParams)
   );
+
+  const { getSongsUrls } = useGetPlaylistTrackSongsUrl();
 
   const pageChangeHandler = (num: number) => {
     const params: ITopPlayListSearchParams = {
@@ -66,10 +70,9 @@ function Playlist() {
                   style={{
                     backgroundImage: `url(${hotRecommend.coverImgUrl})`,
                   }}
-                  onClick={() =>
-                    navigator(`/playlist-detail?id=${hotRecommend.id}`)
-                  }
-                ></div>
+                >
+                  <Link to={linkToPlaylistDetailPage(hotRecommend.id)}></Link>
+                </div>
                 <div className="meta-info">
                   <div className="view-count">
                     <div className="view-icon"></div>
@@ -78,22 +81,24 @@ function Playlist() {
                     </span>
                   </div>
                   <div className="play-btn-container">
-                    <div className="play-btn"></div>
+                    <div
+                      className="play-btn"
+                      onClick={() => getSongsUrls(hotRecommend.id)}
+                    ></div>
                   </div>
                 </div>
               </div>
-              <p
-                className="name"
-                onClick={() =>
-                  navigator(`/playlist-detail?id=${hotRecommend.id}`)
-                }
-              >
-                {hotRecommend.name}
+              <p className="name">
+                <Link to={linkToPlaylistDetailPage(hotRecommend.id)}>
+                  {hotRecommend.name}
+                </Link>
               </p>
               <div className="creator">
                 <div className="by">by</div>
                 <div className="nickname text-decoration">
-                  {hotRecommend.creator.nickname}
+                  <Link to={linkToUserHomePage(hotRecommend.creator.userId)}>
+                    {hotRecommend.creator.nickname}
+                  </Link>
                 </div>
               </div>
             </div>

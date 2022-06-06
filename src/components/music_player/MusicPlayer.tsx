@@ -1,6 +1,7 @@
 import { debounce, get } from "lodash";
 import React, { useContext, useEffect, useState, useRef, useMemo } from "react";
 import { defaultAlbum } from "../../constants/images";
+import { ISong } from "../../constants/type";
 import { TracksContext } from "../../context";
 import { timeFormatter } from "../../utils";
 import NoData from "../no_data/NoData";
@@ -15,7 +16,7 @@ function MusicPlayer() {
   );
   const [isVisible, setIsVisible] = useState(false);
   const [playlistVisible, setPlaylistVisible] = useState(false);
-  const [isLocked, setIsLocked] = useState(false);
+  const [isLocked, setIsLocked] = useState(true);
   const [activePlayIndex, setActivePlayIndex] = useState(0);
   // 音乐播放相关
   const [isPlaying, setIsPlaying] = useState(false);
@@ -32,7 +33,7 @@ function MusicPlayer() {
     });
   };
 
-  const activePlayMusic = useMemo(() => {
+  const activePlayMusic = useMemo<ISong>(() => {
     return get(filterTracks, `${activePlayIndex}`);
   }, [filterTracks, activePlayIndex]);
   const getActivePlayUrl = () => {
@@ -267,7 +268,7 @@ function MusicPlayer() {
               </div>
             </div>
             <div className="header-right">
-              <div className="song-name">breeze</div>
+              <div className="song-name">{activePlayMusic?.name}</div>
               <div
                 className="close-btn"
                 onClick={() => setPlaylistVisible(false)}
