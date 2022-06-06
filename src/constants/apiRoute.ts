@@ -356,7 +356,7 @@ export const SONG_DETAIL = `${apiRoot}/song/detail`;
   调用例子 : /simi/song?id=347230 ( 对应 ' 光辉岁月 ' 相似歌曲 )
  *
  */
-export const SIMI_SONG = `${apiRoot}/simi/song`;
+export const SIMI_MUSIC = `${apiRoot}/simi/song`;
 /***
  * 获取最近 5 个听了这首歌的用户
   说明 : 调用此接口 , 传入歌曲 id, 最近 5 个听了这首歌的用户
@@ -435,7 +435,7 @@ const apiRoute: { [propName: string]: string } = {
   ALBUM_DETAIL,
   // song
   SONG_DETAIL,
-  SIMI_SONG,
+  SIMI_MUSIC,
   SIMI_USER,
   COMMENT_MUSIC,
   MUSIC_LYRIC,

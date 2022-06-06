@@ -544,3 +544,8 @@ export interface ISimiPlaylistResponse {
   code: number;
   playlists: IPlaylist[];
 }
+
+export interface ISimiMusicResponse {
+  code: number;
+  songs: ISong;
+}

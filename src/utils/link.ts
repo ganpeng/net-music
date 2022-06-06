@@ -37,6 +37,6 @@ export const linkToAlbumDetailPage = (id: number | undefined) => {
 };
 
 // song
-export const linkToSongDetailPage = (id: number) => {
-  return `/song-detail?id=${id}`;
+export const linkToSongDetailPage = (id: number | undefined) => {
+  return id ? `/song-detail?id=${id}` : "";
 };

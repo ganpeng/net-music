@@ -26,3 +26,5 @@ export { default as AlbumBaseinfo } from "./album_baseinfo/AlbumBaseinfo";
 export { default as AlbumSongs } from "./album_songs/AlbumSongs";
 export { default as SongDetailBaseinfo } from "./song_detail_baseinfo/SongDetailBaseinfo";
 export { default as SimiPlaylist } from "./simi_playlist/SimiPlaylist";
+export { default as SimiMusic } from "./simi_music/SimiMusic";
+export { default as ClientDownloadWiki } from "./client_download_wiki/ClientDownloadWiki";

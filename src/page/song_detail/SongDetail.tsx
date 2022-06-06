@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import { useQuery } from "react-query";
 import { useSearchParams } from "react-router-dom";
 import {
+  ClientDownloadWiki,
   CommentList,
   Pagination,
   SectionTitle,
+  SimiMusic,
   SimiPlaylist,
   SongDetailBaseinfo,
 } from "../../components";
@@ -43,7 +45,7 @@ function SongDetail() {
         <SongDetailBaseinfo
           song={songDetailData?.songs[0]}
           lyricText={lyricText}
-          commentsCount={commentsData.total}
+          commentsCount={commentsData?.total}
           transUser={lyricData?.transUser}
           lyricUser={lyricData?.lyricUser}
         ></SongDetailBaseinfo>
@@ -70,6 +72,8 @@ function SongDetail() {
         <SectionTitle title="包含这首歌的歌单" moreLink=""></SectionTitle>
         <SimiPlaylist></SimiPlaylist>
         <SectionTitle title="相似歌曲" moreLink=""></SectionTitle>
+        <SimiMusic></SimiMusic>
+        <ClientDownloadWiki></ClientDownloadWiki>
       </div>
     </div>
   );

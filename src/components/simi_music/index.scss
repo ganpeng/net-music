@@ -1,0 +1,61 @@
+.simi_music-container {
+  margin-bottom: 25px;
+  .simi-music-list {
+    .simi-music-item {
+      display: flex;
+      align-items: center;
+      margin-top: 10px;
+      .left-info {
+        flex: 1;
+        overflow: hidden;
+        .name {
+          @include ellipsis();
+        }
+        .songers {
+          flex: 1;
+          line-height: 16px;
+          @include ellipsis();
+          span {
+            cursor: pointer;
+            a {
+              color: #999;
+            }
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+          span + span {
+            &::before {
+              color: #999;
+              content: "/";
+            }
+          }
+        }
+      }
+      .right-btn {
+        display: flex;
+        justify-content: space-between;
+        width: 36px;
+        margin-left: 10px;
+        .play-btn,
+        .add-btn {
+          width: 10px;
+          height: 11px;
+          background-image: url("../../assets/images/icon2.png");
+          background-repeat: no-repeat;
+          cursor: pointer;
+          opacity: 0.9;
+          &:hover {
+            opacity: 1;
+          }
+        }
+        .play-btn {
+          background-position: -69px -455px;
+        }
+        .add-btn {
+          background-position: -87px -454px;
+        }
+      }
+    }
+  }
+}

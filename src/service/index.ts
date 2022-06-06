@@ -28,6 +28,7 @@ import {
   INewAlbumResponse,
   INewestAlbumResponse,
   IPlayListDetailResponse,
+  ISimiMusicResponse,
   ISimiPlaylistResponse,
   ISongDetailResponse,
   ITagsResponse,
@@ -377,6 +378,15 @@ export function getSimiPlaylistById(
 ): Promise<ISimiPlaylistResponse> {
   return axios
     .get(`${apiRoute.SIMI_PLAYLIST}?id=${id}`)
+    .then((res) => res.data)
+    .catch((err) => {
+      throw new Error(err);
+    });
+}
+
+export function getSimiMusicById(id: number): Promise<ISimiMusicResponse> {
+  return axios
+    .get(`${apiRoute.SIMI_MUSIC}?id=${id}`)
     .then((res) => res.data)
     .catch((err) => {
       throw new Error(err);
