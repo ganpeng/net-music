@@ -10,11 +10,14 @@ import {
   linkToAlbumDetailPage,
   linkToArtistDetailPage,
 } from "../../utils/link";
+import { useGetAlbumSongsUrl } from "../../hooks/useGetAlbumSongsUrl";
 
 function TopAlbum() {
   const [activeIndex, setActiveIndex] = useState(0);
   const { data } = useQuery(["newest_album"], getNewestAlbum);
   const chunkedAlbums = chunk(take(data?.albums, 10), 5);
+
+  const { getSongsUrls } = useGetAlbumSongsUrl();
 
   const chunkedAlbumsChangeHandler = (newActiveIndex: number) => {
     if (newActiveIndex < 0) {
@@ -52,7 +55,10 @@ function TopAlbum() {
                           <div className="blur-pic">
                             <Link to={linkToAlbumDetailPage(album.id)}></Link>
                           </div>
-                          <div className="play-btn"></div>
+                          <div
+                            className="play-btn"
+                            onClick={() => getSongsUrls(album.id)}
+                          ></div>
                         </div>
                         <p className="album-name text-decoration">
                           <Link to={linkToAlbumDetailPage(album.id)}>

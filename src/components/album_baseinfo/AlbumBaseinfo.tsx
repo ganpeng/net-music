@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { IAlbum } from "../../constants/type";
+import { useGetAlbumSongsUrl } from "../../hooks/useGetAlbumSongsUrl";
 import { dateFormatter, numberFormatter } from "../../utils";
 import { linkToArtistDetailPage } from "../../utils/link";
 import "./index.scss";
@@ -11,6 +12,7 @@ type AlbumBaseinfoPropsType = {
 
 function AlbumBaseinfo(props: AlbumBaseinfoPropsType) {
   const { album } = props;
+  const { getSongsUrls } = useGetAlbumSongsUrl();
   return (
     <div className="album-baseinfo-container">
       <div className="top-field">
@@ -50,7 +52,7 @@ function AlbumBaseinfo(props: AlbumBaseinfoPropsType) {
           </div>
           <div className="btn-field">
             <div className="play-btn-container">
-              <div className="play-btn">
+              <div className="play-btn" onClick={() => getSongsUrls(album?.id)}>
                 <div className="play-icon">
                   <div className="play"></div>
                   播放
@@ -62,13 +64,13 @@ function AlbumBaseinfo(props: AlbumBaseinfoPropsType) {
               <i>收藏</i>
             </div>
             <div className="share-btn">
-              <i>({numberFormatter(album?.info.shareCount || 0)})</i>
+              <i>({numberFormatter(album?.info.shareCount)})</i>
             </div>
             <div className="download-btn">
               <i>下载</i>
             </div>
             <div className="comments-btn">
-              <i>({numberFormatter(album?.info.commentCount || 0)})</i>
+              <i>({numberFormatter(album?.info.commentCount)})</i>
             </div>
           </div>
         </div>

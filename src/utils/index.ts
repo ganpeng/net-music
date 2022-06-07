@@ -1,4 +1,4 @@
-import { floor, pickBy } from "lodash";
+import { floor, isUndefined, pickBy } from "lodash";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import "dayjs/locale/zh-cn"; // 导入本地化语言
@@ -15,7 +15,8 @@ export const getParamsString = (params: { [propName: string]: any }) => {
   return paramsStr;
 };
 
-export const numberFormatter = (num: number) => {
+export const numberFormatter = (num: number | undefined) => {
+  if (isUndefined(num)) return 0;
   return num < 10000 ? num : `${(num / 10000).toFixed(0)} 万`;
 };
 

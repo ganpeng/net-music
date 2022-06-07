@@ -1,9 +1,15 @@
 import { debounce, get } from "lodash";
 import React, { useContext, useEffect, useState, useRef, useMemo } from "react";
+import { Link } from "react-router-dom";
 import { defaultAlbum } from "../../constants/images";
 import { ISong } from "../../constants/type";
 import { TracksContext } from "../../context";
 import { timeFormatter } from "../../utils";
+import {
+  linkToAlbumDetailPage,
+  linkToArtistDetailPage,
+  linkToSongDetailPage,
+} from "../../utils/link";
 import NoData from "../no_data/NoData";
 import Slider from "../slider/Slider";
 import VolumeSlider from "../volume_slider/VolumeSlider";
@@ -164,7 +170,9 @@ function MusicPlayer() {
               })`,
             }}
           >
-            <div className="img-mask"></div>
+            <div className="img-mask">
+              <Link to={linkToSongDetailPage(activePlayMusic?.id)}></Link>
+            </div>
           </div>
           <div className="base-info-bar-container">
             <div className="base-info-container">
@@ -172,17 +180,27 @@ function MusicPlayer() {
                 className="name text-decoration"
                 title={activePlayMusic?.name}
               >
-                {activePlayMusic?.name}
+                <Link to={linkToSongDetailPage(activePlayMusic?.id)}>
+                  {activePlayMusic?.name}
+                </Link>
               </div>
               <div
                 className="songers"
                 title={activePlayMusic?.ar?.map((ar: any) => ar.name).join("/")}
               >
                 {activePlayMusic?.ar?.map((ar: any, _index: number) => (
-                  <span key={`${ar}_${_index}`}>{ar.name}</span>
+                  <span key={`${ar}_${_index}`}>
+                    <Link to={linkToArtistDetailPage(ar.id)}>{ar.name}</Link>
+                  </span>
                 ))}
               </div>
-              <div className="goto-btn"></div>
+              {activePlayMusic?.id && (
+                <div className="goto-btn">
+                  <Link
+                    to={linkToAlbumDetailPage(activePlayMusic.al.id)}
+                  ></Link>
+                </div>
+              )}
             </div>
             <div className="progress-bar-time-container">
               <div className="audio-play-progress-bar-container">
@@ -235,7 +253,6 @@ function MusicPlayer() {
             </div>
           </div>
         </div>
-
         <audio
           ref={musicPlayer}
           onTimeUpdate={timeUpdateHandler}

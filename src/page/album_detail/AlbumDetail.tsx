@@ -55,7 +55,7 @@ function AlbumDetail() {
     setOffset(offset);
   };
 
-  console.log(artistListData);
+  console.log(albumDetail);
 
   return (
     <div className="album-detail-container content-w">

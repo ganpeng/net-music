@@ -1,11 +1,16 @@
 import { take } from "lodash";
 import React from "react";
 import { useQuery } from "react-query";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { Pagination, SectionHeader } from "../../components";
 import { ALBUM_AREA_LIST, PAGE_LIMIT } from "../../constants";
+import { useGetAlbumSongsUrl } from "../../hooks/useGetAlbumSongsUrl";
 import { getNewAlbumList, getNewestAlbum } from "../../service";
 import { getParamsString } from "../../utils";
+import {
+  linkToAlbumDetailPage,
+  linkToArtistDetailPage,
+} from "../../utils/link";
 import "./index.scss";
 
 function AlbumList() {
@@ -25,6 +30,8 @@ function AlbumList() {
       return getNewAlbumList(params);
     }
   );
+
+  const { getSongsUrls } = useGetAlbumSongsUrl();
 
   const albumlistPageChangeHandler = (pageNo: number) => {
     const params = {
@@ -70,10 +77,19 @@ function AlbumList() {
                     style={{ backgroundImage: `url(${album.picUrl})` }}
                   ></div>
                   <div className="blur-pic"></div>
-                  <div className="play-btn"></div>
+                  <div
+                    className="play-btn"
+                    onClick={() => getSongsUrls(album.id)}
+                  ></div>
                 </div>
-                <p className="album-name">{album.name}</p>
-                <p className="artist-name">{album.artist.name}</p>
+                <p className="album-name">
+                  <Link to={linkToAlbumDetailPage(album.id)}>{album.name}</Link>
+                </p>
+                <p className="artist-name">
+                  <Link to={linkToArtistDetailPage(album.artist.id)}>
+                    {album.artist.name}
+                  </Link>
+                </p>
               </div>
             );
           })}
@@ -107,10 +123,19 @@ function AlbumList() {
                     style={{ backgroundImage: `url(${album.picUrl})` }}
                   ></div>
                   <div className="blur-pic"></div>
-                  <div className="play-btn"></div>
+                  <div
+                    className="play-btn"
+                    onClick={() => getSongsUrls(album.id)}
+                  ></div>
                 </div>
-                <p className="album-name">{album.name}</p>
-                <p className="artist-name">{album.artist.name}</p>
+                <p className="album-name">
+                  <Link to={linkToAlbumDetailPage(album.id)}>{album.name}</Link>
+                </p>
+                <p className="artist-name">
+                  <Link to={linkToArtistDetailPage(album.artist.id)}>
+                    {album.artist.name}
+                  </Link>
+                </p>
               </div>
             );
           })}
