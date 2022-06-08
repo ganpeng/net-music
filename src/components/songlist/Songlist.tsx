@@ -1,9 +1,10 @@
+import { get } from "lodash";
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { IPlayListDetail } from "../../constants/type";
 import { TracksContext } from "../../context";
 import { timeFormatter } from "../../utils";
-import { linkToArtistDetailPage } from "../../utils/link";
+import { linkToArtistDetailPage, linkToSongDetailPage } from "../../utils/link";
 import "./index.scss";
 
 type SonglistPropsType = {
@@ -57,7 +58,16 @@ function Songlist(props: SonglistPropsType) {
                   }`}
                 ></div>
                 <div className="song-name" title={track.name}>
-                  {track.name}
+                  <span className="name text-decoration">
+                    <Link to={linkToSongDetailPage(track.id)}>
+                      {track.name}
+                    </Link>
+                  </span>
+                  {(get(track, "tns") || [].length > 0) && (
+                    <span className="tns">
+                      &nbsp;-&nbsp; ({`${get(track, "tns") || [].join(",")}`})
+                    </span>
+                  )}
                 </div>
               </div>
               <div className="duration">{timeFormatter(track.dt)}</div>

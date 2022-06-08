@@ -108,11 +108,15 @@
         }
         .song-name {
           flex: 1;
-          color: #333;
-          cursor: pointer;
           @include ellipsis();
-          &:hover {
-            text-decoration: underline;
+          .name {
+            color: #333;
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+          .tns {
+            color: #aeaeae;
           }
         }
       }
