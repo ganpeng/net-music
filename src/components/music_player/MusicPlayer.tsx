@@ -2,7 +2,6 @@ import { debounce, get } from "lodash";
 import React, { useContext, useEffect, useState, useRef, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { defaultAlbum } from "../../constants/images";
-import { ISong } from "../../constants/type";
 import { TracksContext } from "../../context";
 import { timeFormatter } from "../../utils";
 import {
@@ -17,19 +16,16 @@ import "./index.scss";
 
 function MusicPlayer() {
   const tracksContext = useContext(TracksContext);
-  const filterTracks = tracksContext?.tracks?.filter(
-    (track) => get(track, "song.level") !== "exhigh" && get(track, "song.url")
-  );
   const [isVisible, setIsVisible] = useState(false);
   const [playlistVisible, setPlaylistVisible] = useState(false);
   const [isLocked, setIsLocked] = useState(true);
-  const [activePlayIndex, setActivePlayIndex] = useState(0);
+  // const [activePlayIndex, setActivePlayIndex] = useState(0);
   // 音乐播放相关
   const [isPlaying, setIsPlaying] = useState(false);
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
   const [volumVisible, setVolumVisible] = useState(false);
-  const [volume, setVolume] = useState(1);
+  const [volume, setVolume] = useState(0.2);
 
   // 播放器dom
   const musicPlayer = useRef<HTMLAudioElement | null>(null);
@@ -39,12 +35,16 @@ function MusicPlayer() {
     });
   };
 
-  const activePlayMusic = useMemo<ISong>(() => {
-    return get(filterTracks, `${activePlayIndex}`);
-  }, [filterTracks, activePlayIndex]);
-  const getActivePlayUrl = () => {
-    return get(filterTracks, `${activePlayIndex}.song.url`);
-  };
+  const getActivePlayUrl = useMemo(() => {
+    return get(tracksContext, `currentTrack.song.url`);
+  }, [tracksContext]);
+
+  const activeTrackIndex = useMemo(() => {
+    const index = tracksContext?.tracks?.findIndex(
+      (track) => track.id === get(tracksContext, `currentTrack.id`)
+    );
+    return index || 0;
+  }, [tracksContext]);
 
   const mousemoveHandler = debounce((e: MouseEvent) => {
     if (isLocked) {
@@ -71,7 +71,7 @@ function MusicPlayer() {
     setCurrentTime(e.target.currentTime);
   };
   const endedHandler = (e: any) => {
-    changeMusic(activePlayIndex + 1);
+    changeMusic(activeTrackIndex + 1);
   };
   const volumeChangeHandler = (e: any) => {
     const value = e.target.value;
@@ -79,7 +79,6 @@ function MusicPlayer() {
     if (musicPlayer.current) {
       musicPlayer.current.volume = volume;
     }
-    // console.log(e.target.value);
   };
   const togglePlayPause = () => {
     if (isPlaying) {
@@ -106,28 +105,24 @@ function MusicPlayer() {
 
   // 音乐列表事件
   const changeMusic = (index: number) => {
-    if (index === activePlayIndex) {
+    if (index === activeTrackIndex) {
       if (musicPlayer.current) {
         musicPlayer.current.currentTime = 0;
       }
     } else {
-      let len = filterTracks?.length || 0;
+      let tracks = tracksContext?.tracks;
+      let len = tracks?.length || 0;
+      let track = null;
       if (index < 0) {
-        setActivePlayIndex(len - 1);
+        track = get(tracks, `${len - 1}`);
       } else if (index >= len) {
-        setActivePlayIndex(0);
+        track = get(tracks, `0`);
       } else {
-        setActivePlayIndex(index);
+        track = get(tracks, `${index}`);
       }
+      tracksContext?.setCurrentTrack(track);
     }
   };
-
-  // 如果重新获取歌曲列表的话，初始化播放音乐为第一个
-  useEffect(() => {
-    if (filterTracks?.length === 0) {
-      setActivePlayIndex(0);
-    }
-  }, [filterTracks]);
 
   useEffect(() => {
     document.addEventListener("mousemove", mousemoveHandler);
@@ -150,7 +145,7 @@ function MusicPlayer() {
         <div className="play-prev-next-btn-container">
           <div
             className="prev-btn"
-            onClick={() => changeMusic(activePlayIndex - 1)}
+            onClick={() => changeMusic(activeTrackIndex - 1)}
           ></div>
           <div
             className={`play-pause-btn ${isPlaying ? "is-playing" : ""}`}
@@ -158,7 +153,7 @@ function MusicPlayer() {
           ></div>
           <div
             className="next-btn"
-            onClick={() => changeMusic(activePlayIndex + 1)}
+            onClick={() => changeMusic(activeTrackIndex + 1)}
           ></div>
         </div>
         <div className="audio-info-play-container">
@@ -166,38 +161,46 @@ function MusicPlayer() {
             className="music-img"
             style={{
               backgroundImage: `url(${
-                activePlayMusic?.al?.picUrl || defaultAlbum
+                tracksContext?.currentTrack?.al?.picUrl || defaultAlbum
               })`,
             }}
           >
             <div className="img-mask">
-              <Link to={linkToSongDetailPage(activePlayMusic?.id)}></Link>
+              <Link
+                to={linkToSongDetailPage(tracksContext?.currentTrack?.id)}
+              ></Link>
             </div>
           </div>
           <div className="base-info-bar-container">
             <div className="base-info-container">
               <div
                 className="name text-decoration"
-                title={activePlayMusic?.name}
+                title={tracksContext?.currentTrack?.name}
               >
-                <Link to={linkToSongDetailPage(activePlayMusic?.id)}>
-                  {activePlayMusic?.name}
+                <Link
+                  to={linkToSongDetailPage(tracksContext?.currentTrack?.id)}
+                >
+                  {tracksContext?.currentTrack?.name}
                 </Link>
               </div>
               <div
                 className="songers"
-                title={activePlayMusic?.ar?.map((ar: any) => ar.name).join("/")}
+                title={tracksContext?.currentTrack?.ar
+                  ?.map((ar: any) => ar.name)
+                  .join("/")}
               >
-                {activePlayMusic?.ar?.map((ar: any, _index: number) => (
-                  <span key={`${ar}_${_index}`}>
-                    <Link to={linkToArtistDetailPage(ar.id)}>{ar.name}</Link>
-                  </span>
-                ))}
+                {tracksContext?.currentTrack?.ar?.map(
+                  (ar: any, _index: number) => (
+                    <span key={`${ar}_${_index}`}>
+                      <Link to={linkToArtistDetailPage(ar.id)}>{ar.name}</Link>
+                    </span>
+                  )
+                )}
               </div>
-              {activePlayMusic?.id && (
+              {tracksContext?.currentTrack?.id && (
                 <div className="goto-btn">
                   <Link
-                    to={linkToAlbumDetailPage(activePlayMusic.al.id)}
+                    to={linkToAlbumDetailPage(tracksContext.currentTrack.al.id)}
                   ></Link>
                 </div>
               )}
@@ -249,7 +252,7 @@ function MusicPlayer() {
               className="play-list-btn"
               onClick={() => setPlaylistVisible(!playlistVisible)}
             >
-              {filterTracks?.length}
+              {tracksContext?.tracks?.length}
             </div>
           </div>
         </div>
@@ -260,7 +263,7 @@ function MusicPlayer() {
           onPause={pauseHandler}
           onPlaying={playingHandler}
           onEnded={endedHandler}
-          src={getActivePlayUrl()}
+          src={getActivePlayUrl}
           autoPlay={true}
         ></audio>
       </div>
@@ -268,7 +271,9 @@ function MusicPlayer() {
         <div className="play-list-container">
           <div className="play-list-header">
             <div className="header-left">
-              <div className="title">播放列表({filterTracks?.length})</div>
+              <div className="title">
+                播放列表({tracksContext?.tracks?.length})
+              </div>
               <div className="btns">
                 <div className="save-all-btn">
                   <span className="save-all-btn-icon"></span>
@@ -285,7 +290,9 @@ function MusicPlayer() {
               </div>
             </div>
             <div className="header-right">
-              <div className="song-name">{activePlayMusic?.name}</div>
+              <div className="song-name">
+                {tracksContext?.currentTrack?.name}
+              </div>
               <div
                 className="close-btn"
                 onClick={() => setPlaylistVisible(false)}
@@ -294,14 +301,14 @@ function MusicPlayer() {
           </div>
           <div className="play-list-content">
             <div className="play-list-content-left">
-              {get(filterTracks || [], "length") > 0 ? (
+              {get(tracksContext?.tracks || [], "length") > 0 ? (
                 <ul className="play-list">
-                  {filterTracks?.map((track, index) => {
+                  {tracksContext?.tracks?.map((track, index) => {
                     return (
                       <li className="play-item" key={index}>
                         <div
                           className={`playing-icon ${
-                            activePlayIndex === index ? "active" : ""
+                            activeTrackIndex === index ? "active" : ""
                           }`}
                           onClick={() => changeMusic(index)}
                         ></div>
@@ -317,7 +324,11 @@ function MusicPlayer() {
                           title={track.ar.map((ar: any) => ar.name).join("/")}
                         >
                           {track.ar.map((ar: any, _index: number) => (
-                            <span key={`${ar}_${_index}`}>{ar.name}</span>
+                            <span key={`${ar}_${_index}`}>
+                              <Link to={linkToArtistDetailPage(ar.id)}>
+                                {ar.name}
+                              </Link>
+                            </span>
                           ))}
                         </div>
                         <div
@@ -326,7 +337,9 @@ function MusicPlayer() {
                         >
                           {timeFormatter(track.dt)}
                         </div>
-                        <div className="goto-btn"></div>
+                        <div className="goto-btn">
+                          <Link to={linkToAlbumDetailPage(track.al.id)}></Link>
+                        </div>
                       </li>
                     );
                   })}

@@ -225,7 +225,13 @@
             padding-left: 15px;
             cursor: pointer;
             &:hover {
+              color: #fff;
               background-color: rgba(0, 0, 0, 0.4);
+              .songers {
+                a {
+                  color: #fff;
+                }
+              }
             }
             .playing-icon {
               visibility: hidden;
@@ -254,7 +260,9 @@
               @include ellipsis();
               span {
                 cursor: pointer;
-                color: #9b9b9b;
+                a {
+                  color: #9b9b9b;
+                }
                 &:hover {
                   text-decoration: underline;
                 }
@@ -264,7 +272,6 @@
                   content: "/";
                 }
               }
-              // @include ellipsis();
             }
             .duration {
               color: #666;
@@ -279,6 +286,11 @@
               background-repeat: no-repeat;
               &:hover {
                 background-position: -80px -20px;
+              }
+              a {
+                display: block;
+                width: 100%;
+                height: 100%;
               }
             }
             &:hover {

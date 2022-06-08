@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { IPlayListDetail } from "../../constants/type";
+import { TracksContext } from "../../context";
 import { timeFormatter } from "../../utils";
 import { linkToArtistDetailPage } from "../../utils/link";
 import "./index.scss";
@@ -10,6 +11,7 @@ type SonglistPropsType = {
 };
 
 function Songlist(props: SonglistPropsType) {
+  const tracksContext = useContext(TracksContext);
   return (
     <div className="songlist-container">
       <div className="songlist-header">
@@ -47,7 +49,13 @@ function Songlist(props: SonglistPropsType) {
                     style={{ backgroundImage: `url(${track.al.picUrl})` }}
                   ></div>
                 )}
-                <div className="play-icon"></div>
+                <div
+                  className={`play-icon ${
+                    tracksContext?.currentTrack?.id === track.id
+                      ? "is-playing"
+                      : ""
+                  }`}
+                ></div>
                 <div className="song-name" title={track.name}>
                   {track.name}
                 </div>

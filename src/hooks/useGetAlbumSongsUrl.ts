@@ -23,9 +23,15 @@ export function useGetAlbumSongsUrl() {
           return track;
         });
 
-        const res = resList.filter((item: any) => get(item, `song`));
+        const res = resList
+          .filter((item: any) => get(item, `song`))
+          .filter(
+            (track) =>
+              get(track, "song.level") !== "exhigh" && get(track, "song.url")
+          );
 
         tracksContext?.setTracks(res);
+        tracksContext?.setCurrentTrack(get(res, `0`));
       }
     } catch (err) {
       console.log(err);
