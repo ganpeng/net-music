@@ -1,5 +1,6 @@
 import React from "react";
 import { IPlayListDetail } from "../../constants/type";
+import { useGetToplistSongsUrl } from "../../hooks/useGetToplistSongsUrl";
 import { getMonthDay } from "../../utils";
 import "./index.scss";
 
@@ -8,6 +9,8 @@ type ToplistItemDetailPropsType = {
 };
 
 function ToplistItemDetail(props: ToplistItemDetailPropsType) {
+  const { getSongsUrls } = useGetToplistSongsUrl();
+
   return (
     <div className="toplist-item-detail-container">
       <div className="left-img">
@@ -27,14 +30,17 @@ function ToplistItemDetail(props: ToplistItemDetailPropsType) {
           <div className="update-date">
             {getMonthDay(props.topItem?.updateTime || new Date().getTime())}
           </div>
-          <div className="update-frequency">
+          {/* <div className="update-frequency">
             ({props.topItem?.updateFrequency})
-          </div>
+          </div> */}
         </div>
         <div className="btn-field">
           <div className="play-btn-container">
             <div className="play-btn">
-              <div className="play-icon">
+              <div
+                className="play-icon"
+                onClick={() => getSongsUrls(props?.topItem?.id)}
+              >
                 <div className="play"></div>
                 播放
               </div>

@@ -206,7 +206,7 @@ export function getDjProgrammeRecommend(): Promise<IDjProgrammeRecommendResponse
 
 export function getSongUrlById(id: number) {
   return axios
-    .get(`${apiRoute.SONG_URL}?id=${id}`)
+    .get(`${apiRoute.SONG_URL}?id=${id}&realIP=116.25.146.177`)
     .then((res) => res.data)
     .catch((err) => {
       throw new Error(err);

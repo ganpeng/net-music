@@ -5,6 +5,7 @@ import { Link, useSearchParams } from "react-router-dom";
 import { IPlaylist } from "../../constants/type";
 import { getSimiPlaylistById } from "../../service";
 import { linkToPlaylistDetailPage, linkToUserHomePage } from "../../utils/link";
+import SectionTitle from "../section_title/SectionTitle";
 import "./index.scss";
 
 function SimiPlaylist() {
@@ -13,9 +14,11 @@ function SimiPlaylist() {
   const { data: simiPlaylistData } = useQuery(["simi-playlist", id], () =>
     getSimiPlaylistById(id)
   );
-  console.log(simiPlaylistData);
   return (
     <div className="simi-playlist-container">
+      {(simiPlaylistData?.playlists || []).length > 0 && (
+        <SectionTitle title="包含这首歌的歌单" moreLink=""></SectionTitle>
+      )}
       <ul className="simi-playlist">
         {take(simiPlaylistData?.playlists, 3).map((item: IPlaylist) => {
           return (

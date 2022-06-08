@@ -102,6 +102,9 @@
           &:hover {
             background-position: 0 -128px;
           }
+          &.active {
+            background-position: 0 -128px;
+          }
         }
         .song-name {
           flex: 1;

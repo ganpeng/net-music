@@ -40,3 +40,8 @@ export const linkToAlbumDetailPage = (id: number | undefined) => {
 export const linkToSongDetailPage = (id: number | undefined) => {
   return id ? `/song-detail?id=${id}` : "";
 };
+
+// toplist
+export const linkToToplistPage = (id: number | undefined) => {
+  return id ? `/toplist?id=${id}` : "";
+};

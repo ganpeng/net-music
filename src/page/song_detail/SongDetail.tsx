@@ -69,7 +69,6 @@ function SongDetail() {
         ></Pagination>
       </div>
       <div className="right-field">
-        <SectionTitle title="包含这首歌的歌单" moreLink=""></SectionTitle>
         <SimiPlaylist></SimiPlaylist>
         <SectionTitle title="相似歌曲" moreLink=""></SectionTitle>
         <SimiMusic></SimiMusic>

@@ -1,8 +1,11 @@
 import { get, take } from "lodash";
 import React from "react";
 import { useQueries, useQuery } from "react-query";
+import { Link } from "react-router-dom";
 import { SectionHeader } from "../../components";
+import { useGetToplistSongsUrl } from "../../hooks/useGetToplistSongsUrl";
 import { getBoardList, getPlaylistDetail } from "../../service";
+import { linkToSongDetailPage, linkToToplistPage } from "../../utils/link";
 import "./index.scss";
 
 function BoardList() {
@@ -24,6 +27,9 @@ function BoardList() {
     const tracks = take(get(playList, `tracks`), 10) || [];
     return tracks;
   };
+
+  const { getSongsUrls } = useGetToplistSongsUrl();
+
   return (
     <div className="board-list-container">
       <SectionHeader title="榜单" moreLink="/toplist"></SectionHeader>
@@ -37,12 +43,19 @@ function BoardList() {
                   <div
                     className="cover-image"
                     style={{ backgroundImage: `url(${board.coverImgUrl})` }}
-                  ></div>
+                  >
+                    <Link to={linkToToplistPage(board.id)}></Link>
+                  </div>
                 </div>
                 <div className="name-control-field">
-                  <p className="name">{board.name}</p>
+                  <p className="name text-decoration">
+                    <Link to={linkToToplistPage(board.id)}>{board.name}</Link>
+                  </p>
                   <div className="control-field">
-                    <div className="play-btn"></div>
+                    <div
+                      className="play-btn"
+                      onClick={() => getSongsUrls(board.id)}
+                    ></div>
                     <div className="add-to-playlist-btn"></div>
                   </div>
                 </div>
@@ -58,7 +71,11 @@ function BoardList() {
                         >
                           {index + 1}
                         </span>
-                        <p className="track-name">{track.name}</p>
+                        <p className="track-name text-decoration">
+                          <Link to={linkToSongDetailPage(track.id)}>
+                            {track.name}
+                          </Link>
+                        </p>
                         <div className="control-field">
                           <div className="play-btn"></div>
                           <div className="save-btn"></div>
@@ -68,7 +85,11 @@ function BoardList() {
                     );
                   })}
                   <li className="track-item check-total">
-                    <p>查看全部&#62;</p>
+                    <p>
+                      <Link to={linkToToplistPage(board.id)}>
+                        查看全部&#62;
+                      </Link>
+                    </p>
                   </li>
                 </ul>
               </div>
