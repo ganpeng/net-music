@@ -6,9 +6,9 @@ import { getPlaylistTrackAllById, getSongUrlById } from "../service";
 
 export function useGetPlaylistTrackSongsUrl() {
   const tracksContext = useContext(TracksContext);
-  const getSongsUrls = async (id: number) => {
+  const getSongsUrls = async (id: number | undefined) => {
     try {
-      // tracksContext?.setTracks([]);
+      if (!id) return false;
       const tracklistRes = await getPlaylistTrackAllById(id);
       if (tracklistRes.code === 200) {
         const tracklist = tracklistRes?.songs || [];
@@ -22,12 +22,7 @@ export function useGetPlaylistTrackSongsUrl() {
           return track;
         });
 
-        const res = resList
-          .filter((item: any) => get(item, `song`))
-          .filter(
-            (track: ITrack) =>
-              get(track, "song.level") !== "exhigh" && get(track, "song.url")
-          );
+        const res = resList.filter((track: ITrack) => get(track, "song.url"));
 
         tracksContext?.setTracks(res);
         tracksContext?.setCurrentTrack(get(res, `0`));

@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { ISong } from "../../constants/type";
+import { TracksContext } from "../../context";
 import { timeFormatter } from "../../utils";
-import { linkToArtistDetailPage } from "../../utils/link";
+import { linkToArtistDetailPage, linkToSongDetailPage } from "../../utils/link";
 import "./index.scss";
 
 type AlbumSongsPropsType = {
@@ -11,6 +12,7 @@ type AlbumSongsPropsType = {
 };
 
 function AlbumSongs(props: AlbumSongsPropsType) {
+  const tracksContext = useContext(TracksContext);
   return (
     <div className="album-songs-container">
       <div className="songlist-header">
@@ -38,9 +40,15 @@ function AlbumSongs(props: AlbumSongsPropsType) {
             <li className="song-item" key={track.id}>
               <div className="song-index">{index + 1}</div>
               <div className="title">
-                <div className="play-icon"></div>
+                <div
+                  className={`play-icon ${
+                    tracksContext?.currentTrack?.id === track.id
+                      ? "is-playing"
+                      : ""
+                  }`}
+                ></div>
                 <div className="song-name" title={track.name}>
-                  {track.name}
+                  <Link to={linkToSongDetailPage(track.id)}>{track.name}</Link>
                 </div>
               </div>
               <div className="duration">{timeFormatter(track.dt)}</div>

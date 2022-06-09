@@ -1,17 +1,18 @@
 import { get, set } from "lodash";
 import { useContext } from "react";
-import { ITrack } from "../constants/type";
+import { IArtistTopSongResponse, ITrack } from "../constants/type";
 import { TracksContext } from "../context";
-import { getPlaylistDetail, getSongUrlById } from "../service";
+import { getArtistTopSongById, getSongUrlById } from "../service";
 
-export function useGetToplistSongsUrl() {
+export function useArtistTopSongsUrl() {
   const tracksContext = useContext(TracksContext);
   const getSongsUrls = async (id: number | undefined) => {
     try {
       if (!id) return false;
-      const playlistDetailRes = await getPlaylistDetail(id);
-      if (playlistDetailRes.code === 200) {
-        const tracklist = playlistDetailRes?.playlist.tracks || [];
+      const artistTopSongRes: IArtistTopSongResponse =
+        await getArtistTopSongById(id);
+      if (artistTopSongRes.code === 200) {
+        const tracklist = artistTopSongRes?.songs || [];
         const songResList = await Promise.all(
           tracklist.map((track: ITrack) => getSongUrlById(track.id))
         );

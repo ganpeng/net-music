@@ -21,8 +21,6 @@ export function useMusicLyric(id: number) {
     })
     .join("");
 
-  // console.log(lyricData);
-
   return {
     lyricData,
     lyricText,

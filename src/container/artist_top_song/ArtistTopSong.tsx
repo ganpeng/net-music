@@ -1,23 +1,29 @@
 import { get } from "lodash";
-import React from "react";
+import React, { useContext } from "react";
 import { useQuery } from "react-query";
-import { useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
+import { TracksContext } from "../../context";
+import { useArtistTopSongsUrl } from "../../hooks/useArtistTopSongsUrl";
 import { getArtistTopSongById } from "../../service";
 import { timeFormatter } from "../../utils";
+import { linkToAlbumDetailPage, linkToSongDetailPage } from "../../utils/link";
 import "./index.scss";
 
 function ArtistTopSong() {
+  const tracksContext = useContext(TracksContext);
   const [searchParams] = useSearchParams();
   const id = Number(searchParams.get("id"));
   const { data } = useQuery(["artist_top_song", id], () =>
     getArtistTopSongById(id)
   );
-  console.log(data);
+
+  const { getSongsUrls } = useArtistTopSongsUrl();
+
   return (
     <div className="artist-top-song-container">
       <div className="btn-field">
         <div className="play-btn-container">
-          <div className="play-btn">
+          <div className="play-btn" onClick={() => getSongsUrls(id)}>
             <div className="play-icon">
               <div className="play"></div>
               播放
@@ -36,17 +42,32 @@ function ArtistTopSong() {
               <li className="song-item" key={track.id}>
                 <div className="song-index">{index + 1}</div>
                 <div className="title">
-                  <div className="play-icon"></div>
+                  <div
+                    className={`play-icon ${
+                      tracksContext?.currentTrack?.id === track.id
+                        ? "is-playing"
+                        : ""
+                    }`}
+                  ></div>
                   <div className="song-name" title={track.name}>
-                    {track.name}
-                    {get(track, "tns") || [].length > 0
-                      ? `(${get(track, "tns") || [].join(",")})`
-                      : ""}
+                    <span className="name text-decoration">
+                      <Link to={linkToSongDetailPage(track.id)}>
+                        {track.name}
+                      </Link>
+                    </span>
+                    {(get(track, "alia") || []).length > 0 && (
+                      <span className="tns">
+                        &nbsp;-&nbsp; ({`${get(track, "alia") || [].join(",")}`}
+                        )
+                      </span>
+                    )}
                   </div>
                 </div>
                 <div className="duration">{timeFormatter(track.dt)}</div>
                 <div className="al-name text-decoration" title={track.al.name}>
-                  {track.al.name}
+                  <Link to={linkToAlbumDetailPage(track.al.id)}>
+                    {track.al.name}
+                  </Link>
                 </div>
               </li>
             );

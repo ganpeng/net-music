@@ -1,6 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { IPlayListDetail } from "../../constants/type";
+import { useGetPlaylistTrackSongsUrl } from "../../hooks/useGetPlaylistTrackSongsUrl";
 import { dateFormatter, numberFormatter } from "../../utils";
+import { linkToUserHomePage } from "../../utils/link";
 import "./index.scss";
 
 type PlaylistBaseinfoPropsType = {
@@ -9,6 +12,7 @@ type PlaylistBaseinfoPropsType = {
 
 function PlaylistBaseinfo(props: PlaylistBaseinfoPropsType) {
   const { playlistBaseinfo } = props;
+  const { getSongsUrls } = useGetPlaylistTrackSongsUrl();
   return (
     <div className="playlist-baseinfo-container">
       <div className="playlist-img">
@@ -30,9 +34,16 @@ function PlaylistBaseinfo(props: PlaylistBaseinfoPropsType) {
               style={{
                 backgroundImage: `url(${playlistBaseinfo?.creator.avatarUrl})`,
               }}
-            ></div>
+            >
+              <Link
+                className="block-a"
+                to={linkToUserHomePage(playlistBaseinfo?.creator?.userId)}
+              ></Link>
+            </div>
             <div className="name text-decoration">
-              {playlistBaseinfo?.creator.nickname}
+              <Link to={linkToUserHomePage(playlistBaseinfo?.creator?.userId)}>
+                {playlistBaseinfo?.creator.nickname}
+              </Link>
             </div>
           </div>
           <div className="date">
@@ -42,7 +53,10 @@ function PlaylistBaseinfo(props: PlaylistBaseinfoPropsType) {
         </div>
         <div className="btn-field">
           <div className="play-btn-container">
-            <div className="play-btn">
+            <div
+              className="play-btn"
+              onClick={() => getSongsUrls(playlistBaseinfo?.id)}
+            >
               <div className="play-icon">
                 <div className="play"></div>
                 播放

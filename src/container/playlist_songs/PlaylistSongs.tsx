@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { IPlayListDetail } from "../../constants/type";
+import { TracksContext } from "../../context";
 import { timeFormatter } from "../../utils";
-import { linkToSongDetailPage } from "../../utils/link";
+import {
+  linkToAlbumDetailPage,
+  linkToArtistDetailPage,
+  linkToSongDetailPage,
+} from "../../utils/link";
 import "./index.scss";
 
 type PlaylistSongsPropsType = {
@@ -10,6 +15,7 @@ type PlaylistSongsPropsType = {
 };
 
 function PlaylistSongs(props: PlaylistSongsPropsType) {
+  const tracksContext = useContext(TracksContext);
   return (
     <div className="playlist-songs-container">
       <div className="songlist-header">
@@ -44,7 +50,13 @@ function PlaylistSongs(props: PlaylistSongsPropsType) {
             <li className="song-item" key={track.id}>
               <div className="song-index">{index + 1}</div>
               <div className="title">
-                <div className="play-icon"></div>
+                <div
+                  className={`play-icon ${
+                    tracksContext?.currentTrack?.id === track.id
+                      ? "is-playing"
+                      : ""
+                  }`}
+                ></div>
                 <div className="song-name">
                   <Link to={linkToSongDetailPage(track.id)}>{track.name}</Link>
                 </div>
@@ -52,14 +64,18 @@ function PlaylistSongs(props: PlaylistSongsPropsType) {
               <div className="duration">{timeFormatter(track.dt)}</div>
               <div
                 className="songers"
-                title={track.ar.map((ar: any) => ar.name).join("/")}
+                title={track.ar?.map((ar: any) => ar.name).join("/")}
               >
-                {track.ar.map((ar: any, _index: number) => (
-                  <span key={`${ar}_${_index}`}>{ar.name}</span>
+                {track.ar?.map((ar: any, _index: number) => (
+                  <span key={`${ar}_${_index}`}>
+                    <Link to={linkToArtistDetailPage(ar.id)}>{ar.name}</Link>
+                  </span>
                 ))}
               </div>
               <div className="al-name text-decoration" title={track.al.name}>
-                {track.al.name}
+                <Link to={linkToAlbumDetailPage(track.al.id)}>
+                  {track.al.name}
+                </Link>
               </div>
             </li>
           );

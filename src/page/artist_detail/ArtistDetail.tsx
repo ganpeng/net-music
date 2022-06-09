@@ -78,7 +78,9 @@ function ArtistDetail() {
             );
           })}
         </ul>
-        <Outlet></Outlet>
+        <div className="artist-detail-content">
+          <Outlet></Outlet>
+        </div>
       </div>
       <div className="right-field">
         <SectionTitle title="热门歌手"></SectionTitle>

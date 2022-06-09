@@ -57,7 +57,9 @@
           @include bg-image();
         }
         .name {
-          color: #0c73c2;
+          a {
+            color: $mainLinkColor;
+          }
         }
       }
       .date {
@@ -69,167 +71,7 @@
       }
     }
   }
-  .btn-field {
-    display: flex;
-    align-items: center;
-    margin-bottom: 25px;
-    font-size: 12px;
-    .play-btn-container {
-      display: flex;
-      align-items: center;
-      margin-right: 6px;
-      font-size: 12px;
-      .play-btn {
-        display: flex;
-        align-items: center;
-        width: 66px;
-        height: 31px;
-        line-height: 31px;
-        color: #fff;
-        background-image: url("../../assets/images/button2.png");
-        background-repeat: no-repeat;
-        background-position: right -428px;
-        padding: 0 5px 0 0;
-        cursor: pointer;
-        .play-icon {
-          display: flex;
-          align-items: center;
-          height: 31px;
-          line-height: 30px;
-          padding: 0 0 0 10px;
-          width: 100%;
-          color: #fff;
-          background-position: 0 -387px;
-          background-image: url("../../assets/images/button2.png");
-          background-repeat: no-repeat;
-          .play {
-            width: 20px;
-            height: 18px;
-            background-position: 0 -1622px;
-            background-image: url("../../assets/images/button2.png");
-            background-repeat: no-repeat;
-          }
-        }
-      }
-      .add-btn {
-        width: 31px;
-        height: 31px;
-        margin-left: -3px;
-        padding-right: 0;
-        background-position: 0 -1588px;
-        background-image: url("../../assets/images/button2.png");
-        cursor: pointer;
-        &:hover {
-          background-position: -40px -1588px;
-        }
-      }
-    }
-    .store-btn {
-      padding: 0 5px 0 0;
-      margin-right: 6px;
-      color: #333;
-      // width: 89px;
-      height: 31px;
-      line-height: 30px;
-      background-position: right -1020px;
-      background-image: url("../../assets/images/button2.png");
-      background-repeat: no-repeat, no-repeat;
-      cursor: pointer;
-      i {
-        display: block;
-        background-position: 0 -977px;
-        padding: 0 5px 0 28px;
-        height: 31px;
-        line-height: 30px;
-        width: 100%;
-        font-style: normal;
-        background-image: url("../../assets/images/button2.png");
-      }
-      &:hover {
-        i {
-          background-position: 0 -1063px;
-        }
-      }
-    }
-    .share-btn {
-      padding: 0 5px 0 0;
-      margin-right: 6px;
-      color: #333;
-      height: 31px;
-      line-height: 30px;
-      background-position: right -1020px;
-      background-image: url("../../assets/images/button2.png");
-      background-repeat: no-repeat, no-repeat;
-      cursor: pointer;
-      i {
-        display: block;
-        background-position: 0 -1225px;
-        padding: 0 5px 0 28px;
-        height: 31px;
-        line-height: 30px;
-        width: 100%;
-        font-style: normal;
-        background-image: url("../../assets/images/button2.png");
-      }
-      &:hover {
-        i {
-          background-position: 0 -1268px;
-        }
-      }
-    }
-    .download-btn {
-      padding: 0 5px 0 0;
-      margin-right: 6px;
-      color: #333;
-      height: 31px;
-      line-height: 30px;
-      background-position: right -1020px;
-      background-image: url("../../assets/images/button2.png");
-      background-repeat: no-repeat, no-repeat;
-      cursor: pointer;
-      i {
-        display: block;
-        background-position: 0 -2761px;
-        padding: 0 5px 0 28px;
-        height: 31px;
-        line-height: 30px;
-        width: 100%;
-        font-style: normal;
-        background-image: url("../../assets/images/button2.png");
-      }
-      &:hover {
-        i {
-          background-position: 0 -2805px;
-        }
-      }
-    }
-    .comments-btn {
-      padding: 0 5px 0 0;
-      margin-right: 6px;
-      color: #333;
-      height: 31px;
-      line-height: 30px;
-      background-position: right -1020px;
-      background-image: url("../../assets/images/button2.png");
-      background-repeat: no-repeat, no-repeat;
-      cursor: pointer;
-      i {
-        display: block;
-        background-position: 0 -1465px;
-        padding: 0 5px 0 28px;
-        height: 31px;
-        line-height: 30px;
-        width: 100%;
-        font-style: normal;
-        background-image: url("../../assets/images/button2.png");
-      }
-      &:hover {
-        i {
-          background-position: 0 -1508px;
-        }
-      }
-    }
-  }
+
   .tags-container {
     display: flex;
     align-items: center;

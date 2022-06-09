@@ -103,6 +103,9 @@
             &:hover {
               background-position: 0 -128px;
             }
+            &.is-playing {
+              background-position: -20px -128px;
+            }
           }
           .song-name {
             color: #333;

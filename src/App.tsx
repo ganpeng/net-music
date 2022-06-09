@@ -4,6 +4,7 @@ import { useRoutes } from "react-router-dom";
 import { QUERY_CLIENT_OPTIONS } from "./constants";
 import { TracksContextProvider } from "./context";
 import routes from "./router/routes";
+import "./app.scss";
 
 function App() {
   const element = useRoutes(routes);

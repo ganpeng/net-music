@@ -1,9 +1,11 @@
 import { get, take } from "lodash";
-import React, { useMemo, useState } from "react";
+import React, { useContext, useMemo, useState } from "react";
 import { useQuery } from "react-query";
 import { Link, useSearchParams } from "react-router-dom";
 import { IRecordData } from "../../constants/type";
+import { TracksContext } from "../../context";
 import { getUserRecordById } from "../../service";
+import { linkToSongDetailPage } from "../../utils/link";
 import "./index.scss";
 
 type UserRecordPropsType = {
@@ -14,6 +16,7 @@ type UserRecordPropsType = {
 function UserRecord(props: UserRecordPropsType) {
   const [type, setType] = useState(0); // 0 所有时间 1 最近一周
   const [searchParmas] = useSearchParams();
+  const tracksContext = useContext(TracksContext);
   const id = Number(searchParmas.get("id"));
   const { data: userRecordData } = useQuery(["user_record", id, type], () =>
     getUserRecordById(id, type)
@@ -65,8 +68,18 @@ function UserRecord(props: UserRecordPropsType) {
               <li className="user-record-item" key={index}>
                 <div className="left-field">
                   <div className="index">{index + 1}.</div>
-                  <div className="play-btn"></div>
-                  <div className="song-name">{record.song.name}</div>
+                  <div
+                    className={`play-btn ${
+                      tracksContext?.currentTrack?.id === record.song.id
+                        ? "is-playing"
+                        : ""
+                    }`}
+                  ></div>
+                  <div className="song-name text-decoration">
+                    <Link to={linkToSongDetailPage(record.song.id)}>
+                      {record.song.name}
+                    </Link>
+                  </div>
                   <div
                     className="songers"
                     title={record.song.ar.map((ar: any) => ar.name).join("/")}

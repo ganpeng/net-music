@@ -36,6 +36,8 @@
       align-items: center;
       min-height: 30px;
       padding: 10px;
+      flex-wrap: nowrap;
+      overflow: hidden;
       &:nth-of-type(even) {
         background-color: #f7f7f7;
       }
@@ -100,6 +102,9 @@
           &:hover {
             background-position: 0 -128px;
           }
+          &.is-playing {
+            background-position: -20px -128px;
+          }
         }
         .song-name {
           flex: 1;
@@ -130,10 +135,9 @@
         }
       }
       .al-name {
-        width: 100px;
+        width: 120px;
         text-indent: 20px;
         @include ellipsis();
-        // padding-left: 20px;
       }
     }
   }
