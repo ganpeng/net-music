@@ -26,6 +26,8 @@ export function useGetAlbumSongsUrl() {
 
         tracksContext?.setTracks(res);
         tracksContext?.setCurrentTrack(get(res, `0`));
+
+        return res;
       }
     } catch (err) {
       console.log(err);

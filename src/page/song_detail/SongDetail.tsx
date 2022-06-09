@@ -5,7 +5,6 @@ import {
   ClientDownloadWiki,
   CommentList,
   Pagination,
-  SectionTitle,
   SimiMusic,
   SimiPlaylist,
   SongDetailBaseinfo,
@@ -70,7 +69,6 @@ function SongDetail() {
       </div>
       <div className="right-field">
         <SimiPlaylist></SimiPlaylist>
-        <SectionTitle title="相似歌曲" moreLink=""></SectionTitle>
         <SimiMusic></SimiMusic>
         <ClientDownloadWiki></ClientDownloadWiki>
       </div>

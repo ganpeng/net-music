@@ -85,33 +85,37 @@ function AlbumDetail() {
         ></Pagination>
       </div>
       <div className="right-field">
-        <SectionTitle
-          title="Ta的其他热门专辑"
-          moreLink={linkToArtistAlbumPage(artistId)}
-        ></SectionTitle>
-        <ul className="other-artist-album-list">
-          {take(artistListData?.hotAlbums, 5).map((album) => {
-            return (
-              <li className="album-item" key={album.id}>
-                <Link to={linkToArtistAlbumPage(album.artist.id)}>
-                  <img src={album.blurPicUrl} alt="" />
-                </Link>
-                <div className="name-date">
-                  <div className="name text-decoration" title={album.name}>
-                    <Link to={linkToAlbumDetailPage(album.id)}>
-                      {album.name}
+        {(artistListData?.hotAlbums || []).length > 0 && (
+          <>
+            <SectionTitle
+              title="Ta的其他热门专辑"
+              moreLink={linkToArtistAlbumPage(artistId)}
+            ></SectionTitle>
+            <ul className="other-artist-album-list">
+              {take(artistListData?.hotAlbums, 5).map((album) => {
+                return (
+                  <li className="album-item" key={album.id}>
+                    <Link to={linkToArtistAlbumPage(album.artist.id)}>
+                      <img src={album.blurPicUrl} alt="" />
                     </Link>
-                  </div>
-                  <div className="date">
-                    {album?.publishTime
-                      ? dateFormatter(album?.publishTime, "YYYY-MM-DD")
-                      : ""}
-                  </div>
-                </div>
-              </li>
-            );
-          })}
-        </ul>
+                    <div className="name-date">
+                      <div className="name text-decoration" title={album.name}>
+                        <Link to={linkToAlbumDetailPage(album.id)}>
+                          {album.name}
+                        </Link>
+                      </div>
+                      <div className="date">
+                        {album?.publishTime
+                          ? dateFormatter(album?.publishTime, "YYYY-MM-DD")
+                          : ""}
+                      </div>
+                    </div>
+                  </li>
+                );
+              })}
+            </ul>
+          </>
+        )}
       </div>
     </div>
   );

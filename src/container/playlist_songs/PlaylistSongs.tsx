@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { IPlayListDetail } from "../../constants/type";
 import { TracksContext } from "../../context";
+import { useActionTracks } from "../../hooks/useActionTracks";
 import { timeFormatter } from "../../utils";
 import {
   linkToAlbumDetailPage,
@@ -16,6 +17,7 @@ type PlaylistSongsPropsType = {
 
 function PlaylistSongs(props: PlaylistSongsPropsType) {
   const tracksContext = useContext(TracksContext);
+  const { addSongToTracks } = useActionTracks();
   return (
     <div className="playlist-songs-container">
       <div className="songlist-header">
@@ -56,6 +58,7 @@ function PlaylistSongs(props: PlaylistSongsPropsType) {
                       ? "is-playing"
                       : ""
                   }`}
+                  onClick={() => addSongToTracks(track)}
                 ></div>
                 <div className="song-name">
                   <Link to={linkToSongDetailPage(track.id)}>{track.name}</Link>

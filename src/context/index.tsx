@@ -15,7 +15,7 @@ export const TracksContextProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const [tracks, setTracks] = useState<ITrack[] | null>(null);
+  const [tracks, setTracks] = useState<ITrack[] | null>([]);
   const [currentTrack, setCurrentTrack] = useState<ITrack | null>(null);
   return (
     <TracksContext.Provider

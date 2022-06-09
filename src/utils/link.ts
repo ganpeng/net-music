@@ -13,6 +13,9 @@ export const linkToArtistAlbumPage = (id: number | undefined) => {
 export const linkToPlaylistDetailPage = (id: number | undefined) => {
   return id ? `/playlist-detail?id=${id}` : "";
 };
+export const linkToPlaylistPageByCat = (cat: string) => {
+  return `/playlist?cat=${cat}`;
+};
 
 // user
 export const linkToUserHomePage = (id: number | undefined) => {

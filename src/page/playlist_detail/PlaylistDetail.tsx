@@ -44,7 +44,6 @@ function PlaylistDetail() {
     setCursor(newCommentData?.data.cursor);
     setPageNo(pageNo);
   };
-  console.log(playDetail);
 
   return (
     <div className="playlist-detail-container content-w">

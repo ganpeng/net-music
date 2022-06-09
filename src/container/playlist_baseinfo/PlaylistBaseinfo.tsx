@@ -1,9 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { IPlayListDetail } from "../../constants/type";
+import { useActionTracks } from "../../hooks/useActionTracks";
 import { useGetPlaylistTrackSongsUrl } from "../../hooks/useGetPlaylistTrackSongsUrl";
 import { dateFormatter, numberFormatter } from "../../utils";
-import { linkToUserHomePage } from "../../utils/link";
+import { linkToPlaylistPageByCat, linkToUserHomePage } from "../../utils/link";
 import "./index.scss";
 
 type PlaylistBaseinfoPropsType = {
@@ -13,6 +14,7 @@ type PlaylistBaseinfoPropsType = {
 function PlaylistBaseinfo(props: PlaylistBaseinfoPropsType) {
   const { playlistBaseinfo } = props;
   const { getSongsUrls } = useGetPlaylistTrackSongsUrl();
+  const { appendSongListToTracks } = useActionTracks();
   return (
     <div className="playlist-baseinfo-container">
       <div className="playlist-img">
@@ -62,7 +64,10 @@ function PlaylistBaseinfo(props: PlaylistBaseinfoPropsType) {
                 播放
               </div>
             </div>
-            <div className="add-btn"></div>
+            <div
+              className="add-btn"
+              onClick={() => appendSongListToTracks(playlistBaseinfo?.tracks)}
+            ></div>
           </div>
           <div className="store-btn">
             <i>({numberFormatter(playlistBaseinfo?.subscribedCount || 0)})</i>
@@ -82,7 +87,9 @@ function PlaylistBaseinfo(props: PlaylistBaseinfoPropsType) {
           <div className="tag-list">
             {playlistBaseinfo?.tags.map((tag: string, index: number) => (
               <div className="tag-item" key={index}>
-                <span>{tag}</span>
+                <span>
+                  <Link to={linkToPlaylistPageByCat(tag)}>{tag}</Link>
+                </span>
               </div>
             ))}
           </div>
