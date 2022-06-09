@@ -53,5 +53,18 @@ export const fromNow = (timeStamp: number) => {
 
 export const dateFormatter = (timeStamp: number, formatter: string) => {
   return dayjs(timeStamp).format(formatter);
-  // dayjs('2019-01-25').format('YYYY-MM-DD HH:mm:ss')
+};
+
+export const isParent = (obj: any, parentObj: any) => {
+  while (
+    obj !== undefined &&
+    obj !== null &&
+    obj.tagName.toUpperCase() !== "BODY"
+  ) {
+    if (obj === parentObj) {
+      return true;
+    }
+    obj = obj.parentNode;
+  }
+  return false;
 };

@@ -8,7 +8,7 @@ export function useGetPlaylistTrackSongsUrl() {
   const tracksContext = useContext(TracksContext);
   const getSongsUrls = async (id: number) => {
     try {
-      tracksContext?.setTracks([]);
+      // tracksContext?.setTracks([]);
       const tracklistRes = await getPlaylistTrackAllById(id);
       if (tracklistRes.code === 200) {
         const tracklist = tracklistRes?.songs || [];

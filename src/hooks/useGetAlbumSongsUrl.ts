@@ -9,7 +9,7 @@ export function useGetAlbumSongsUrl() {
   const getSongsUrls = async (id: number | undefined) => {
     try {
       if (!id) return false;
-      tracksContext?.setTracks([]);
+      // tracksContext?.setTracks([]);
       const alblumListRes: IAlbumDetailResponse = await getAlbumDetailById(id);
       if (alblumListRes.code === 200) {
         const tracklist = alblumListRes?.songs || [];
@@ -24,9 +24,9 @@ export function useGetAlbumSongsUrl() {
         });
 
         const res = resList
-          .filter((item: any) => get(item, `song`))
+          .filter((item: ITrack) => get(item, `song`))
           .filter(
-            (track) =>
+            (track: ITrack) =>
               get(track, "song.level") !== "exhigh" && get(track, "song.url")
           );
 

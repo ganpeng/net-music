@@ -9,7 +9,7 @@ export function useGetToplistSongsUrl() {
   const getSongsUrls = async (id: number | undefined) => {
     try {
       if (!id) return false;
-      tracksContext?.setTracks([]);
+      // tracksContext?.setTracks([]);
       const playlistDetailRes = await getPlaylistDetail(id);
       if (playlistDetailRes.code === 200) {
         const tracklist = playlistDetailRes?.playlist.tracks || [];

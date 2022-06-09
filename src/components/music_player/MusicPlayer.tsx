@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState, useRef, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { defaultAlbum } from "../../constants/images";
 import { TracksContext } from "../../context";
-import { timeFormatter } from "../../utils";
+import { isParent, timeFormatter } from "../../utils";
 import {
   linkToAlbumDetailPage,
   linkToArtistDetailPage,
@@ -19,7 +19,6 @@ function MusicPlayer() {
   const [isVisible, setIsVisible] = useState(false);
   const [playlistVisible, setPlaylistVisible] = useState(false);
   const [isLocked, setIsLocked] = useState(true);
-  // const [activePlayIndex, setActivePlayIndex] = useState(0);
   // 音乐播放相关
   const [isPlaying, setIsPlaying] = useState(false);
   const [duration, setDuration] = useState(0);
@@ -124,12 +123,40 @@ function MusicPlayer() {
     }
   };
 
+  const documentClickHandler = (e: any) => {
+    const musicPlayerContainer = document.querySelector(
+      ".music-player-container "
+    );
+    const musicPlayerContainerFlag = isParent(e.target, musicPlayerContainer);
+    // 播放器列表
+    const playlistNode = document.querySelector(".play-list-container");
+    const playlistNodeFlag = isParent(e.target, playlistNode);
+    // 音量
+    const volumeBtn = document.querySelector(".volume-btn");
+    const volumeBtnFlag = isParent(e.target, volumeBtn);
+    // 播放器列表显示隐藏
+    if (!playlistNodeFlag && !musicPlayerContainerFlag) {
+      setPlaylistVisible(false);
+    }
+    // 音量条显示隐藏
+    if (!volumeBtnFlag && !musicPlayerContainerFlag) {
+      setVolumVisible(false);
+    }
+  };
+
   useEffect(() => {
     document.addEventListener("mousemove", mousemoveHandler);
     return () => {
       document.removeEventListener("mousemove", mousemoveHandler);
     };
   }, [mousemoveHandler]);
+
+  useEffect(() => {
+    document.addEventListener("click", documentClickHandler, false);
+    return () => {
+      document.removeEventListener("click", documentClickHandler, false);
+    };
+  }, []);
 
   return (
     <div className={`music-player-container ${isVisible ? "is-visible" : ""}`}>
