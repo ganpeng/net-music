@@ -227,7 +227,9 @@ function MusicPlayer() {
               {tracksContext?.currentTrack?.id && (
                 <div className="goto-btn">
                   <Link
-                    to={linkToAlbumDetailPage(tracksContext.currentTrack.al.id)}
+                    to={linkToAlbumDetailPage(
+                      tracksContext?.currentTrack?.al?.id
+                    )}
                   ></Link>
                 </div>
               )}
@@ -348,9 +350,11 @@ function MusicPlayer() {
                         <div className="operator-container"></div>
                         <div
                           className="songers"
-                          title={track.ar.map((ar: any) => ar.name).join("/")}
+                          title={(track?.ar || [])
+                            .map((ar: any) => ar.name)
+                            .join("/")}
                         >
-                          {track.ar.map((ar: any, _index: number) => (
+                          {(track?.ar || []).map((ar: any, _index: number) => (
                             <span key={`${ar}_${_index}`}>
                               <Link to={linkToArtistDetailPage(ar.id)}>
                                 {ar.name}
@@ -365,7 +369,9 @@ function MusicPlayer() {
                           {timeFormatter(track.dt)}
                         </div>
                         <div className="goto-btn">
-                          <Link to={linkToAlbumDetailPage(track.al.id)}></Link>
+                          <Link
+                            to={linkToAlbumDetailPage(track?.al?.id)}
+                          ></Link>
                         </div>
                       </li>
                     );

@@ -1,7 +1,8 @@
+import { get, set } from "lodash";
 import React from "react";
 import { useQuery } from "react-query";
 import { Link, useSearchParams } from "react-router-dom";
-import { ISong } from "../../constants/type";
+import { ISong, ITrack } from "../../constants/type";
 import { useActionTracks } from "../../hooks/useActionTracks";
 import { getSimiMusicById } from "../../service";
 import { linkToArtistDetailPage, linkToSongDetailPage } from "../../utils/link";
@@ -16,14 +17,20 @@ function SimiMusic() {
   );
   const { addSongToTracks, appendSongListToTracks } = useActionTracks();
 
-  console.log(simiMusicData);
+  const simiSongs = (simiMusicData?.songs || []).map((song: ITrack) => {
+    set(song, "dt", get(song, "duration"));
+    set(song, "ar", get(song, "artists"));
+    set(song, "al", { picUrl: get(song, "album.picUrl") });
+    return song;
+  });
+
   return (
     <div className="simi_music-container">
-      {simiMusicData?.songs.length > 0 && (
+      {simiSongs.length > 0 && (
         <>
           <SectionTitle title="相似歌曲" moreLink=""></SectionTitle>
           <ul className="simi-music-list">
-            {simiMusicData?.songs.map((song: ISong) => {
+            {simiSongs.map((song: ITrack) => {
               return (
                 <li className="simi-music-item" key={song.id}>
                   <div className="left-info">

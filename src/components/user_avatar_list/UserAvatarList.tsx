@@ -1,5 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Profile } from "../../constants/type";
+import { linkToUserHomePage } from "../../utils/link";
 import "./index.scss";
 
 type UserAvatarListPropsType = {
@@ -14,7 +16,9 @@ function UserAvatarList(props: UserAvatarListPropsType) {
         {subscribers.map((user, index) => {
           return (
             <div className="user-avatar-item" key={index} title={user.nickname}>
-              <img src={user.avatarUrl} alt={user.nickname} />
+              <Link to={linkToUserHomePage(user.userId)}>
+                <img src={user.avatarUrl} alt={user.nickname} />
+              </Link>
             </div>
           );
         })}

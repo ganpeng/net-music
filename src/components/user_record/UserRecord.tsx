@@ -4,6 +4,7 @@ import { useQuery } from "react-query";
 import { Link, useSearchParams } from "react-router-dom";
 import { IRecordData } from "../../constants/type";
 import { TracksContext } from "../../context";
+import { useActionTracks } from "../../hooks/useActionTracks";
 import { getUserRecordById } from "../../service";
 import { linkToSongDetailPage } from "../../utils/link";
 import "./index.scss";
@@ -30,7 +31,9 @@ function UserRecord(props: UserRecordPropsType) {
       ? get(userRecordData, "weekData") || []
       : take<IRecordData>(get(userRecordData, "weekData"), 10) || [];
   }, [props.all, type, userRecordData]);
-  console.log(userRecordData);
+
+  const { addSongToTracks } = useActionTracks();
+
   return (
     <div className="user-record-container">
       <div className="header-field">
@@ -74,15 +77,16 @@ function UserRecord(props: UserRecordPropsType) {
                         ? "is-playing"
                         : ""
                     }`}
+                    onClick={() => addSongToTracks(record.song)}
                   ></div>
                   <div className="song-name text-decoration">
-                    <Link to={linkToSongDetailPage(record.song.id)}>
-                      {record.song.name}
+                    <Link to={linkToSongDetailPage(record?.song?.id)}>
+                      {record?.song?.name}
                     </Link>
                   </div>
                   <div
                     className="songers"
-                    title={record.song.ar.map((ar: any) => ar.name).join("/")}
+                    title={record?.song?.ar.map((ar: any) => ar.name).join("/")}
                   >
                     -&nbsp;
                     {record.song.ar.map((ar: any, _index: number) => (
