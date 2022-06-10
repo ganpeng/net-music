@@ -3,6 +3,7 @@ import React, { useContext } from "react";
 import { useQuery } from "react-query";
 import { Link, useSearchParams } from "react-router-dom";
 import { TracksContext } from "../../context";
+import { useActionTracks } from "../../hooks/useActionTracks";
 import { useArtistTopSongsUrl } from "../../hooks/useArtistTopSongsUrl";
 import { getArtistTopSongById } from "../../service";
 import { timeFormatter } from "../../utils";
@@ -18,6 +19,7 @@ function ArtistTopSong() {
   );
 
   const { getSongsUrls } = useArtistTopSongsUrl();
+  const { addSongToTracks, appendSongListToTracks } = useActionTracks();
 
   return (
     <div className="artist-top-song-container">
@@ -29,7 +31,10 @@ function ArtistTopSong() {
               播放
             </div>
           </div>
-          <div className="add-btn"></div>
+          <div
+            className="add-btn"
+            onClick={() => appendSongListToTracks(data?.songs)}
+          ></div>
         </div>
         <div className="store-btn">
           <i>收藏热门50</i>
@@ -48,6 +53,7 @@ function ArtistTopSong() {
                         ? "is-playing"
                         : ""
                     }`}
+                    onClick={() => addSongToTracks(track)}
                   ></div>
                   <div className="song-name" title={track.name}>
                     <span className="name text-decoration">

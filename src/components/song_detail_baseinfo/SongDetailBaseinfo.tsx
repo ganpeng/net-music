@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { ILyricUser, ISong } from "../../constants/type";
+import { ILyricUser, ISong, ITrack } from "../../constants/type";
+import { useActionTracks } from "../../hooks/useActionTracks";
 import { numberFormatter } from "../../utils";
 import {
   linkToAlbumDetailPage,
@@ -18,6 +19,8 @@ type SongDetailBaseinfoPropsType = {
 };
 
 function SongDetailBaseinfo(props: SongDetailBaseinfoPropsType) {
+  const { addSongToTracks, appendSongListToTracks } = useActionTracks();
+  console.log(props);
   return (
     <div className="song-detail-baseinfo-container">
       <div className="left-img">
@@ -57,13 +60,19 @@ function SongDetailBaseinfo(props: SongDetailBaseinfoPropsType) {
         </div>
         <div className="btn-field">
           <div className="play-btn-container">
-            <div className="play-btn">
+            <div
+              className="play-btn"
+              onClick={() => addSongToTracks(props.song)}
+            >
               <div className="play-icon">
                 <div className="play"></div>
                 播放
               </div>
             </div>
-            <div className="add-btn"></div>
+            <div
+              className="add-btn"
+              onClick={() => appendSongListToTracks([props?.song as ITrack])}
+            ></div>
           </div>
           <div className="store-btn">
             <i>收藏</i>

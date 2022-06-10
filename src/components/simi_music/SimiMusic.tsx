@@ -2,6 +2,7 @@ import React from "react";
 import { useQuery } from "react-query";
 import { Link, useSearchParams } from "react-router-dom";
 import { ISong } from "../../constants/type";
+import { useActionTracks } from "../../hooks/useActionTracks";
 import { getSimiMusicById } from "../../service";
 import { linkToArtistDetailPage, linkToSongDetailPage } from "../../utils/link";
 import SectionTitle from "../section_title/SectionTitle";
@@ -13,6 +14,8 @@ function SimiMusic() {
   const { data: simiMusicData } = useQuery(["simi-music", id], () =>
     getSimiMusicById(id)
   );
+  const { addSongToTracks, appendSongListToTracks } = useActionTracks();
+
   console.log(simiMusicData);
   return (
     <div className="simi_music-container">
@@ -43,8 +46,14 @@ function SimiMusic() {
                     </div>
                   </div>
                   <div className="right-btn">
-                    <div className="play-btn"></div>
-                    <div className="add-btn"></div>
+                    <div
+                      className="play-btn"
+                      onClick={() => addSongToTracks(song)}
+                    ></div>
+                    <div
+                      className="add-btn"
+                      onClick={() => appendSongListToTracks([song])}
+                    ></div>
                   </div>
                 </li>
               );

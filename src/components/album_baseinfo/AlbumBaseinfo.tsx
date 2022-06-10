@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { IAlbum } from "../../constants/type";
+import { IAlbum, ITrack } from "../../constants/type";
+import { useActionTracks } from "../../hooks/useActionTracks";
 import { useGetAlbumSongsUrl } from "../../hooks/useGetAlbumSongsUrl";
 import { dateFormatter, numberFormatter } from "../../utils";
 import { linkToArtistDetailPage } from "../../utils/link";
@@ -8,11 +9,13 @@ import "./index.scss";
 
 type AlbumBaseinfoPropsType = {
   album: IAlbum | undefined;
+  songs: ITrack[] | undefined;
 };
 
 function AlbumBaseinfo(props: AlbumBaseinfoPropsType) {
-  const { album } = props;
+  const { album, songs } = props;
   const { getSongsUrls } = useGetAlbumSongsUrl();
+  const { appendSongListToTracks } = useActionTracks();
   return (
     <div className="album-baseinfo-container">
       <div className="top-field">
@@ -58,7 +61,10 @@ function AlbumBaseinfo(props: AlbumBaseinfoPropsType) {
                   播放
                 </div>
               </div>
-              <div className="add-btn"></div>
+              <div
+                className="add-btn"
+                onClick={() => appendSongListToTracks(songs)}
+              ></div>
             </div>
             <div className="store-btn">
               <i>收藏</i>

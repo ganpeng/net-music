@@ -3,6 +3,7 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { IPlayListDetail } from "../../constants/type";
 import { TracksContext } from "../../context";
+import { useActionTracks } from "../../hooks/useActionTracks";
 import { timeFormatter } from "../../utils";
 import { linkToArtistDetailPage, linkToSongDetailPage } from "../../utils/link";
 import "./index.scss";
@@ -13,6 +14,7 @@ type SonglistPropsType = {
 
 function Songlist(props: SonglistPropsType) {
   const tracksContext = useContext(TracksContext);
+  const { addSongToTracks } = useActionTracks();
   return (
     <div className="songlist-container">
       <div className="songlist-header">
@@ -48,7 +50,12 @@ function Songlist(props: SonglistPropsType) {
                   <div
                     className="img"
                     style={{ backgroundImage: `url(${track.al.picUrl})` }}
-                  ></div>
+                  >
+                    <Link
+                      className="text-a"
+                      to={linkToSongDetailPage(track.id)}
+                    ></Link>
+                  </div>
                 )}
                 <div
                   className={`play-icon ${
@@ -56,6 +63,7 @@ function Songlist(props: SonglistPropsType) {
                       ? "is-playing"
                       : ""
                   }`}
+                  onClick={() => addSongToTracks(track)}
                 ></div>
                 <div className="song-name" title={track.name}>
                   <span className="name text-decoration">

@@ -60,7 +60,10 @@ function AlbumDetail() {
   return (
     <div className="album-detail-container content-w">
       <div className="left-field">
-        <AlbumBaseinfo album={albumDetail?.album}></AlbumBaseinfo>
+        <AlbumBaseinfo
+          album={albumDetail?.album}
+          songs={albumDetail?.songs}
+        ></AlbumBaseinfo>
         <AlbumSongs
           count={albumDetail?.album.size || 0}
           songs={albumDetail?.songs || []}

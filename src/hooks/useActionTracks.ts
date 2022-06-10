@@ -60,6 +60,13 @@ export function useActionTracks() {
         .concat(res)
         .value()
     );
+
+    if (
+      !tracksContext?.currentTrack?.id &&
+      (tracksContext?.tracks || []).length > 0
+    ) {
+      tracksContext?.setCurrentTrack(get(tracksContext.tracks, `0`));
+    }
   };
 
   return {

@@ -1,5 +1,6 @@
 import React from "react";
 import { IPlayListDetail } from "../../constants/type";
+import { useActionTracks } from "../../hooks/useActionTracks";
 import { useGetToplistSongsUrl } from "../../hooks/useGetToplistSongsUrl";
 import { getMonthDay } from "../../utils";
 import "./index.scss";
@@ -10,6 +11,7 @@ type ToplistItemDetailPropsType = {
 
 function ToplistItemDetail(props: ToplistItemDetailPropsType) {
   const { getSongsUrls } = useGetToplistSongsUrl();
+  const { appendSongListToTracks } = useActionTracks();
 
   return (
     <div className="toplist-item-detail-container">
@@ -45,7 +47,10 @@ function ToplistItemDetail(props: ToplistItemDetailPropsType) {
                 播放
               </div>
             </div>
-            <div className="add-btn"></div>
+            <div
+              className="add-btn"
+              onClick={() => appendSongListToTracks(props?.topItem?.tracks)}
+            ></div>
           </div>
           <div className="store-btn">
             <i>({props.topItem?.subscribedCount})</i>
