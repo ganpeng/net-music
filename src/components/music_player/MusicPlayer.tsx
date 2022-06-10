@@ -61,6 +61,7 @@ function MusicPlayer() {
   const playHandler = (e: any) => {
     setIsPlaying(true);
     setDuration(e.target.duration);
+    setVolume(volume);
   };
   const pauseHandler = (e: any) => {
     setIsPlaying(false);

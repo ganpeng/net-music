@@ -75,8 +75,14 @@ function AlbumList() {
                   <div
                     className="pic"
                     style={{ backgroundImage: `url(${album.picUrl})` }}
-                  ></div>
-                  <div className="blur-pic"></div>
+                  >
+                    <div className="blur-pic">
+                      <Link
+                        className="block-a"
+                        to={linkToAlbumDetailPage(album.id)}
+                      ></Link>
+                    </div>
+                  </div>
                   <div
                     className="play-btn"
                     onClick={() => getSongsUrls(album.id)}
@@ -122,7 +128,12 @@ function AlbumList() {
                     className="pic"
                     style={{ backgroundImage: `url(${album.picUrl})` }}
                   ></div>
-                  <div className="blur-pic"></div>
+                  <div className="blur-pic">
+                    <Link
+                      className="block-a"
+                      to={linkToAlbumDetailPage(album.id)}
+                    ></Link>
+                  </div>
                   <div
                     className="play-btn"
                     onClick={() => getSongsUrls(album.id)}
