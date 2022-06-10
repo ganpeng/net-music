@@ -195,7 +195,9 @@
       }
     }
     .play-list-content {
+      display: flex;
       flex: 1;
+      overflow: hidden;
       background-position: -1014px 0;
       background-image: url("../../assets/images/playlist_bg.png");
       background-repeat: repeat-y;
@@ -212,7 +214,6 @@
           background-color: #868686;
         }
         &::-webkit-scrollbar-track {
-          // border-radius: 10px;
           background-color: #000;
         }
         .play-list {
@@ -297,6 +298,36 @@
               .song-name,
               .singer,
               .duration {
+                color: #fff;
+              }
+            }
+          }
+        }
+      }
+      .play-list-content-right {
+        flex: 1;
+        padding: 20px 20px;
+        overflow: hidden;
+        overflow-y: scroll;
+        &::-webkit-scrollbar {
+          width: 6px;
+        }
+        &::-webkit-scrollbar-thumb {
+          border-radius: 10px;
+          background-color: #868686;
+        }
+        &::-webkit-scrollbar-track {
+          background-color: #000;
+        }
+        .lyric-list {
+          .lyric-line {
+            p {
+              font-size: 14px;
+              text-align: center;
+              color: #989898;
+              height: 32px;
+              line-height: 32px;
+              &.active {
                 color: #fff;
               }
             }

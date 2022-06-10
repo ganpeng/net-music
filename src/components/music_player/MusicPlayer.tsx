@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState, useRef, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { defaultAlbum } from "../../constants/images";
 import { TracksContext } from "../../context";
+import { useMusicLyric } from "../../hooks/useMusicLyric";
 import { isParent, timeFormatter } from "../../utils";
 import {
   linkToAlbumDetailPage,
@@ -28,6 +29,12 @@ function MusicPlayer() {
 
   // 播放器dom
   const musicPlayer = useRef<HTMLAudioElement | null>(null);
+
+  // 歌词相关
+  const { lyricArrWithTime } = useMusicLyric(
+    tracksContext?.currentTrack?.song.id
+  );
+
   const toggleLocked = () => {
     setIsLocked((isLocked) => {
       return !isLocked;
@@ -44,6 +51,11 @@ function MusicPlayer() {
     );
     return index || 0;
   }, [tracksContext]);
+
+  const formatterCurrentTime = useMemo(
+    () => timeFormatter(currentTime * 1000),
+    [currentTime]
+  );
 
   const mousemoveHandler = debounce((e: MouseEvent) => {
     if (isLocked) {
@@ -381,6 +393,23 @@ function MusicPlayer() {
               ) : (
                 <NoData text="你还没有添加任何歌曲"></NoData>
               )}
+            </div>
+            <div className="play-list-content-right">
+              <ul className="lyric-list">
+                {(lyricArrWithTime || []).map((item, index) => {
+                  return (
+                    <li className="lyric-line" key={index}>
+                      <p
+                        className={`${
+                          formatterCurrentTime === item.time ? "active" : ""
+                        }`}
+                      >
+                        {item.text}
+                      </p>
+                    </li>
+                  );
+                })}
+              </ul>
             </div>
           </div>
         </div>
