@@ -124,7 +124,7 @@ export interface IArtistListResponse {
 
 // 主播
 export interface IDj {
-  id: null;
+  id: number;
   nickName: string;
   avatarUrl: string;
   [propName: string]: any;
