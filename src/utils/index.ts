@@ -1,4 +1,4 @@
-import { floor, isUndefined, pickBy } from "lodash";
+import { floor, get, isArray, isUndefined, pickBy, set } from "lodash";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import "dayjs/locale/zh-cn"; // 导入本地化语言
@@ -68,3 +68,91 @@ export const isParent = (obj: any, parentObj: any) => {
   }
   return false;
 };
+/**
+ * 对字符串做编码
+ *
+ * @param {any} str
+ * @returns
+ */
+function encode(str: string) {
+  try {
+    return encodeURIComponent(str);
+  } catch (e) {
+    return str;
+  }
+}
+
+/**
+ * 对编码后的字符串解码
+ *
+ * @param {String} str
+ * @return {String}
+ */
+function decode(str: string) {
+  try {
+    return decodeURIComponent(str.replace(/\+/g, " "));
+  } catch (e) {
+    return str;
+  }
+}
+
+/**
+ * 将url中的查询字符串序列化成对象
+ *
+ * @param {any} str
+ * @returns
+ */
+export function parse(str: string) {
+  var pattern = /(\w+)\[(\d+)\]/;
+  if ("string" != typeof str) return {};
+
+  str = str.trim();
+  if ("" === str) return {};
+  if ("?" === str.charAt(0)) str = str.slice(1);
+
+  let obj: {
+    [propName: string]: any;
+  } = {};
+  let pairs = str.split("&");
+  for (var i = 0; i < pairs.length; i++) {
+    var parts = pairs[i].split("=");
+    var key = decode(parts[0]);
+    var m;
+
+    if ((m = pattern.exec(key))) {
+      obj[m[1]] = obj[m[1]] || [];
+      obj[m[1]][m[2]] = decode(parts[1]);
+      continue;
+    }
+
+    obj[parts[0]] = null == parts[1] ? "" : decode(parts[1]);
+  }
+
+  return obj;
+}
+
+/**
+ * 将对象序列化成查询字符串
+ *
+ * @param {any} obj
+ * @returns
+ */
+export function stringify(obj: { [propName: string]: any }) {
+  if (!obj) return "";
+  let pairs = [];
+
+  for (let key in obj) {
+    let value = obj[key];
+
+    if (isArray(value)) {
+      for (let i = 0; i < value.length; ++i) {
+        pairs.push(encode(key + "[" + i + "]") + "=" + encode(value[i]));
+      }
+      continue;
+    }
+
+    pairs.push(encode(key) + "=" + encode(obj[key]));
+  }
+
+  return pairs.join("&");
+}

@@ -3,7 +3,7 @@ import PageHeader from "../../components/header/PageHeader";
 import { Outlet } from "react-router-dom";
 import "./index.scss";
 import MusicPlayer from "../../components/music_player/MusicPlayer";
-import { PageFooter } from "../../components";
+import { Login, PageFooter } from "../../components";
 
 export default function PageLayout() {
   return (
@@ -18,6 +18,9 @@ export default function PageLayout() {
       </div>
       <div className="page-footer-container">
         <PageFooter></PageFooter>
+      </div>
+      <div className="login-section">
+        <Login></Login>
       </div>
       <div className="music-player-section">
         <MusicPlayer></MusicPlayer>

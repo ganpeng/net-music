@@ -1,0 +1,18 @@
+.home-userinfo-container {
+  width: 249px;
+  height: 185px;
+  padding-top: 20px;
+  background-image: url("../../assets/images/icons_bg.png");
+  background-repeat: no-repeat;
+  background-position: 0 -270px;
+  .top-info {
+    padding: 0 20px;
+    .avatar-url {
+      width: 80px;
+      height: 80px;
+      padding: 2px;
+      background: #fff;
+      border: 1px solid #dadada;
+    }
+  }
+}

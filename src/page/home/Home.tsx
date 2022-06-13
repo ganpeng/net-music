@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./index.scss";
-import { Banner } from "../../components";
+import { Banner, HomeLogin, HomeUserinfo } from "../../components";
 import {
   BoardList,
   HotPlaylist,
@@ -8,8 +8,10 @@ import {
   Top5Dj,
   TopAlbum,
 } from "../../container";
+import { TracksContext } from "../../context";
 
 export default function Home() {
+  const tracksContext = useContext(TracksContext);
   return (
     <div className="home-container">
       <Banner></Banner>
@@ -20,8 +22,15 @@ export default function Home() {
           <BoardList></BoardList>
         </div>
         <div className="right-content">
-          <Top5Artists></Top5Artists>
-          <Top5Dj></Top5Dj>
+          {tracksContext?.cookie ? (
+            <HomeUserinfo></HomeUserinfo>
+          ) : (
+            <HomeLogin></HomeLogin>
+          )}
+          <div className="right-pd-content">
+            <Top5Artists></Top5Artists>
+            <Top5Dj></Top5Dj>
+          </div>
         </div>
       </div>
     </div>

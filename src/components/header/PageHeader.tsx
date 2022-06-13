@@ -24,15 +24,11 @@ export default function PageHeader() {
           location.pathname !== "/my-music" &&
           location.pathname !== "/my-follow"
         ) {
-          console.log(path);
           return true;
         } else {
           return false;
         }
       } else if (path === "/my-music" || path === "/my-follow") {
-        console.log("aaaaa");
-        console.log(path);
-        console.log("aaaaa");
         return location.pathname === path;
       } else {
         return false;

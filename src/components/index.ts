@@ -28,3 +28,6 @@ export { default as SongDetailBaseinfo } from "./song_detail_baseinfo/SongDetail
 export { default as SimiPlaylist } from "./simi_playlist/SimiPlaylist";
 export { default as SimiMusic } from "./simi_music/SimiMusic";
 export { default as ClientDownloadWiki } from "./client_download_wiki/ClientDownloadWiki";
+export { default as Login } from "./login/Login";
+export { default as HomeLogin } from "./home_login/HomeLogin";
+export { default as HomeUserinfo } from "./home_userinfo/HomeUserinfo";

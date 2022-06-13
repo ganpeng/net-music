@@ -549,3 +549,51 @@ export interface ISimiMusicResponse {
   code: number;
   songs: ISong;
 }
+
+// login
+export interface ILoginQrKeyResponse {
+  code: number;
+  data: {
+    code: number;
+    unikey: string;
+  };
+}
+export interface ILoginQrCreateResponse {
+  code: number;
+  data: {
+    qrurl: string;
+    qrimg: string;
+  };
+}
+
+export interface ILoginQrCheckResponse {
+  code: number;
+  cookie: string;
+  message?: string;
+}
+
+export interface IUserAccount {
+  account: {
+    id: number;
+    userName: string;
+    vipType: number;
+    [propName: string]: any;
+  };
+  profile: {
+    avatarUrl: string;
+    backgroundUrl: string;
+    birthday: number;
+    province: number;
+    city: number;
+    description: string | null;
+    gender: number;
+    nickname: string;
+    signature: string;
+    userId: number;
+    [propName: string]: any;
+  };
+}
+
+export interface IUserAccountResponse extends IUserAccount {
+  code: number;
+}

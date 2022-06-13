@@ -26,7 +26,6 @@ function User() {
   const { data: userDetailData } = useQuery(["user_detail", id], () =>
     getUserDetailById(id)
   );
-  console.log(userDetailData);
 
   const contextProps: ContextType = {
     eventCount: userDetailData?.profile.eventCount || 0,

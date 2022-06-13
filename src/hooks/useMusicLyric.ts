@@ -36,7 +36,6 @@ export function useMusicLyric(id: number) {
       return res;
     })
     .filter((item) => item.time && trim(item.text));
-  console.log(lyricArrWithTime);
 
   return {
     lyricData,

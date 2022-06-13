@@ -1,5 +1,5 @@
-import axios from "axios";
 import apiRoute from "../constants/apiRoute";
+import service from "./config";
 import {
   IAlbumCommentsResponse,
   IAlbumCommmentsSearchParam,
@@ -22,6 +22,9 @@ import {
   IFollowedsResponse,
   IFollowsResponse,
   IHotRecommendResponse,
+  ILoginQrCheckResponse,
+  ILoginQrCreateResponse,
+  ILoginQrKeyResponse,
   IMusicCommentsSearchParam,
   IMusicLyricResponse,
   INewAlbumListSearchParams,
@@ -34,6 +37,7 @@ import {
   ITagsResponse,
   ITopPlayListResponse,
   ITopPlayListSearchParams,
+  IUserAccountResponse,
   IUserDetailResponse,
   IUserPlaylistResponse,
   IUserRecordAllDataResponse,
@@ -42,7 +46,7 @@ import {
 import { getParamsString } from "../utils";
 
 export function getBannerData(): Promise<IBannerListResult> {
-  return axios
+  return service
     .get(apiRoute.BANNER_LIST)
     .then((res) => res.data)
     .catch((err) => {
@@ -51,7 +55,7 @@ export function getBannerData(): Promise<IBannerListResult> {
 }
 
 export function getHotPlayListCategory(): Promise<ITagsResponse> {
-  return axios
+  return service
     .get(apiRoute.HOT_PLAYLIST_CATEGORY)
     .then((res) => res.data)
     .catch((err) => {
@@ -60,7 +64,7 @@ export function getHotPlayListCategory(): Promise<ITagsResponse> {
 }
 
 export function getPersonalizedList(): Promise<IHotRecommendResponse> {
-  return axios
+  return service
     .get(apiRoute.PERSONALIZED)
     .then((res) => res.data)
     .catch((err) => {
@@ -69,7 +73,7 @@ export function getPersonalizedList(): Promise<IHotRecommendResponse> {
 }
 
 export function getTopAlbumList() {
-  return axios
+  return service
     .get(apiRoute.TOP_ALBUM)
     .then((res) => res.data)
     .catch((err) => {
@@ -80,7 +84,7 @@ export function getTopAlbumList() {
 export function getNewAlbumList(
   searchParams: INewAlbumListSearchParams
 ): Promise<INewAlbumResponse> {
-  return axios
+  return service
     .get(`${apiRoute.NEW_ALBUM}?${getParamsString(searchParams)}`)
     .then((res) => res.data)
     .catch((err) => {
@@ -89,7 +93,7 @@ export function getNewAlbumList(
 }
 
 export function getBoardList(): Promise<IBoardListResponse> {
-  return axios
+  return service
     .get(apiRoute.BOARD_LIST)
     .then((res) => res.data)
     .catch((err) => {
@@ -100,7 +104,7 @@ export function getBoardList(): Promise<IBoardListResponse> {
 export function getPlaylistDetail(
   id: number
 ): Promise<IPlayListDetailResponse> {
-  return axios
+  return service
     .get(`${apiRoute.PLAYLIST_DETAIL}?id=${id}`)
     .then((res) => res.data)
     .catch((err) => {
@@ -109,7 +113,7 @@ export function getPlaylistDetail(
 }
 
 export function getTopArtists(): Promise<IArtistListResponse> {
-  return axios
+  return service
     .get(apiRoute.TOP_ARTISTS)
     .then((res) => res.data)
     .catch((err) => {
@@ -118,7 +122,7 @@ export function getTopArtists(): Promise<IArtistListResponse> {
 }
 
 export function getHotDjList(): Promise<IDjListResponse> {
-  return axios
+  return service
     .get(apiRoute.HOT_DJ)
     .then((res) => res.data)
     .catch((err) => {
@@ -127,7 +131,7 @@ export function getHotDjList(): Promise<IDjListResponse> {
 }
 
 export function getCategoryList(): Promise<ICategoryListResponse> {
-  return axios
+  return service
     .get(apiRoute.CATEGORY_LIST)
     .then((res) => res.data)
     .catch((err) => {
@@ -138,7 +142,7 @@ export function getCategoryList(): Promise<ICategoryListResponse> {
 export function getTopPlayList(
   searchParams: ITopPlayListSearchParams
 ): Promise<ITopPlayListResponse> {
-  return axios
+  return service
     .get(`${apiRoute.TOP_PLAYLIST}?${getParamsString(searchParams)}`)
     .then((res) => res.data)
     .catch((err) => {
@@ -149,7 +153,7 @@ export function getTopPlayList(
 export function getCommentList(
   searchParams: ICommentListSearchParams
 ): Promise<ICommentListResponse> {
-  return axios
+  return service
     .get(`${apiRoute.COMMENT_LIST}?${getParamsString(searchParams)}`)
     .then((res) => res.data)
     .catch((err) => {
@@ -160,7 +164,7 @@ export function getCommentList(
 export function getArtistList(
   searchParams: IArtistListSearchParams
 ): Promise<IArtistListResponse> {
-  return axios
+  return service
     .get(`${apiRoute.ARTIST_LIST}?${getParamsString(searchParams)}`)
     .then((res) => res.data)
     .catch((err) => {
@@ -169,7 +173,7 @@ export function getArtistList(
 }
 
 export function getNewestAlbum(): Promise<INewestAlbumResponse> {
-  return axios
+  return service
     .get(apiRoute.NEWEST_ALBUM)
     .then((res) => res.data)
     .catch((err) => {
@@ -178,7 +182,7 @@ export function getNewestAlbum(): Promise<INewestAlbumResponse> {
 }
 
 export function getDjCateList(): Promise<IDjCatelistResponse> {
-  return axios
+  return service
     .get(apiRoute.DJ_CATELIST)
     .then((res) => res.data)
     .catch((err) => {
@@ -187,7 +191,7 @@ export function getDjCateList(): Promise<IDjCatelistResponse> {
 }
 
 export function getDjProgrammeToplist(): Promise<IDjProgrammeResponse> {
-  return axios
+  return service
     .get(apiRoute.DJ_PROGRAMME_TOPLIST)
     .then((res) => res.data)
     .catch((err) => {
@@ -196,7 +200,7 @@ export function getDjProgrammeToplist(): Promise<IDjProgrammeResponse> {
 }
 
 export function getDjProgrammeRecommend(): Promise<IDjProgrammeRecommendResponse> {
-  return axios
+  return service
     .get(apiRoute.DJ_PROGRAMME_RECOMMEND)
     .then((res) => res.data)
     .catch((err) => {
@@ -205,7 +209,7 @@ export function getDjProgrammeRecommend(): Promise<IDjProgrammeRecommendResponse
 }
 
 export function getSongUrlById(id: number) {
-  return axios
+  return service
     .get(`${apiRoute.SONG_URL}?id=${id}&realIP=116.25.146.177`)
     .then((res) => res.data)
     .catch((err) => {
@@ -214,7 +218,7 @@ export function getSongUrlById(id: number) {
 }
 
 export function getPlaylistTrackAllById(id: number | undefined) {
-  return axios
+  return service
     .get(`${apiRoute.PLAYLIST_TRACK_ALL}?id=${id}`)
     .then((res) => res.data)
     .catch((err) => {
@@ -225,7 +229,7 @@ export function getPlaylistTrackAllById(id: number | undefined) {
 export function getArtistDetailById(
   id: number
 ): Promise<IArtistDetailResponse> {
-  return axios
+  return service
     .get(`${apiRoute.ARTIST_DETAIL}?id=${id}`)
     .then((res) => res.data)
     .catch((err) => {
@@ -236,7 +240,7 @@ export function getArtistDetailById(
 export function getArtistTopSongById(
   id: number
 ): Promise<IArtistTopSongResponse> {
-  return axios
+  return service
     .get(`${apiRoute.ARTIST_TOP_SONG}?id=${id}`)
     .then((res) => res.data)
     .catch((err) => {
@@ -249,7 +253,7 @@ export function getArtistAlbumList(searchParams: {
   offset?: number;
   limit?: number;
 }): Promise<IArtistAlbumListResponse> {
-  return axios
+  return service
     .get(`${apiRoute.ARTIST_ALBUM}?${getParamsString(searchParams)}`)
     .then((res) => res.data)
     .catch((err) => {
@@ -258,7 +262,7 @@ export function getArtistAlbumList(searchParams: {
 }
 
 export function getArtistMvById(id: number): Promise<IArtistMvResponse> {
-  return axios
+  return service
     .get(`${apiRoute.ARTIST_MV}?id=${id}`)
     .then((res) => res.data)
     .catch((err) => {
@@ -266,13 +270,17 @@ export function getArtistMvById(id: number): Promise<IArtistMvResponse> {
     });
 }
 
-export function getUserDetailById(id: number): Promise<IUserDetailResponse> {
-  return axios
-    .get(`${apiRoute.USER_DETAIL}?uid=${id}`)
-    .then((res) => res.data)
-    .catch((err) => {
-      throw new Error(err);
-    });
+export function getUserDetailById(
+  id: number | undefined
+): Promise<IUserDetailResponse> | undefined {
+  if (id) {
+    return service
+      .get(`${apiRoute.USER_DETAIL}?uid=${id}`)
+      .then((res) => res.data)
+      .catch((err) => {
+        throw new Error(err);
+      });
+  }
 }
 
 export function getFollowsById(searchParams: {
@@ -280,7 +288,7 @@ export function getFollowsById(searchParams: {
   offset?: number;
   limit?: number;
 }): Promise<IFollowsResponse> {
-  return axios
+  return service
     .get(`${apiRoute.USER_FOLLOWS}?${getParamsString(searchParams)}`)
     .then((res) => res.data)
     .catch((err) => {
@@ -293,7 +301,7 @@ export function getFollowedsById(searchParams: {
   offset?: number;
   limit?: number;
 }): Promise<IFollowedsResponse> {
-  return axios
+  return service
     .get(`${apiRoute.USER_FOLLOWEDS}?${getParamsString(searchParams)}`)
     .then((res) => res.data)
     .catch((err) => {
@@ -305,7 +313,7 @@ export function getUserRecordById(
   id: number,
   type: number
 ): Promise<IUserRecordWeekDataResponse | IUserRecordAllDataResponse> {
-  return axios
+  return service
     .get(`${apiRoute.USER_RECORD}?uid=${id}&type=${type}`)
     .then((res) => res.data)
     .catch((err) => {
@@ -316,7 +324,7 @@ export function getUserRecordById(
 export function getUserPlaylistById(
   id: number
 ): Promise<IUserPlaylistResponse> {
-  return axios
+  return service
     .get(`${apiRoute.USER_PLAYLIST}?uid=${id}&limit=${200}`)
     .then((res) => res.data)
     .catch((err) => {
@@ -327,7 +335,7 @@ export function getUserPlaylistById(
 export function getAlbumCommentsById(
   searchParams: IAlbumCommmentsSearchParam
 ): Promise<IAlbumCommentsResponse> {
-  return axios
+  return service
     .get(`${apiRoute.ALBUM_COMMENTS}?${getParamsString(searchParams)}`)
     .then((res) => res.data)
     .catch((err) => {
@@ -336,7 +344,7 @@ export function getAlbumCommentsById(
 }
 
 export function getAlbumDetailById(id: number): Promise<IAlbumDetailResponse> {
-  return axios
+  return service
     .get(`${apiRoute.ALBUM_DETAIL}?id=${id}`)
     .then((res) => res.data)
     .catch((err) => {
@@ -347,7 +355,7 @@ export function getAlbumDetailById(id: number): Promise<IAlbumDetailResponse> {
 export function getSongDetailByIds(
   ids: number[]
 ): Promise<ISongDetailResponse> {
-  return axios
+  return service
     .get(`${apiRoute.SONG_DETAIL}?ids=${ids.join(",")}`)
     .then((res) => res.data)
     .catch((err) => {
@@ -356,7 +364,7 @@ export function getSongDetailByIds(
 }
 
 export function getMusicCommentsById(searchParams: IMusicCommentsSearchParam) {
-  return axios
+  return service
     .get(`${apiRoute.COMMENT_MUSIC}?${getParamsString(searchParams)}`)
     .then((res) => res.data)
     .catch((err) => {
@@ -365,7 +373,7 @@ export function getMusicCommentsById(searchParams: IMusicCommentsSearchParam) {
 }
 
 export function getMusicLyricById(id: number): Promise<IMusicLyricResponse> {
-  return axios
+  return service
     .get(`${apiRoute.MUSIC_LYRIC}?id=${id}`)
     .then((res) => res.data)
     .catch((err) => {
@@ -376,7 +384,7 @@ export function getMusicLyricById(id: number): Promise<IMusicLyricResponse> {
 export function getSimiPlaylistById(
   id: number
 ): Promise<ISimiPlaylistResponse> {
-  return axios
+  return service
     .get(`${apiRoute.SIMI_PLAYLIST}?id=${id}`)
     .then((res) => res.data)
     .catch((err) => {
@@ -385,8 +393,58 @@ export function getSimiPlaylistById(
 }
 
 export function getSimiMusicById(id: number): Promise<ISimiMusicResponse> {
-  return axios
+  return service
     .get(`${apiRoute.SIMI_MUSIC}?id=${id}`)
+    .then((res) => res.data)
+    .catch((err) => {
+      throw new Error(err);
+    });
+}
+
+export function getLoginQrkey(): Promise<ILoginQrKeyResponse> {
+  return service
+    .get(`${apiRoute.LOGIN_QR_KEY}?timestamp=${new Date().getTime()}`)
+    .then((res) => res.data)
+    .catch((err) => {
+      throw new Error(err);
+    });
+}
+
+export function loginQrCreate(key: string): Promise<ILoginQrCreateResponse> {
+  return service
+    .get(
+      `${
+        apiRoute.LOGIN_QR_CREATE
+      }?key=${key}&qrimg=true&timestamp=${new Date().getTime()}`
+    )
+    .then((res) => res.data)
+    .catch((err) => {
+      throw new Error(err);
+    });
+}
+
+export function loginQrCheck(key: string): Promise<ILoginQrCheckResponse> {
+  return service
+    .get(
+      `${apiRoute.LOGIN_QR_CHECK}?key=${key}&timestamp=${new Date().getTime()}`
+    )
+    .then((res) => res.data)
+    .catch((err) => {
+      throw new Error(err);
+    });
+}
+
+export function getUserAccount(): Promise<IUserAccountResponse> {
+  return service
+    .get(`${apiRoute.USER_ACCOUNT}`)
+    .then((res) => res.data)
+    .catch((err) => {
+      throw new Error(err);
+    });
+}
+export function getUserSubcount() {
+  return service
+    .get(`${apiRoute.USER_SUBCOUNT}`)
     .then((res) => res.data)
     .catch((err) => {
       throw new Error(err);

@@ -8,7 +8,6 @@ import "./index.scss";
 
 function Top5Artists() {
   const { data } = useQuery("artists", getTopArtists);
-  console.log(data);
   return (
     <div className="top5-artists-container">
       <div className="title-field">
