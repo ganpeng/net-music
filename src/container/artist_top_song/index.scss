@@ -8,6 +8,9 @@
       &:nth-of-type(odd) {
         background-color: #f7f7f7;
       }
+      &:nth-of-type(even) {
+        background-color: transparent;
+      }
       .song-index {
         text-align: center;
         width: 68px;

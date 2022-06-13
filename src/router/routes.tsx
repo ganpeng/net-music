@@ -36,6 +36,11 @@ const UserSongsRank = lazy(
 );
 // Song
 const SongDetail = lazy(() => import("../page/song_detail/SongDetail"));
+// my_music
+const MyMusic = lazy(() => import("../page/my_music/MyMusic"));
+// my_follow
+const MyFollow = lazy(() => import("../page/my_follow/MyFollow"));
+
 // 实现懒加载的用Suspense包裹 定义函数
 const lazyLoad = (children: ReactNode): ReactNode => {
   return <Suspense fallback={<></>}>{children}</Suspense>;
@@ -130,6 +135,14 @@ const routes: RouteObject[] = [
       {
         path: "/user/songs/rank",
         element: lazyLoad(<UserSongsRank />),
+      },
+      {
+        path: "/my-music",
+        element: lazyLoad(<MyMusic />),
+      },
+      {
+        path: "/my-follow",
+        element: lazyLoad(<MyFollow />),
       },
     ],
   },

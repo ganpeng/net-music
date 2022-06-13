@@ -17,26 +17,32 @@ export const QUERY_CLIENT_OPTIONS = {
 export const DEFAULT_NAV_BAR_LIST: INavBar[] = [
   {
     text: "发现音乐",
+    path: "/",
     isActive: true,
   },
   {
     text: "我的音乐",
+    path: "/my-music",
     isActive: false,
   },
   {
     text: "关注",
+    path: "/my-follow",
     isActive: false,
   },
   {
     text: "商城",
+    path: "/aaa",
     isActive: false,
   },
   {
     text: "音乐人",
+    path: "/bbb",
     isActive: false,
   },
   {
     text: "下载客户端",
+    path: "/ccc",
     isActive: false,
     isLast: true,
   },

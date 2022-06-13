@@ -121,6 +121,7 @@
                 background-repeat: no-repeat;
                 background-position: -267px -205px;
                 transform: scale(0.8);
+                cursor: pointer;
                 // margin-right: 10px;
                 &:hover {
                   background-position: -267px -235px;
@@ -133,6 +134,7 @@
                 background-repeat: no-repeat;
                 background-position: -300px -205px;
                 transform: scale(0.8);
+                cursor: pointer;
                 &:hover {
                   background-position: -300px -235px;
                 }
@@ -140,6 +142,7 @@
             }
             &:hover {
               .track-name {
+                width: 96px;
                 text-decoration: underline;
               }
               .control-field {

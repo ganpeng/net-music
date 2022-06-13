@@ -3,6 +3,7 @@ import React from "react";
 import { useQueries, useQuery } from "react-query";
 import { Link } from "react-router-dom";
 import { SectionHeader } from "../../components";
+import { useActionTracks } from "../../hooks/useActionTracks";
 import { useGetToplistSongsUrl } from "../../hooks/useGetToplistSongsUrl";
 import { getBoardList, getPlaylistDetail } from "../../service";
 import { linkToSongDetailPage, linkToToplistPage } from "../../utils/link";
@@ -29,6 +30,7 @@ function BoardList() {
   };
 
   const { getSongsUrls } = useGetToplistSongsUrl();
+  const { addSongToTracks } = useActionTracks();
 
   return (
     <div className="board-list-container">
@@ -77,7 +79,10 @@ function BoardList() {
                           </Link>
                         </p>
                         <div className="control-field">
-                          <div className="play-btn"></div>
+                          <div
+                            className="play-btn"
+                            onClick={() => addSongToTracks(track)}
+                          ></div>
                           <div className="save-btn"></div>
                           <div className="add-to-playlist-btn"></div>
                         </div>

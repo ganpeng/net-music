@@ -1,68 +1,67 @@
-import { cloneDeep } from "lodash";
-import React, { useState } from "react";
+import React, { useMemo } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import {
   DEFAULT_NAV_BAR_LIST,
   DEFAULT_SUB_NAV_BAR_LIST,
 } from "../../constants";
+import { INavBar } from "../../constants/type";
 import "./index.scss";
 
 export default function PageHeader() {
   const navigator = useNavigate();
   const location = useLocation();
-  const [navBarList, setNavBarList] = useState(cloneDeep(DEFAULT_NAV_BAR_LIST));
-  const [subNavList, setSubNavList] = useState(
-    cloneDeep(DEFAULT_SUB_NAV_BAR_LIST)
-  );
 
-  const handleNavBarClick = (index: number) => {
-    const _navBarList = navBarList.map((navBar, _index) => {
-      if (index === _index) {
-        navBar.isActive = true;
-      } else {
-        navBar.isActive = false;
-      }
-      return navBar;
-    });
-    setNavBarList(_navBarList);
-    if (index === 0) {
-      setSubNavList(cloneDeep(DEFAULT_SUB_NAV_BAR_LIST));
-    }
+  const handleNavBarClick = (navBar: INavBar) => {
+    navigator(navBar.path || "/");
   };
-
   const handleSubNavBarClick = (path: string) => {
     navigator(path);
-    // const _subNavbarList = subNavList.map((subNavBar, _index) => {
-    //   if (index === _index) {
-    //     subNavBar.isActive = true;
-    //   } else {
-    //     subNavBar.isActive = false;
-    //   }
-    //   return subNavBar;
-    // });
-    // setSubNavList(_subNavbarList);
   };
-
-  const navBarActiveIndex = navBarList.findIndex((navBar) => navBar.isActive);
-
+  const isActiveNav = useMemo(() => {
+    return (path: string | undefined) => {
+      if (path === "/") {
+        if (
+          location.pathname !== "/my-music" &&
+          location.pathname !== "/my-follow"
+        ) {
+          console.log(path);
+          return true;
+        } else {
+          return false;
+        }
+      } else if (path === "/my-music" || path === "/my-follow") {
+        console.log("aaaaa");
+        console.log(path);
+        console.log("aaaaa");
+        return location.pathname === path;
+      } else {
+        return false;
+      }
+    };
+  }, [location.pathname]);
+  const isDiscovery = useMemo(() => {
+    return (
+      location.pathname !== "/my-music" && location.pathname !== "/my-follow"
+    );
+  }, [location.pathname]);
   return (
     <>
       <div className="page-header-top">
         <div className="top-nav">
           <div className="logo" onClick={() => navigator("/")}></div>
           <ul className="nav-list">
-            {navBarList.map((navBar, index) => {
+            {DEFAULT_NAV_BAR_LIST.map((navBar, index) => {
               return (
                 <li
-                  className={`nav-item ${navBar.isActive ? "active" : ""} ${
-                    navBar.isLast ? "download-btn" : ""
-                  }`}
+                  className={`nav-item ${
+                    isActiveNav(navBar.path) ? "active" : ""
+                  } ${navBar.isLast ? "download-btn" : ""}`}
                   key={index}
-                  onClick={() => handleNavBarClick(index)}
+                  onClick={() => handleNavBarClick(navBar)}
                 >
                   {navBar.text}
                   {navBar.isLast && <span className="hot">HOT</span>}
-                  {navBarActiveIndex === index && (
+                  {isActiveNav(navBar.path) && (
                     <span className="triangle"></span>
                   )}
                 </li>
@@ -71,11 +70,11 @@ export default function PageHeader() {
           </ul>
         </div>
       </div>
-      {navBarActiveIndex === 0 && (
+      {isDiscovery && (
         <div className="bottom-sub-nav">
           <div className="sub-nav-list-wrapper">
             <ul className="sub-nav-list">
-              {subNavList.map((subNav, index) => {
+              {DEFAULT_SUB_NAV_BAR_LIST.map((subNav, index) => {
                 return (
                   <li
                     className={`sub-nav-item ${
