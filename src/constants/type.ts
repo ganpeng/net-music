@@ -360,6 +360,8 @@ export interface IUserDetailResponse {
     backgroundUrl: string;
     followeds: number;
     follows: number;
+    followed: boolean;
+    followMe: boolean;
     artistId: number;
     eventCount: number;
     playlistBeSubscribedCount: number;
@@ -376,6 +378,7 @@ export interface IUser {
   gender: number;
   followeds: number;
   follows: number;
+  followed: boolean;
   vipType: number;
   signature: string;
   eventCount: number;

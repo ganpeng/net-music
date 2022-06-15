@@ -95,6 +95,52 @@
               background-position: -80px -720px;
             }
           }
+          .sub-both-btn {
+            width: 81px;
+            height: 31px;
+            line-height: 31px;
+            padding-left: 25px;
+            margin-left: 15px;
+            color: #666;
+            background-position: 0 -955px;
+            background-image: url("../../assets/images/button.png");
+            background-repeat: no-repeat;
+            cursor: pointer;
+            &::after {
+              content: "相互关注";
+            }
+            &:hover {
+              background-position: -68px -990px;
+              text-align: center;
+              padding-left: 0;
+              &::after {
+                content: "取消关注";
+              }
+            }
+          }
+          .subed-btn {
+            width: 70px;
+            height: 31px;
+            line-height: 31px;
+            padding-left: 25px;
+            margin-left: 15px;
+            color: #666;
+            background-position: 0 -919px;
+            background-image: url("../../assets/images/button.png");
+            background-repeat: no-repeat;
+            cursor: pointer;
+            &::after {
+              content: "已关注";
+            }
+            &:hover {
+              background-position: 0 -760px;
+              text-align: center;
+              padding-left: 0;
+              &::after {
+                content: "取消关注";
+              }
+            }
+          }
         }
         .link-to-artist-page-btn {
           padding: 0 5px 0 0;

@@ -1,16 +1,25 @@
-import React, { useMemo } from "react";
+import React, { useContext, useMemo } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import {
   DEFAULT_NAV_BAR_LIST,
   DEFAULT_SUB_NAV_BAR_LIST,
 } from "../../constants";
 import { INavBar } from "../../constants/type";
+import { TracksContext } from "../../context";
+import { useLogin } from "../../hooks/useLogin";
+import AuthedMenu from "../authed_menu/AuthedMenu";
 import "./index.scss";
 
 export default function PageHeader() {
+  const tracksContext = useContext(TracksContext);
   const navigator = useNavigate();
   const location = useLocation();
+  const { loginInit } = useLogin();
 
+  const loginHandler = () => {
+    tracksContext?.setLoginVisible(true);
+    loginInit();
+  };
   const handleNavBarClick = (navBar: INavBar) => {
     navigator(navBar.path || "/");
   };
@@ -44,26 +53,40 @@ export default function PageHeader() {
     <>
       <div className="page-header-top">
         <div className="top-nav">
-          <div className="logo" onClick={() => navigator("/")}></div>
-          <ul className="nav-list">
-            {DEFAULT_NAV_BAR_LIST.map((navBar, index) => {
-              return (
-                <li
-                  className={`nav-item ${
-                    isActiveNav(navBar.path) ? "active" : ""
-                  } ${navBar.isLast ? "download-btn" : ""}`}
-                  key={index}
-                  onClick={() => handleNavBarClick(navBar)}
-                >
-                  {navBar.text}
-                  {navBar.isLast && <span className="hot">HOT</span>}
-                  {isActiveNav(navBar.path) && (
-                    <span className="triangle"></span>
-                  )}
-                </li>
-              );
-            })}
-          </ul>
+          <div className="left-field">
+            <div className="logo" onClick={() => navigator("/")}></div>
+            <ul className="nav-list">
+              {DEFAULT_NAV_BAR_LIST.map((navBar, index) => {
+                return (
+                  <li
+                    className={`nav-item ${
+                      isActiveNav(navBar.path) ? "active" : ""
+                    } ${navBar.isLast ? "download-btn" : ""}`}
+                    key={index}
+                    onClick={() => handleNavBarClick(navBar)}
+                  >
+                    {navBar.text}
+                    {navBar.isLast && <span className="hot">HOT</span>}
+                    {isActiveNav(navBar.path) && (
+                      <span className="triangle"></span>
+                    )}
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+          <div className="right-field">
+            {tracksContext?.cookie ? (
+              <AuthedMenu></AuthedMenu>
+            ) : (
+              <span
+                className="login-btn text-decoration"
+                onClick={loginHandler}
+              >
+                登录
+              </span>
+            )}
+          </div>
         </div>
       </div>
       {isDiscovery && (

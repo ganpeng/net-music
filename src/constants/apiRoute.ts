@@ -438,6 +438,24 @@ export const USER_ACCOUNT = `${apiRoot}/user/account`;
   调用例子 : /user/subcount
  */
 export const USER_SUBCOUNT = `${apiRoot}/user/subcount`;
+/***
+ * 退出登录
+  说明 : 调用此接口 , 可退出登录
+  调用例子 : /logout
+ *
+ */
+export const LOGOUT = `${apiRoot}/logout`;
+/***
+ * 关注/取消关注用户
+  说明 : 登录后调用此接口 , 传入用户 id, 和操作 t,可关注/取消关注用户
+  必选参数 :
+  id : 用户 id
+  t : 1为关注,其他为取消关注
+  接口地址 : /follow
+  调用例子 : /follow?id=32953014&t=1
+ *
+ */
+export const FOLLOW_USER = `${apiRoot}/follow`;
 
 const apiRoute: { [propName: string]: string } = {
   BANNER_LIST,
@@ -488,6 +506,8 @@ const apiRoute: { [propName: string]: string } = {
   LOGIN_QR_CHECK,
   USER_ACCOUNT,
   USER_SUBCOUNT,
+  LOGOUT,
+  FOLLOW_USER,
 };
 
 export default apiRoute;

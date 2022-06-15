@@ -31,3 +31,4 @@ export { default as ClientDownloadWiki } from "./client_download_wiki/ClientDown
 export { default as Login } from "./login/Login";
 export { default as HomeLogin } from "./home_login/HomeLogin";
 export { default as HomeUserinfo } from "./home_userinfo/HomeUserinfo";
+export { default as AuthedMenu } from "./authed_menu/AuthedMenu";

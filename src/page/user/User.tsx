@@ -1,8 +1,9 @@
 import { get } from "lodash";
-import React from "react";
+import React, { useContext } from "react";
 import { useQuery } from "react-query";
 import { Link, Outlet, useSearchParams } from "react-router-dom";
-import { getUserDetailById } from "../../service";
+import { TracksContext } from "../../context";
+import { followById, getUserDetailById } from "../../service";
 import {
   linkToArtistDetailPage,
   linkToUserEventPage,
@@ -21,9 +22,10 @@ export type ContextType = {
 };
 
 function User() {
+  const tracksContext = useContext(TracksContext);
   const [searchParams] = useSearchParams();
   const id = Number(searchParams.get("id"));
-  const { data: userDetailData } = useQuery(["user_detail", id], () =>
+  const { data: userDetailData, refetch } = useQuery(["user_detail", id], () =>
     getUserDetailById(id)
   );
 
@@ -35,6 +37,14 @@ function User() {
     peopleCanSeeMyPlayRecord: userDetailData?.peopleCanSeeMyPlayRecord || false,
     nickname: userDetailData?.profile.nickname || "",
   };
+
+  const followHandler = async (t: number) => {
+    let res = await followById(id, t);
+    if (res.code === 201 || res.code === 200) {
+      refetch();
+    }
+  };
+  console.log(userDetailData);
 
   return (
     <div className="user-container content-w">
@@ -55,8 +65,34 @@ function User() {
                   userDetailData?.profile.gender === 1 ? "male" : "female"
                 }`}
               ></span>
-              <div className="send-message-btn">发私信</div>
-              <div className="sub-btn">关注</div>
+              {tracksContext?.userAccount?.profile?.userId !==
+                userDetailData?.profile.userId && (
+                <>
+                  {(userDetailData?.profile.followed ||
+                    userDetailData?.profile.followMe) && (
+                    <div className="send-message-btn">发私信</div>
+                  )}
+                  {userDetailData?.profile.followed &&
+                    !userDetailData?.profile.followMe && (
+                      <div
+                        className="subed-btn"
+                        onClick={() => followHandler(2)}
+                      ></div>
+                    )}
+                  {!userDetailData?.profile.followed && (
+                    <div className="sub-btn" onClick={() => followHandler(1)}>
+                      关注
+                    </div>
+                  )}
+                  {userDetailData?.profile.followed &&
+                    userDetailData.profile.followMe && (
+                      <div
+                        className="sub-both-btn"
+                        onClick={() => followHandler(2)}
+                      ></div>
+                    )}
+                </>
+              )}
             </div>
             {userDetailData?.profile.artistId && (
               <div className="link-to-artist-page-btn">

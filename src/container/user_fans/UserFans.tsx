@@ -50,7 +50,7 @@ function UserFans() {
         hasTitleIcon={false}
         moreLink=""
       ></SectionHeader>
-      <Follow follows={followedsData?.followeds || []}></Follow>
+      <Follow follows={followedsData?.followeds || []} isFans={true}></Follow>
       {data.followeds > FOLLOW_LIST_LIMIT && (
         <Pagination
           total={data.followeds || 0}

@@ -93,6 +93,17 @@
         background-position: -80px -720px;
       }
     }
+    .send-message-btn {
+      width: 75px;
+      height: 31px;
+      line-height: 31px;
+      padding-left: 30px;
+      color: #333;
+      cursor: pointer;
+      background-position: 0 -810px;
+      background-image: url("../../assets/images/button.png");
+      background-repeat: no-repeat;
+    }
   }
   .follow-item:nth-of-type(4n - 1),
   .follow-item:nth-of-type(4n) {

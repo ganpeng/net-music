@@ -450,3 +450,21 @@ export function getUserSubcount() {
       throw new Error(err);
     });
 }
+
+export function logout(): Promise<{ code: number }> {
+  return service
+    .get(`${apiRoute.LOGOUT}`)
+    .then((res) => res.data)
+    .catch((err) => {
+      throw new Error(err);
+    });
+}
+
+export function followById(id: number, t: number) {
+  return service
+    .get(`${apiRoute.FOLLOW_USER}?id=${id}&t=${t}`)
+    .then((res) => res.data)
+    .catch((err) => {
+      throw new Error(err);
+    });
+}

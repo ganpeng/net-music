@@ -11,6 +11,7 @@ import "./index.scss";
 
 type FollowPropsType = {
   follows: IUser[];
+  isFans: boolean;
 };
 
 function Follow(props: FollowPropsType) {
@@ -67,7 +68,11 @@ function Follow(props: FollowPropsType) {
                 {follow.signature}
               </div>
             </div>
-            <div className="sub-btn">关注</div>
+            {follow.followed ? (
+              <div className="send-message-btn">发私信</div>
+            ) : (
+              <div className="sub-btn">关注</div>
+            )}
           </li>
         );
       })}

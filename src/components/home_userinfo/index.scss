@@ -1,4 +1,6 @@
 .home-userinfo-container {
+  display: flex;
+  flex-direction: column;
   width: 249px;
   height: 185px;
   padding-top: 20px;
@@ -6,6 +8,7 @@
   background-repeat: no-repeat;
   background-position: 0 -270px;
   .top-info {
+    display: flex;
     padding: 0 20px;
     .avatar-url {
       width: 80px;
@@ -13,6 +16,102 @@
       padding: 2px;
       background: #fff;
       border: 1px solid #dadada;
+    }
+    .right-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      margin-left: 18px;
+      .name {
+        font-weight: bold;
+        margin: 6px 0;
+        @include ellipsis();
+      }
+      .level {
+        display: flex;
+        align-items: center;
+        height: 17px;
+        overflow: hidden;
+        padding-left: 25px;
+        color: #999;
+        font-weight: bold;
+        font-style: italic;
+        background-position: -130px -64px;
+        background-image: url("../../assets/images/icon2.png");
+        background-repeat: no-repeat;
+        i {
+          display: inline-block;
+          width: 8px;
+          height: 17px;
+          background-position: -192px -64px;
+          background-image: url("../../assets/images/icon2.png");
+          background-repeat: no-repeat;
+        }
+      }
+      .sign-btn {
+        display: inline-block;
+        height: 31px;
+        line-height: 31px;
+        overflow: hidden;
+        vertical-align: top;
+        text-align: center;
+        padding: 0 5px 0 0;
+        white-space: nowrap;
+        cursor: default;
+        margin-top: 5px;
+        i {
+          padding: 0 15px 0 20px;
+          pointer-events: none;
+          display: inline-block;
+          height: 31px;
+          line-height: 31px;
+          overflow: hidden;
+          vertical-align: top;
+          text-align: center;
+        }
+        &.active {
+          color: #bebebe;
+          background-position: right -346px;
+          background-image: url("../../assets/images/button2.png");
+          background-repeat: no-repeat;
+          i {
+            color: #bebebe;
+            background-position: 0 -305px;
+            background-image: url("../../assets/images/button2.png");
+            background-repeat: no-repeat;
+          }
+        }
+      }
+    }
+  }
+  .bottom-info {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    padding: 0 25px;
+    .item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex: 1;
+      cursor: pointer;
+      a {
+        color: #666;
+        &:hover {
+          color: $mainLinkColor;
+        }
+      }
+      .label {
+      }
+      .count {
+        font-size: 20px;
+      }
+    }
+    .v-line {
+      height: 40px;
+      background-color: #e4e4e4;
+      width: 1px;
     }
   }
 }
