@@ -7,6 +7,7 @@ import {
 import { INavBar } from "../../constants/type";
 import { TracksContext } from "../../context";
 import { useLogin } from "../../hooks/useLogin";
+import { blankLink } from "../../utils";
 import AuthedMenu from "../authed_menu/AuthedMenu";
 import "./index.scss";
 
@@ -21,7 +22,11 @@ export default function PageHeader() {
     loginInit();
   };
   const handleNavBarClick = (navBar: INavBar) => {
-    navigator(navBar.path || "/");
+    if (/^https:/.test(navBar.path || "")) {
+      blankLink(navBar.path || "");
+    } else {
+      navigator(navBar.path || "/");
+    }
   };
   const handleSubNavBarClick = (path: string) => {
     navigator(path);

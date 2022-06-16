@@ -1,4 +1,4 @@
-import { floor, get, isArray, isUndefined, pickBy, set } from "lodash";
+import { floor, isArray, isUndefined, pickBy } from "lodash";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import "dayjs/locale/zh-cn"; // 导入本地化语言
@@ -155,4 +155,11 @@ export function stringify(obj: { [propName: string]: any }) {
   }
 
   return pairs.join("&");
+}
+
+export function blankLink(path: string) {
+  const oa = document.createElement("a");
+  oa.href = path;
+  oa.target = "_blank";
+  oa.click();
 }

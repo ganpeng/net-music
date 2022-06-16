@@ -31,6 +31,7 @@ import {
   INewAlbumResponse,
   INewestAlbumResponse,
   IPlayListDetailResponse,
+  ISigninProgressResponse,
   ISimiMusicResponse,
   ISimiPlaylistResponse,
   ISongDetailResponse,
@@ -463,6 +464,15 @@ export function logout(): Promise<{ code: number }> {
 export function followById(id: number, t: number) {
   return service
     .get(`${apiRoute.FOLLOW_USER}?id=${id}&t=${t}`)
+    .then((res) => res.data)
+    .catch((err) => {
+      throw new Error(err);
+    });
+}
+
+export function getSigninProgress(): Promise<ISigninProgressResponse> {
+  return service
+    .get(`${apiRoute.SIGNIN_PROGRESS}`)
     .then((res) => res.data)
     .catch((err) => {
       throw new Error(err);

@@ -456,6 +456,15 @@ export const LOGOUT = `${apiRoot}/logout`;
  *
  */
 export const FOLLOW_USER = `${apiRoot}/follow`;
+/***
+ * 签到进度
+  说明 : 调用此接口 , 可获得签到进度
+  可选参数 : moduleId : 模块 id，默认为 '1207signin-1207signin'
+  接口地址 : /signin/progress
+  调用例子 : /signin/progress?moduleId=1207signin-1207signin
+ *
+ */
+export const SIGNIN_PROGRESS = `${apiRoot}/signin/progress`;
 
 const apiRoute: { [propName: string]: string } = {
   BANNER_LIST,
@@ -508,6 +517,7 @@ const apiRoute: { [propName: string]: string } = {
   USER_SUBCOUNT,
   LOGOUT,
   FOLLOW_USER,
+  SIGNIN_PROGRESS,
 };
 
 export default apiRoute;

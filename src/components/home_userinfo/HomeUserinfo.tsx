@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
 import { TracksContext } from "../../context";
-import { getUserDetailById } from "../../service";
+import { getSigninProgress, getUserDetailById } from "../../service";
 import {
   linkToUserEventPage,
   linkToUserFansPage,
@@ -20,6 +20,12 @@ function HomeUserinfo() {
       enabled: !!tracksContext?.userAccount?.profile.userId,
     }
   );
+  const { data: signinProgressData } = useQuery(
+    "signin_progress",
+    getSigninProgress
+  );
+  console.log(signinProgressData);
+
   console.log(userDetailData);
   return (
     <div className="home-userinfo-container">
@@ -42,7 +48,11 @@ function HomeUserinfo() {
             <i></i>
           </div>
           <div className="sign-btn active">
-            <i>已签到</i>
+            <i>
+              {signinProgressData?.data.today.todaySignedIn
+                ? "已签到"
+                : "未签到"}
+            </i>
           </div>
         </div>
       </div>

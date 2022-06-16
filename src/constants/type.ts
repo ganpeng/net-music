@@ -600,3 +600,16 @@ export interface IUserAccount {
 export interface IUserAccountResponse extends IUserAccount {
   code: number;
 }
+
+// signin_progress
+export interface ISigninProgressResponse {
+  code: number;
+  message: string;
+  data: {
+    today: {
+      todaySignedIn: boolean;
+      [propName: string]: any;
+    };
+    [propName: string]: any;
+  };
+}

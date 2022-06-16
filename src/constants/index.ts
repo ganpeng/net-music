@@ -32,17 +32,17 @@ export const DEFAULT_NAV_BAR_LIST: INavBar[] = [
   },
   {
     text: "商城",
-    path: "/aaa",
+    path: "https://music.163.com/store/product",
     isActive: false,
   },
   {
     text: "音乐人",
-    path: "/bbb",
+    path: "https://music.163.com/st/musician",
     isActive: false,
   },
   {
     text: "下载客户端",
-    path: "/ccc",
+    path: "https://music.163.com/#/download",
     isActive: false,
     isLast: true,
   },
