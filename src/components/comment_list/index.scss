@@ -27,9 +27,11 @@
           .name {
             float: left;
             white-space: nowrap;
-            color: #0c73c2;
             margin-right: 5px;
             cursor: pointer;
+            a {
+              color: #0c73c2;
+            }
             &:hover {
               text-decoration: underline;
             }

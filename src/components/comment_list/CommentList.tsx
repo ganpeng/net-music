@@ -1,7 +1,9 @@
 import { take } from "lodash";
 import React from "react";
+import { Link } from "react-router-dom";
 import { IComment } from "../../constants/type";
 import { fromNow } from "../../utils";
+import { linkToUserHomePage } from "../../utils/link";
 import "./index.scss";
 type CommentListPropsType = {
   title: string;
@@ -25,11 +27,20 @@ function CommentList(props: CommentListPropsType) {
               <div
                 className="avatarUrl"
                 style={{ backgroundImage: `url(${comment.user.avatarUrl})` }}
-              ></div>
+              >
+                <Link
+                  className="block-a"
+                  to={linkToUserHomePage(comment.user.userId)}
+                ></Link>
+              </div>
               <div className="content-field">
                 <div className="name-content">
-                  <div className="name">{comment.user.nickname}</div>：
-                  <div className="comment-content">{comment.content}</div>
+                  <div className="name">
+                    <Link to={linkToUserHomePage(comment.user.userId)}>
+                      {comment.user.nickname}
+                    </Link>
+                  </div>
+                  ：<div className="comment-content">{comment.content}</div>
                 </div>
                 <div className="meta-data">
                   <div className="date">{fromNow(comment.time)}</div>
