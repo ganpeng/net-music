@@ -2,7 +2,7 @@ import { get, set } from "lodash";
 import React from "react";
 import { useQuery } from "react-query";
 import { Link, useSearchParams } from "react-router-dom";
-import { ISong, ITrack } from "../../constants/type";
+import { ITrack } from "../../constants/type";
 import { useActionTracks } from "../../hooks/useActionTracks";
 import { getSimiMusicById } from "../../service";
 import { linkToArtistDetailPage, linkToSongDetailPage } from "../../utils/link";
