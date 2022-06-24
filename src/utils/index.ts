@@ -1,4 +1,4 @@
-import { floor, isArray, isUndefined, pickBy } from "lodash";
+import { floor, isArray, isUndefined, pickBy, trimStart } from "lodash";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import "dayjs/locale/zh-cn"; // 导入本地化语言
@@ -45,6 +45,18 @@ export const timeFormatter = (num: number) => {
   return h !== 0
     ? `${h <= 9 ? `0${h}` : h}:${m <= 9 ? `0${m}` : m}:${s <= 9 ? `0${s}` : s}`
     : `${m <= 9 ? `0${m}` : m}:${s <= 9 ? `0${s}` : s}`;
+};
+
+/**
+ * 时间转为秒
+ * @param time 时间(00:00:00)
+ * @returns {string} 时间戳（单位：秒）
+ */
+export const time_to_sec = (time: string) => {
+  const min = Number(trimStart(time.split(":")[0], "0"));
+  const sec = Number(trimStart(time.split(":")[1], "0"));
+
+  return (Number(min * 60) + Number(sec)) * 1000;
 };
 
 export const fromNow = (timeStamp: number) => {

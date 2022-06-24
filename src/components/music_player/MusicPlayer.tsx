@@ -26,7 +26,8 @@ function MusicPlayer() {
   const [currentTime, setCurrentTime] = useState(0);
   const [volumVisible, setVolumVisible] = useState(false);
   const [volume, setVolume] = useState(0.2);
-
+  // 歌词相关
+  const [activeLyricLine, setActiveLyricLine] = useState(0);
   // 播放器dom
   const musicPlayer = useRef<HTMLAudioElement | null>(null);
 
@@ -52,11 +53,6 @@ function MusicPlayer() {
     return index || 0;
   }, [tracksContext]);
 
-  const formatterCurrentTime = useMemo(
-    () => timeFormatter(currentTime * 1000),
-    [currentTime]
-  );
-
   const mousemoveHandler = debounce((e: MouseEvent) => {
     if (isLocked) {
       return false;
@@ -81,7 +77,19 @@ function MusicPlayer() {
   const playingHandler = (e: any) => {};
   const timeUpdateHandler = (e: any) => {
     setCurrentTime(e.target.currentTime);
+    setLyricActiveLine();
   };
+
+  const setLyricActiveLine = () => {
+    const time = parseInt(currentTime + "") * 1000;
+    const index = lyricArrWithTime.findIndex((item) => {
+      const seconds = item.seconds || 0;
+      const duration = item.duration || 0;
+      return time >= seconds && time < seconds + duration;
+    });
+    setActiveLyricLine(index);
+  };
+
   const endedHandler = (e: any) => {
     changeMusic(activeTrackIndex + 1);
   };
@@ -170,6 +178,17 @@ function MusicPlayer() {
       document.removeEventListener("click", documentClickHandler, false);
     };
   }, []);
+
+  // 歌词滚动效果
+  useEffect(() => {
+    const list = document.querySelector(".play-list-content-right");
+    if (list) {
+      list.scrollTo({
+        top: activeLyricLine * 32 - 100,
+        behavior: "smooth",
+      });
+    }
+  }, [activeLyricLine]);
 
   return (
     <div className={`music-player-container ${isVisible ? "is-visible" : ""}`}>
@@ -401,7 +420,7 @@ function MusicPlayer() {
                     <li className="lyric-line" key={index}>
                       <p
                         className={`${
-                          formatterCurrentTime === item.time ? "active" : ""
+                          activeLyricLine === index ? "active" : ""
                         }`}
                       >
                         {item.text}
