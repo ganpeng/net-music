@@ -35,3 +35,6 @@ export { default as AuthedMenu } from "./authed_menu/AuthedMenu";
 
 export { default as MyMusicNoAuth } from "./my_music_no_auth/MyMusicNoAuth";
 export { default as MyFollowNoAuth } from "./my_follow_no_auth/MyFollowNoAuth";
+// ContentLoader
+export { default as Top5ArtistsContentLoader } from "./my_content_loader/Top5ArtistsContentLoader";
+export { default as BannerContentLoader } from "./my_content_loader/BannerContentLoader";

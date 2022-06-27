@@ -75,7 +75,7 @@ function PlaylistDetail() {
         <UserAvatarList
           subscribers={playDetail?.playlist.subscribers}
         ></UserAvatarList>
-        <SectionTitle title="热门歌单"></SectionTitle>
+        {/* <SectionTitle title="热门歌单"></SectionTitle> */}
       </div>
     </div>
   );
