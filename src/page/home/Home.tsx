@@ -9,12 +9,15 @@ import {
   TopAlbum,
 } from "../../container";
 import { TracksContext } from "../../context";
+import { Flex } from "@chakra-ui/react";
 
 export default function Home() {
   const tracksContext = useContext(TracksContext);
   return (
     <div className="home-container">
-      <Banner></Banner>
+      <Flex align="center" justify="center">
+        <Banner></Banner>
+      </Flex>
       <div className="home-content content-w">
         <div className="left-content">
           <HotPlaylist></HotPlaylist>

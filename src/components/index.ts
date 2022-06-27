@@ -32,3 +32,7 @@ export { default as Login } from "./login/Login";
 export { default as HomeLogin } from "./home_login/HomeLogin";
 export { default as HomeUserinfo } from "./home_userinfo/HomeUserinfo";
 export { default as AuthedMenu } from "./authed_menu/AuthedMenu";
+
+// ContentLoader
+export { default as Top5ArtistsContentLoader } from "./my_content_loader/Top5ArtistsContentLoader";
+export { default as BannerContentLoader } from "./my_content_loader/BannerContentLoader";
