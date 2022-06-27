@@ -40,7 +40,7 @@ function ArtistDetail() {
   });
 
   return (
-    <div className="artist-detail-container content-w">
+    <div className="artist-detail-container content-w content-h">
       <div className="left-field">
         <p className="artist-name">{artistDetailData?.data.artist.name}</p>
         <div className="cover-image-container">

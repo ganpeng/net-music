@@ -32,3 +32,6 @@ export { default as Login } from "./login/Login";
 export { default as HomeLogin } from "./home_login/HomeLogin";
 export { default as HomeUserinfo } from "./home_userinfo/HomeUserinfo";
 export { default as AuthedMenu } from "./authed_menu/AuthedMenu";
+
+export { default as MyMusicNoAuth } from "./my_music_no_auth/MyMusicNoAuth";
+export { default as MyFollowNoAuth } from "./my_follow_no_auth/MyFollowNoAuth";

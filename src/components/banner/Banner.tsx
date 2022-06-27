@@ -38,62 +38,68 @@ function Banner() {
     setDelay(3000);
   };
 
-  return isFetching ? (
-    <BannerContentLoader></BannerContentLoader>
-  ) : (
-    <div className="banner-container">
-      <div className="filter-bg-image" style={style}></div>
-      <div className="banner-download-wrapper">
-        <div className="banner-image-list-container">
-          <ul
-            className="banner-list"
-            onMouseOver={carouselMouseOverHandler}
-            onMouseOut={carouselMouseOutHandler}
-          >
-            {data?.banners.map((banner, index) => {
-              return (
-                <li
-                  className="banner-image"
-                  key={index}
-                  style={{
-                    backgroundImage: `url(${banner.imageUrl})`,
-                    transform: `translateX(${(index - activeIndex) * 100}%)`,
-                  }}
-                ></li>
-              );
-            })}
-          </ul>
-          <ul className="pagination-list">
-            {times(bannersLength, (index) => {
-              return (
-                <li
-                  className={`pagination-item ${
-                    activeIndex === index ? "active" : ""
-                  }`}
-                  key={index}
-                  onClick={() => setActiveIndex(index)}
-                ></li>
-              );
-            })}
-          </ul>
+  return (
+    <div className="banner-warpper">
+      {isFetching ? (
+        <BannerContentLoader></BannerContentLoader>
+      ) : (
+        <div className="banner-container">
+          <div className="filter-bg-image" style={style}></div>
+          <div className="banner-download-wrapper">
+            <div className="banner-image-list-container">
+              <ul
+                className="banner-list"
+                onMouseOver={carouselMouseOverHandler}
+                onMouseOut={carouselMouseOutHandler}
+              >
+                {data?.banners.map((banner, index) => {
+                  return (
+                    <li
+                      className="banner-image"
+                      key={index}
+                      style={{
+                        backgroundImage: `url(${banner.imageUrl})`,
+                        transform: `translateX(${
+                          (index - activeIndex) * 100
+                        }%)`,
+                      }}
+                    ></li>
+                  );
+                })}
+              </ul>
+              <ul className="pagination-list">
+                {times(bannersLength, (index) => {
+                  return (
+                    <li
+                      className={`pagination-item ${
+                        activeIndex === index ? "active" : ""
+                      }`}
+                      key={index}
+                      onClick={() => setActiveIndex(index)}
+                    ></li>
+                  );
+                })}
+              </ul>
+            </div>
+            <div className="download-client-container"></div>
+            <div className="banner-btn-container">
+              {activeIndex > 0 && (
+                <div
+                  className="arr arr-left"
+                  onClick={() => carouselChangeHandler(activeIndex - 1)}
+                ></div>
+              )}
+              {activeIndex < bannersLength - 1 && (
+                <div
+                  className="arr arr-right"
+                  onClick={() => carouselChangeHandler(activeIndex + 1)}
+                ></div>
+              )}
+            </div>
+          </div>
+          <div className="mask"></div>
         </div>
-        <div className="download-client-container"></div>
-        <div className="banner-btn-container">
-          {activeIndex > 0 && (
-            <div
-              className="arr arr-left"
-              onClick={() => carouselChangeHandler(activeIndex - 1)}
-            ></div>
-          )}
-          {activeIndex < bannersLength - 1 && (
-            <div
-              className="arr arr-right"
-              onClick={() => carouselChangeHandler(activeIndex + 1)}
-            ></div>
-          )}
-        </div>
-      </div>
-      <div className="mask"></div>
+      )}
     </div>
   );
 }

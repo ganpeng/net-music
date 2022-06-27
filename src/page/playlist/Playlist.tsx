@@ -42,7 +42,7 @@ function Playlist() {
   };
 
   return (
-    <div className="playlist-container content-w">
+    <div className="playlist-container content-w content-h">
       <SectionHeader title={cat} moreLink="" hasTitleIcon={false}>
         <div
           className="selecte-category-btn"

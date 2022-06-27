@@ -1,110 +1,115 @@
-.banner-container {
-  position: relative;
-  @include center();
-  width: 100%;
-  height: 285px;
-  .filter-bg-image {
-    position: absolute;
-    top: 0;
-    left: 0;
+.banner-warpper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .banner-container {
+    position: relative;
+    @include center();
     width: 100%;
-    height: 100%;
-    filter: blur(10px);
-    @include bg-image();
-  }
-  .banner-download-wrapper {
-    position: relative;
-    display: flex;
-    width: $mainContentWidth;
-  }
-  .banner-image-list-container {
-    position: relative;
-    width: 730px;
-    height: 283px;
-    z-index: 3;
-    overflow: hidden;
-    .banner-image {
+    height: 285px;
+    .filter-bg-image {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      text-align: center;
-      transition: transform 200ms;
+      filter: blur(10px);
       @include bg-image();
     }
-    .pagination-list {
-      position: absolute;
-      bottom: 10px;
-      left: 50%;
+    .banner-download-wrapper {
+      position: relative;
       display: flex;
-      transform: translateX(-50%);
-      .pagination-item {
-        width: 10px;
-        height: 10px;
-        border-radius: 10px;
-        background-color: #fff;
-        cursor: pointer;
-        &:hover,
-        &.active {
-          background-color: $mainColor;
+      width: $mainContentWidth;
+    }
+    .banner-image-list-container {
+      position: relative;
+      width: 730px;
+      height: 283px;
+      z-index: 3;
+      overflow: hidden;
+      .banner-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        transition: transform 200ms;
+        @include bg-image();
+      }
+      .pagination-list {
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        display: flex;
+        transform: translateX(-50%);
+        .pagination-item {
+          width: 10px;
+          height: 10px;
+          border-radius: 10px;
+          background-color: #fff;
+          cursor: pointer;
+          &:hover,
+          &.active {
+            background-color: $mainColor;
+          }
+        }
+        .pagination-item + .pagination-item {
+          margin-left: 20px;
         }
       }
-      .pagination-item + .pagination-item {
-        margin-left: 20px;
+    }
+  }
+  .download-client-container {
+    position: relative;
+    width: 252px;
+    height: 283px;
+    background-image: url("../../assets/images/download_client.png");
+    cursor: pointer;
+    background-position: 0px 0px;
+    background-repeat: no-repeat;
+    z-index: 4;
+  }
+  .banner-btn-container {
+    position: absolute;
+    width: 100%;
+    height: 283px;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    .arr {
+      position: absolute;
+      width: 37px;
+      height: 63px;
+      @include bg-image();
+      cursor: pointer;
+      z-index: 5;
+      &:hover {
+        background-color: #333;
+        opacity: 0.3;
+      }
+      &.arr-left {
+        top: 50%;
+        left: -60px;
+        transform: translateY(-50%);
+        background-image: url("../../assets/images/arrl.png");
+      }
+      &.arr-right {
+        top: 50%;
+        right: -60px;
+        transform: translateY(-50%);
+        background-image: url("../../assets/images/arrr.png");
       }
     }
-  }
-}
-.download-client-container {
-  position: relative;
-  width: 252px;
-  height: 283px;
-  background-image: url("../../assets/images/download_client.png");
-  cursor: pointer;
-  background-position: 0px 0px;
-  background-repeat: no-repeat;
-  z-index: 4;
-}
-.banner-btn-container {
-  position: absolute;
-  width: 100%;
-  height: 283px;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 2;
-  .arr {
-    position: absolute;
-    width: 37px;
-    height: 63px;
-    @include bg-image();
-    cursor: pointer;
-    z-index: 5;
-    &:hover {
-      background-color: #333;
-      opacity: 0.3;
+    .mask {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.3);
+      z-index: 2;
     }
-    &.arr-left {
-      top: 50%;
-      left: -60px;
-      transform: translateY(-50%);
-      background-image: url("../../assets/images/arrl.png");
-    }
-    &.arr-right {
-      top: 50%;
-      right: -60px;
-      transform: translateY(-50%);
-      background-image: url("../../assets/images/arrr.png");
-    }
-  }
-  .mask {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.3);
-    z-index: 2;
   }
 }

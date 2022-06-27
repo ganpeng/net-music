@@ -1,0 +1,24 @@
+.my-music-no-auth-container {
+  position: absolute;
+  top: 104px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 807px;
+  height: 268px;
+  margin: 0 auto;
+  background-position: 0 0;
+  background-image: url("../../assets/images/mymusic.png");
+  background-repeat: no-repeat;
+  .login-btn {
+    width: 167px;
+    height: 45px;
+    margin: 204px 0 0 482px;
+    background-position: 0 9999px;
+    text-indent: -9999px;
+    background-image: url("../../assets/images/mymusic.png");
+    background-repeat: no-repeat;
+    &:hover {
+      background-position: 0 -280px;
+    }
+  }
+}

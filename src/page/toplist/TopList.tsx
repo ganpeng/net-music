@@ -56,7 +56,7 @@ function TopList() {
   };
 
   return (
-    <div className="toplist-container content-w">
+    <div className="toplist-container content-w content-h">
       <div className="left-side-field">
         <div className="net-mmusic-toplist-container">
           <h2 className="title">云音乐特色榜</h2>

@@ -95,7 +95,7 @@ function ArtistList() {
   );
 
   return (
-    <div className="artist-list-container content-w">
+    <div className="artist-list-container content-w content-h">
       <div className="left-side-field">
         <div className="artist-category-list">
           {ARTIST_CATEGORY_LIST.map((cat) => {

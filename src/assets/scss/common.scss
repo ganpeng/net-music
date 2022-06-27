@@ -27,6 +27,10 @@ a {
   width: $mainContentWidth;
   margin: 0 auto;
 }
+.content-h {
+  height: 100%;
+  min-height: 700px;
+}
 
 .text-decoration {
   &:hover {
