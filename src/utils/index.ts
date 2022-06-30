@@ -175,3 +175,28 @@ export function blankLink(path: string) {
   oa.target = "_blank";
   oa.click();
 }
+
+// 视频全屏方法
+//进入全屏
+export function FullScreen() {
+  let ele: any = document.querySelector(".video-player");
+  if (ele.requestFullscreen) {
+    ele.requestFullscreen();
+  } else if (ele.mozRequestFullScreen) {
+    ele.mozRequestFullScreen();
+  } else if (ele.webkitRequestFullScreen) {
+    ele.webkitRequestFullScreen();
+  }
+}
+//退出全屏
+export function exitFullscreen() {
+  let de: any = document;
+  // let de: any = document.querySelector(".video-player");
+  if (de.exitFullscreen) {
+    de.exitFullscreen();
+  } else if (de.mozCancelFullScreen) {
+    de.mozCancelFullScreen();
+  } else if (de.webkitCancelFullScreen) {
+    de.webkitCancelFullScreen();
+  }
+}

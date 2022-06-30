@@ -36,6 +36,8 @@ const UserSongsRank = lazy(
 );
 // Song
 const SongDetail = lazy(() => import("../page/song_detail/SongDetail"));
+// mv
+const MvDetail = lazy(() => import("../page/mv_detail/MvDetail"));
 // my_music
 const MyMusic = lazy(() => import("../page/my_music/MyMusic"));
 // my_follow
@@ -83,6 +85,10 @@ const routes: RouteObject[] = [
       {
         path: "playlist-detail",
         element: lazyLoad(<PlaylistDetail />),
+      },
+      {
+        path: "mv-detail",
+        element: lazyLoad(<MvDetail />),
       },
       {
         path: "artist",
