@@ -117,6 +117,18 @@
             color: #aeaeae;
           }
         }
+        .mv-icon {
+          width: 23px;
+          height: 17px;
+          margin: 0 10px;
+          cursor: pointer;
+          background-position: 0 -151px;
+          background-image: url("../../assets/images/table.png");
+          background-repeat: no-repeat;
+          &:hover {
+            background-position: -30px -151px;
+          }
+        }
       }
       .duration {
         width: 90px;

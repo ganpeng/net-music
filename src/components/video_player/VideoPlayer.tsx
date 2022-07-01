@@ -3,14 +3,16 @@ import screenfull from "screenfull";
 import { VideoSlider, VolumeSlider } from "..";
 import { timeFormatter } from "../../utils";
 import "./index.scss";
-const url = require("../../assets/images/a.mp4");
 
-function VideoPlayer() {
+type VideoPlayerPropsType = {
+  url: string;
+};
+
+function VideoPlayer(props: VideoPlayerPropsType) {
   // 视频播放相关
   const [isPlaying, setIsPlaying] = useState(false);
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
-  const [volumVisible, setVolumVisible] = useState(false);
   const [volume, setVolume] = useState(0.2);
   const [isScreenfull, setIsScreenfull] = useState(false);
 
@@ -90,14 +92,19 @@ function VideoPlayer() {
       <div className={`video-player ${isScreenfull ? "is-screenfull" : ""}`}>
         <video
           ref={player}
-          src={url}
+          src={props.url}
           onTimeUpdate={timeUpdateHandler}
           onPlay={playHandler}
           onPause={pauseHandler}
           onPlaying={playingHandler}
           onEnded={endedHandler}
+          onClick={togglePlayPause}
         ></video>
-        <div className="controls-bar">
+        <div
+          className={`big-play-btn ${!isPlaying ? "visible" : ""}`}
+          onClick={togglePlayPause}
+        ></div>
+        <div className={`controls-bar visible`}>
           <div className="play-pause-btn" onClick={togglePlayPause}>
             {isPlaying ? (
               <div className="pause-btn"></div>
@@ -119,13 +126,8 @@ function VideoPlayer() {
           </div>
           <div className="total-time">{timeFormatter(duration * 1000)}</div>
           <div className="volume-btn-container">
-            <div
-              className="volume-btn"
-              onClick={(e) => setVolumVisible(!volumVisible)}
-            ></div>
-            <div
-              className={`volume-dialog ${volumVisible ? "is-visible" : ""}`}
-            >
+            <div className="volume-btn"></div>
+            <div className={`volume-dialog`}>
               <VolumeSlider
                 current={volume * 100}
                 total={100}

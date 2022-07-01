@@ -5,7 +5,11 @@ import { IPlayListDetail } from "../../constants/type";
 import { TracksContext } from "../../context";
 import { useActionTracks } from "../../hooks/useActionTracks";
 import { timeFormatter } from "../../utils";
-import { linkToArtistDetailPage, linkToSongDetailPage } from "../../utils/link";
+import {
+  linkToArtistDetailPage,
+  linkToMvDetailPage,
+  linkToSongDetailPage,
+} from "../../utils/link";
 import "./index.scss";
 
 type SonglistPropsType = {
@@ -71,12 +75,25 @@ function Songlist(props: SonglistPropsType) {
                       {track.name}
                     </Link>
                   </span>
-                  {(get(track, "tns") || [].length > 0) && (
+                  {(get(track, "tns") || []).length > 0 && (
                     <span className="tns">
                       &nbsp;-&nbsp; ({`${get(track, "tns") || [].join(",")}`})
                     </span>
                   )}
+                  {(get(track, "alia") || []).length > 0 && (
+                    <span className="tns">
+                      &nbsp;-&nbsp; ({`${get(track, "alia") || [].join(",")}`})
+                    </span>
+                  )}
                 </div>
+                {track.mv !== 0 && (
+                  <div className="mv-icon">
+                    <Link
+                      className="block-a"
+                      to={linkToMvDetailPage(track.mv)}
+                    ></Link>
+                  </div>
+                )}
               </div>
               <div className="duration">{timeFormatter(track.dt)}</div>
               <div

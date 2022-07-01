@@ -48,3 +48,8 @@ export const linkToSongDetailPage = (id: number | undefined) => {
 export const linkToToplistPage = (id: number | undefined) => {
   return id ? `/toplist?id=${id}` : "";
 };
+
+// mv
+export const linkToMvDetailPage = (id: number | undefined) => {
+  return id ? `/mv-detail?id=${id}` : "";
+};

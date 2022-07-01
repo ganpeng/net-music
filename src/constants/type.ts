@@ -613,3 +613,62 @@ export interface ISigninProgressResponse {
     [propName: string]: any;
   };
 }
+// mv
+export interface IMvUrl {
+  id: number;
+  url: string;
+  r: number;
+  size: number;
+  [propName: string]: any;
+}
+
+export interface IMvUrlResponse {
+  code: number;
+  data: IMvUrl;
+}
+
+export interface IMvCommentsSearchParam extends IPaginationParams {
+  id: number;
+}
+
+export interface IMvCommentsResponse {
+  code: number;
+  total: number;
+  more: boolean;
+  hotComments: IComment[];
+  comments: IComment[];
+  [propName: string]: any;
+}
+
+export interface IMvDetail {
+  id: number;
+  name: string;
+  desc: string | null;
+  cover: string;
+  playCount: number;
+  subCount: number;
+  shareCount: number;
+  commentCount: number;
+  duration: number;
+  nType: number;
+  publishTime: string;
+  brs: [
+    {
+      size: number;
+      br: number;
+      point: number;
+    }
+  ];
+  artists: [
+    {
+      id: number;
+      name: string;
+    }
+  ];
+}
+
+export interface IMvDetailResponse {
+  code: number;
+  data: IMvDetail;
+  [propName: string]: any;
+}

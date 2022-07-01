@@ -55,8 +55,6 @@ function AlbumDetail() {
     setOffset(offset);
   };
 
-  console.log(albumDetail);
-
   return (
     <div className="album-detail-container content-w">
       <div className="left-field">

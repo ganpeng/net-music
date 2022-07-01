@@ -27,6 +27,10 @@ import {
   ILoginQrKeyResponse,
   IMusicCommentsSearchParam,
   IMusicLyricResponse,
+  IMvCommentsResponse,
+  IMvCommentsSearchParam,
+  IMvDetailResponse,
+  IMvUrlResponse,
   INewAlbumListSearchParams,
   INewAlbumResponse,
   INewestAlbumResponse,
@@ -473,6 +477,35 @@ export function followById(id: number, t: number) {
 export function getSigninProgress(): Promise<ISigninProgressResponse> {
   return service
     .get(`${apiRoute.SIGNIN_PROGRESS}`)
+    .then((res) => res.data)
+    .catch((err) => {
+      throw new Error(err);
+    });
+}
+
+export function getMvUrlById(id: number): Promise<IMvUrlResponse> {
+  return service
+    .get(`${apiRoute.MV_URL}?id=${id}`)
+    .then((res) => res.data)
+    .catch((err) => {
+      throw new Error(err);
+    });
+}
+
+export function getMvComments(
+  searchParams: IMvCommentsSearchParam
+): Promise<IMvCommentsResponse> {
+  return service
+    .get(`${apiRoute.COMMENT_MV}?${getParamsString(searchParams)}`)
+    .then((res) => res.data)
+    .catch((err) => {
+      throw new Error(err);
+    });
+}
+
+export function getMvDetailById(id: number): Promise<IMvDetailResponse> {
+  return service
+    .get(`${apiRoute.MV_DETAIL}?mvid=${id}`)
     .then((res) => res.data)
     .catch((err) => {
       throw new Error(err);
