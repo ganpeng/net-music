@@ -160,4 +160,20 @@
       }
     }
   }
+  .left-right-layout {
+    display: flex;
+    flex-wrap: wrap;
+    border: 1px solid #d3d3d3;
+    border-width: 0 1px;
+    background: url("./assets/images/wrap4.png") repeat-y center 0;
+    .left-field {
+      width: 708px;
+      padding: 47px 30px 40px 39px;
+    }
+    .right-field {
+      flex: 1;
+      padding: 20px 40px 40px 30px;
+      overflow: hidden;
+    }
+  }
 }

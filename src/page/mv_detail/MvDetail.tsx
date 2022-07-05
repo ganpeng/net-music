@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useQuery } from "react-query";
-import { useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import {
   CommentList,
   Pagination,
@@ -9,6 +9,7 @@ import {
 } from "../../components";
 import { COMMENT_PAGE_LIST } from "../../constants";
 import { getMvComments, getMvDetailById, getMvUrlById } from "../../service";
+import { linkToArtistDetailPage } from "../../utils/link";
 import "./index.scss";
 
 function MvDetail() {
@@ -36,8 +37,24 @@ function MvDetail() {
   console.log(mvDetailData);
 
   return (
-    <div className="mv-detail-container content-w content-h">
+    <div className="mv-detail-container left-right-layout content-w content-h">
       <div className="left-field">
+        <div className="mv-title">
+          <span className="mv-icon"></span>
+          <div className="title">{mvDetailData?.data.name}</div>
+          <div
+            className="songers"
+            title={mvDetailData?.data.artists
+              .map((ar: any) => ar.name)
+              .join("/")}
+          >
+            {mvDetailData?.data.artists.map((ar: any, _index: number) => (
+              <span key={`${ar}_${_index}`}>
+                <Link to={linkToArtistDetailPage(ar.id)}>{ar.name}</Link>
+              </span>
+            ))}
+          </div>
+        </div>
         <VideoPlayer url={mvUrlData?.data.url || ""}></VideoPlayer>
         {(commentsData?.hotComments || []).length > 0 && (
           <CommentList
@@ -60,6 +77,15 @@ function MvDetail() {
       </div>
       <div className="right-field">
         <SectionTitle title="MV简介"></SectionTitle>
+        <div className="mv-desc">
+          <div className="publish-time">
+            发布时间：{mvDetailData?.data.publishTime}
+          </div>
+          <div className="playcount">
+            播放次数：{mvDetailData?.data.playCount}
+          </div>
+          <div className="desc">{mvDetailData?.data.desc}</div>
+        </div>
         <SectionTitle title="相关推荐"></SectionTitle>
       </div>
     </div>

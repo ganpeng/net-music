@@ -94,7 +94,7 @@ function ArtistDetail() {
                 >
                   <Link to={linkToArtistDetailPage(artist.id)}></Link>
                 </div>
-                <p className="name text-decoration">
+                <p className="name text-decoration" title={artist.name}>
                   <Link to={linkToArtistDetailPage(artist.id)}>
                     {artist.name}
                   </Link>

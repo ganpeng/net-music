@@ -15,9 +15,11 @@ function VideoPlayer(props: VideoPlayerPropsType) {
   const [currentTime, setCurrentTime] = useState(0);
   const [volume, setVolume] = useState(0.2);
   const [isScreenfull, setIsScreenfull] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
 
   // 播放器dom
   const player = useRef<HTMLVideoElement | null>(null);
+  const timer = useRef<NodeJS.Timeout | null>(null);
 
   // 音乐播放器事件
   const playHandler = (e: any) => {
@@ -87,12 +89,33 @@ function VideoPlayer(props: VideoPlayerPropsType) {
     };
   }, []);
 
+  useEffect(() => {
+    const videoPlayer = document.querySelector(".video-player");
+    videoPlayer?.addEventListener("mousemove", () => {
+      setIsVisible(true);
+
+      if (timer.current) {
+        clearTimeout(timer.current);
+        timer.current = null;
+      }
+
+      timer.current = setTimeout(() => {
+        setIsVisible(false);
+      }, 5000);
+    });
+
+    return () => {
+      videoPlayer?.removeEventListener("mousemove", () => {});
+    };
+  }, []);
+
   return (
     <div className="video-player-container">
       <div className={`video-player ${isScreenfull ? "is-screenfull" : ""}`}>
         <video
           ref={player}
           src={props.url}
+          autoPlay
           onTimeUpdate={timeUpdateHandler}
           onPlay={playHandler}
           onPause={pauseHandler}
@@ -104,7 +127,11 @@ function VideoPlayer(props: VideoPlayerPropsType) {
           className={`big-play-btn ${!isPlaying ? "visible" : ""}`}
           onClick={togglePlayPause}
         ></div>
-        <div className={`controls-bar visible`}>
+        <div
+          className={`controls-bar ${
+            isVisible || !isPlaying ? "visible" : ""
+          } `}
+        >
           <div className="play-pause-btn" onClick={togglePlayPause}>
             {isPlaying ? (
               <div className="pause-btn"></div>
