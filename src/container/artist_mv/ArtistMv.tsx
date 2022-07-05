@@ -1,8 +1,9 @@
 import React from "react";
 import { useQuery } from "react-query";
-import { useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { NoData } from "../../components";
 import { getArtistMvById } from "../../service";
+import { linkToMvDetailPage } from "../../utils/link";
 import "./index.scss";
 
 function ArtistMv() {
@@ -25,10 +26,14 @@ function ArtistMv() {
                   className="img"
                   style={{ backgroundImage: `url(${mv.imgurl})` }}
                 >
-                  <div className="blur-pic"></div>
-                  <div className="play-btn"></div>
+                  <Link className="block-a" to={linkToMvDetailPage(mv.id)}>
+                    <div className="blur-pic"></div>
+                    <div className="play-btn"></div>
+                  </Link>
                 </div>
-                <div className="name text-decoration">{mv.name}</div>
+                <div className="name text-decoration">
+                  <Link to={linkToMvDetailPage(mv.id)}>{mv.name}</Link>
+                </div>
               </li>
             );
           })}
