@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useMemo } from "react";
 import PageHeader from "../../components/header/PageHeader";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import "./index.scss";
 import MusicPlayer from "../../components/music_player/MusicPlayer";
 import { Login, PageFooter } from "../../components";
 
 export default function PageLayout() {
+  const location = useLocation();
+
+  const musicPlayerVisible = useMemo(() => {
+    return location.pathname !== "/mv-detail";
+  }, [location.pathname]);
+
   return (
     <div className="container">
       <div className="page-header-cointainer">
@@ -22,9 +28,11 @@ export default function PageLayout() {
       <div className="login-section">
         <Login></Login>
       </div>
-      <div className="music-player-section">
-        <MusicPlayer></MusicPlayer>
-      </div>
+      {musicPlayerVisible && (
+        <div className="music-player-section">
+          <MusicPlayer></MusicPlayer>
+        </div>
+      )}
     </div>
   );
 }
