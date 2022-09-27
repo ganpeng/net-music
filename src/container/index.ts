@@ -6,3 +6,4 @@ export { default as Top5Dj } from "./top5_dj/Top5Dj";
 export { default as PlaylistBaseinfo } from "./playlist_baseinfo/PlaylistBaseinfo";
 export { default as PlaylistSongs } from "./playlist_songs/PlaylistSongs";
 export { default as ArtistTopSong } from "./artist_top_song/ArtistTopSong";
+export { default as MyMusicAuthed } from "./my_music_authed/MyMusicAuthed";
